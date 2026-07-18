@@ -1,0 +1,8 @@
+[
+  { "id": "uribe1", "nombre": "Uribe I", "presidente": "Álvaro Uribe Vélez", "inicio": "2002-08-07", "fin": "2006-08-07", "color": "#2563eb" },
+  { "id": "uribe2", "nombre": "Uribe II", "presidente": "Álvaro Uribe Vélez", "inicio": "2006-08-07", "fin": "2010-08-07", "color": "#1d4ed8" },
+  { "id": "santos1", "nombre": "Santos I", "presidente": "Juan Manuel Santos", "inicio": "2010-08-07", "fin": "2014-08-07", "color": "#16a34a" },
+  { "id": "santos2", "nombre": "Santos II", "presidente": "Juan Manuel Santos", "inicio": "2014-08-07", "fin": "2018-08-07", "color": "#15803d" },
+  { "id": "duque", "nombre": "Duque", "presidente": "Iván Duque Márquez", "inicio": "2018-08-07", "fin": "2022-08-07", "color": "#ea580c" },
+  { "id": "petro", "nombre": "Petro", "presidente": "Gustavo Petro Urrego", "inicio": "2022-08-07", "fin": "2026-08-07", "color": "#dc2626" }
+]

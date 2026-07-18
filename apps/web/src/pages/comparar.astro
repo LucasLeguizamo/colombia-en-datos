@@ -1,0 +1,44 @@
+---
+import Base from '../layouts/Base.astro';
+import { indicadores, mandatos, statsPorMandato, fmt } from '../lib/data.js';
+
+// Matriz indicador × mandato con el promedio de cada período.
+const filas = indicadores.map((ind) => ({
+  ind,
+  celdas: statsPorMandato(ind),
+}));
+---
+
+<Base
+  title="Comparar gobiernos"
+  descripcion="Promedio de cada indicador económico por mandato presidencial en Colombia, lado a lado."
+>
+  <h1>Comparar gobiernos</h1>
+  <p class="muted">Promedio de cada indicador durante cada mandato. Fuente oficial en cada página de indicador.</p>
+
+  <div style="overflow-x:auto;">
+    <table>
+      <thead>
+        <tr>
+          <th>Indicador</th>
+          {mandatos.map((m) => <th style={`color:${m.color};`}>{m.nombre}</th>)}
+        </tr>
+      </thead>
+      <tbody>
+        {filas.map(({ ind, celdas }) => (
+          <tr>
+            <td><a href={`/indicador/${ind.id}`}>{ind.nombre}</a></td>
+            {celdas.map((c) => (
+              <td>{c.sinDatos ? '—' : fmt(c.promedio, ind.unidad)}</td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <p class="muted" style="font-size:.85rem;margin-top:12px;">
+    Menor es mejor en inflación, desempleo y TRM. Elegir dos gobiernos concretos lado a lado
+    (todos los indicadores) llega en Fase 2.
+  </p>
+</Base>
