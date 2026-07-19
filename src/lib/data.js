@@ -10,13 +10,28 @@ import natalidad from '@data/indicadores/natalidad.json';
 import ied from '@data/indicadores/ied.json';
 import inversionPublica from '@data/indicadores/inversion-publica.json';
 import fecundidad from '@data/indicadores/fecundidad.json';
+import pibCrecimiento from '@data/indicadores/pib-crecimiento.json';
+import salarioMinimo from '@data/indicadores/salario-minimo.json';
+import gasolina from '@data/indicadores/gasolina.json';
+import pobrezaMonetaria from '@data/indicadores/pobreza-monetaria.json';
+import pobrezaExtrema from '@data/indicadores/pobreza-extrema.json';
+import homicidiosTasa from '@data/indicadores/homicidios-tasa.json';
+import secuestro from '@data/indicadores/secuestro.json';
+import extorsion from '@data/indicadores/extorsion.json';
+import cocaHectareas from '@data/indicadores/coca-hectareas.json';
 import congreso from '@data/congreso.json';
 import gabinetes from '@data/gabinetes.json';
 import elecciones from '@data/elecciones.json';
 import presidentes from '@data/presidentes.json';
 
 // ponytail: explicit list. New indicator = add JSON + one import line here. YAGNI on dynamic glob.
-export const indicadores = [inflacion, desempleo, trm, deudaExternaPib, deudaTotalGnc, deudaPerCapita, ied, inversionPublica, natalidad, fecundidad, lideresSociales];
+// Orden temático: economía → social → seguridad.
+export const indicadores = [
+  pibCrecimiento, inflacion, desempleo, salarioMinimo, gasolina, trm, ied, inversionPublica,
+  deudaExternaPib, deudaTotalGnc, deudaPerCapita,
+  pobrezaMonetaria, pobrezaExtrema, natalidad, fecundidad,
+  homicidiosTasa, secuestro, extorsion, lideresSociales, cocaHectareas,
+];
 export { mandatos, congreso, gabinetes, elecciones };
 
 export const getIndicador = (id) => indicadores.find((i) => i.id === id);
@@ -168,5 +183,44 @@ export const fmt = (v, unidad) => {
   if (unidad === 'USD M') return `US$${Math.round(v).toLocaleString('es-CO')} M`;
   if (unidad === 'billones COP') return `$${v.toLocaleString('es-CO', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} B`;
   if (unidad === 'hijos por mujer') return v.toLocaleString('es-CO', { minimumFractionDigits: 1, maximumFractionDigits: 2 });
+  if (unidad === 'por 100k') return v.toLocaleString('es-CO', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  if (unidad === 'COP') return `$${(v / 1e6).toFixed(v >= 1e6 ? 2 : 3)}M`;
+  if (unidad === 'COP/gal') return `$${Math.round(v).toLocaleString('es-CO')}`;
+  if (unidad === 'ha') return `${Math.round(v).toLocaleString('es-CO')} ha`;
+  if (unidad === 'casos') return `${Math.round(v).toLocaleString('es-CO')}`;
   return v.toLocaleString('es-CO');
+};
+
+// --- Insignias: logros y alertas de cada gobierno, derivados de los datos (no editorial).
+// Neutral por diseño: la cifra decide el tono. Para cada indicador con datos en el mandato,
+// marca si alcanzó el mejor/peor valor de toda la serie (récord) o un movimiento fuerte (≥15%).
+export const insigniasPorMandato = (m) => {
+  const badges = [];
+  for (const ind of indicadores) {
+    const fila = statsPorMandato(ind).find((f) => f.mandato.id === m.id);
+    if (!fila || fila.sinDatos) continue;
+    const valores = ind.serie.filter((p) => p.valor != null).map((p) => p.valor);
+    if (valores.length < 4) continue; // serie corta: no hay contexto para "récord de la serie"
+    const menorMejor = ind.mejorEs === 'menor';
+    const mejorVal = menorMejor ? Math.min(...valores) : Math.max(...valores);
+    const peorVal = menorMejor ? Math.max(...valores) : Math.min(...valores);
+    const puntos = ind.serie
+      .filter((p) => p.valor != null && mandatoDePunto(p.fecha)?.id === m.id)
+      .map((p) => p.valor);
+
+    if (puntos.includes(mejorVal)) {
+      badges.push({ ind: ind.id, tono: 'bien', texto: `${ind.nombre}: mejor de la serie`, valor: fmt(mejorVal, ind.unidad), peso: 3 });
+    } else if (puntos.includes(peorVal)) {
+      badges.push({ ind: ind.id, tono: 'mal', texto: `${ind.nombre}: peor de la serie`, valor: fmt(peorVal, ind.unidad), peso: 3 });
+    } else if (fila.deltaPct != null && Math.abs(fila.deltaPct) >= 15) {
+      const ok = mejoro(ind, fila);
+      badges.push({
+        ind: ind.id, tono: ok ? 'bien' : 'mal',
+        texto: `${ind.nombre} ${ok ? '▼ mejoró' : '▲ empeoró'} ${Math.abs(fila.deltaPct).toFixed(0)}%`,
+        valor: fmt(fila.ultimo, ind.unidad),
+        peso: 1 + Math.min(1, Math.abs(fila.deltaPct) / 50),
+      });
+    }
+  }
+  return badges.sort((a, b) => b.peso - a.peso).slice(0, 6);
 };

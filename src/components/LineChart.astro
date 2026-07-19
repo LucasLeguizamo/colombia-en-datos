@@ -7,7 +7,12 @@ const W = width - pad.left - pad.right;
 const H = height - pad.top - pad.bottom;
 
 const serie = indicador.serie;
-const valores = serie.map((p) => p.valor).filter((v) => v != null);
+// serieReal (opcional): misma cadencia por índice; se dibuja como línea secundaria (p. ej. salario en pesos constantes).
+const serieReal = indicador.serieReal ?? null;
+const valores = [
+  ...serie.map((p) => p.valor),
+  ...(serieReal ? serieReal.map((p) => p.valor) : []),
+].filter((v) => v != null);
 const min = Math.min(...valores);
 const max = Math.max(...valores);
 const range = max - min || 1;
@@ -36,6 +41,17 @@ serie.forEach((p, i) => {
 });
 if (seg.length) segmentos.push(seg);
 
+// Segmentos de la serie real (secundaria), misma lógica de cortes en null.
+const segmentosReal = [];
+if (serieReal) {
+  let sr = [];
+  serieReal.forEach((p, i) => {
+    if (p.valor == null) { if (sr.length) segmentosReal.push(sr); sr = []; }
+    else sr.push(`${x(i)},${y(p.valor)}`);
+  });
+  if (sr.length) segmentosReal.push(sr);
+}
+
 // Ticks Y (5 líneas).
 const ticks = Array.from({ length: 5 }, (_, i) => min + (range * i) / 4);
 // Etiquetas X: cada 3 puntos + el último.
@@ -62,10 +78,24 @@ const xLabels = serie.filter((_, i) => i % 3 === 0 || i === serie.length - 1);
     </g>
   ))}
 
+  {segmentosReal.map((pts) => (
+    <polyline points={pts.join(' ')} fill="none" stroke="#C2522D" stroke-width="2"
+              stroke-dasharray="5 4" stroke-linejoin="round" stroke-linecap="round" opacity="0.85" />
+  ))}
+
   {segmentos.map((pts) => (
     <polyline points={pts.join(' ')} fill="none" stroke="#1A1A18" stroke-width="2.5"
               stroke-linejoin="round" stroke-linecap="round" />
   ))}
+
+  {serieReal && (
+    <g font-size="11">
+      <line x1={pad.left} x2={pad.left + 22} y1={pad.top + 2} y2={pad.top + 2} stroke="#1A1A18" stroke-width="2.5" />
+      <text x={pad.left + 28} y={pad.top + 6} fill="#6B6B63">nominal</text>
+      <line x1={pad.left + 92} x2={pad.left + 114} y1={pad.top + 2} y2={pad.top + 2} stroke="#C2522D" stroke-width="2" stroke-dasharray="5 4" />
+      <text x={pad.left + 120} y={pad.top + 6} fill="#6B6B63">poder adquisitivo (pesos de 2025)</text>
+    </g>
+  )}
 
   {serie.map((p, i) => p.valor != null && (
     p.nota
