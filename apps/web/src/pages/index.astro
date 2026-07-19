@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import Newsletter from '../components/Newsletter.astro';
 import { indicadores, mandatos } from '../lib/data.js';
 ---
 
@@ -25,6 +26,10 @@ import { indicadores, mandatos } from '../lib/data.js';
         <p class="muted" style="font-size:.8rem;margin:12px 0 0;">Fuente: {ind.fuente}</p>
       </a>
     ))}
+  </div>
+
+  <div style="margin-top:32px;">
+    <Newsletter />
   </div>
 
   <h2>Mandatos</h2>
