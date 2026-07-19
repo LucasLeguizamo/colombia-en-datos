@@ -51,7 +51,6 @@ Principios:
 ### Correr la web localmente
 
 ```bash
-cd apps/web
 npm install
 npm run dev      # http://localhost:4321
 npm run build    # genera dist/ estático

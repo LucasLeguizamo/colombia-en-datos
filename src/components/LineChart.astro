@@ -1,0 +1,81 @@
+---
+import { mandatos, mandatoDePunto, fmt } from '../lib/data.js';
+
+const { indicador, width = 920, height = 420 } = Astro.props;
+const pad = { top: 24, right: 24, bottom: 40, left: 64 };
+const W = width - pad.left - pad.right;
+const H = height - pad.top - pad.bottom;
+
+const serie = indicador.serie;
+const valores = serie.map((p) => p.valor).filter((v) => v != null);
+const min = Math.min(...valores);
+const max = Math.max(...valores);
+const range = max - min || 1;
+
+// x por índice (serie de paso regular); y por valor.
+const x = (i) => pad.left + (serie.length === 1 ? W / 2 : (i / (serie.length - 1)) * W);
+const y = (v) => pad.top + H - ((v - min) / range) * H;
+
+// Bandas: rango x de los puntos de cada mandato.
+const bandas = mandatos
+  .map((m) => {
+    const idx = serie.map((p, i) => (mandatoDePunto(p.fecha)?.id === m.id ? i : -1)).filter((i) => i >= 0);
+    if (idx.length === 0) return null;
+    const x0 = x(Math.min(...idx)) - (serie.length > 1 ? (W / (serie.length - 1)) / 2 : W / 2);
+    const x1 = x(Math.max(...idx)) + (serie.length > 1 ? (W / (serie.length - 1)) / 2 : W / 2);
+    return { m, x0: Math.max(pad.left, x0), x1: Math.min(pad.left + W, x1) };
+  })
+  .filter(Boolean);
+
+// Polilínea, cortando en huecos (null).
+const segmentos = [];
+let seg = [];
+serie.forEach((p, i) => {
+  if (p.valor == null) { if (seg.length) segmentos.push(seg); seg = []; }
+  else seg.push(`${x(i)},${y(p.valor)}`);
+});
+if (seg.length) segmentos.push(seg);
+
+// Ticks Y (5 líneas).
+const ticks = Array.from({ length: 5 }, (_, i) => min + (range * i) / 4);
+// Etiquetas X: cada 3 puntos + el último.
+const xLabels = serie.filter((_, i) => i % 3 === 0 || i === serie.length - 1);
+---
+
+<svg viewBox={`0 0 ${width} ${height}`} width="100%" role="img"
+     aria-label={`Gráfica de ${indicador.nombre} por mandato presidencial`}
+     style='max-width:100%;height:auto;font-family:"Styrene A",-apple-system,sans-serif;'>
+  {bandas.map((b) => (
+    <g>
+      <rect x={b.x0} y={pad.top} width={b.x1 - b.x0} height={H} fill={b.m.color} opacity="0.10" />
+      <text x={(b.x0 + b.x1) / 2} y={pad.top + 14} text-anchor="middle"
+            font-size="11" font-weight="600" fill={b.m.color}>{b.m.nombre}</text>
+    </g>
+  ))}
+
+  {ticks.map((t) => (
+    <g>
+      <line x1={pad.left} x2={pad.left + W} y1={y(t)} y2={y(t)} stroke="#D8D4CC" stroke-width="1" />
+      <text x={pad.left - 8} y={y(t) + 4} text-anchor="end" font-size="11" fill="#6B6B63">
+        {fmt(t, indicador.unidad)}
+      </text>
+    </g>
+  ))}
+
+  {segmentos.map((pts) => (
+    <polyline points={pts.join(' ')} fill="none" stroke="#1A1A18" stroke-width="2.5"
+              stroke-linejoin="round" stroke-linecap="round" />
+  ))}
+
+  {serie.map((p, i) => p.valor != null && (
+    p.nota
+      ? <circle cx={x(i)} cy={y(p.valor)} r="5" fill="#FAF9F7" stroke="#C2522D" stroke-width="2.5"><title>{p.nota}</title></circle>
+      : <circle cx={x(i)} cy={y(p.valor)} r="3" fill="#1A1A18" />
+  ))}
+
+  {xLabels.map((p) => (
+    <text x={x(serie.indexOf(p))} y={height - 14} text-anchor="middle" font-size="11" fill="#6B6B63">
+      {p.fecha.slice(0, 4)}
+    </text>
+  ))}
+</svg>

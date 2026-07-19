@@ -1,0 +1,76 @@
+{
+  "descripcion": "Perfil factual de cada presidente: profesión y cargos públicos previos. Sin adjetivos.",
+  "fuentes": [
+    "https://es.wikipedia.org/wiki/%C3%81lvaro_Uribe_V%C3%A9lez",
+    "https://es.wikipedia.org/wiki/Juan_Manuel_Santos",
+    "https://es.wikipedia.org/wiki/Iv%C3%A1n_Duque_M%C3%A1rquez",
+    "https://es.wikipedia.org/wiki/Gustavo_Petro",
+    "https://en.wikipedia.org/wiki/Abelardo_de_la_Espriella",
+    "https://congresovisible.uniandes.edu.co/congresistas/perfil/gustavo-francisco-petro-urrego/811/",
+    "https://congresovisible.uniandes.edu.co/congresistas/perfil/ivan-duque-marquez/9482/"
+  ],
+  "verificado": false,
+  "nota": "Datos triangulados de fuentes públicas, pendientes de verificación cruzada (Fase 0).",
+  "perfiles": [
+    {
+      "presidente": "Álvaro Uribe Vélez",
+      "profesion": "Abogado",
+      "nacimiento": "1952, Medellín",
+      "resumen": "Abogado de la Universidad de Antioquia con trayectoria en cargos ejecutivos, legislativos y de gobierno regional antes de la presidencia.",
+      "cargos": [
+        { "cargo": "Jefe de Bienes de las Empresas Públicas de Medellín", "periodo": "1976" },
+        { "cargo": "Secretario General del Ministerio de Trabajo", "periodo": "1977–1978" },
+        { "cargo": "Director de la Aeronáutica Civil", "periodo": "1980–1982" },
+        { "cargo": "Alcalde de Medellín", "periodo": "1982" },
+        { "cargo": "Concejal de Medellín", "periodo": "1984–1986" },
+        { "cargo": "Senador de la República", "periodo": "1986–1994" },
+        { "cargo": "Gobernador de Antioquia", "periodo": "1995–1997" }
+      ]
+    },
+    {
+      "presidente": "Juan Manuel Santos",
+      "profesion": "Economista",
+      "nacimiento": "1951, Bogotá",
+      "resumen": "Economista con trayectoria en representación gremial cafetera y en carteras ministeriales antes de la presidencia.",
+      "cargos": [
+        { "cargo": "Delegado de Colombia ante la Organización Internacional del Café", "periodo": "1972–1981" },
+        { "cargo": "Ministro de Comercio Exterior", "periodo": "1991–1994" },
+        { "cargo": "Designado Presidencial", "periodo": "1993–1994" },
+        { "cargo": "Ministro de Hacienda y Crédito Público", "periodo": "2000–2002" },
+        { "cargo": "Ministro de Defensa Nacional", "periodo": "2006–2009" }
+      ]
+    },
+    {
+      "presidente": "Iván Duque Márquez",
+      "profesion": "Abogado",
+      "nacimiento": "1976, Bogotá",
+      "resumen": "Abogado de la Universidad Sergio Arboleda con paso por el Senado de la República antes de la presidencia.",
+      "cargos": [
+        { "cargo": "Senador de la República", "periodo": "2014–2018" }
+      ]
+    },
+    {
+      "presidente": "Gustavo Petro Urrego",
+      "profesion": "Economista",
+      "nacimiento": "1960, Ciénaga de Oro",
+      "resumen": "Economista de la Universidad Externado con trayectoria en cargos locales, legislativos y ejecutivos antes de la presidencia.",
+      "cargos": [
+        { "cargo": "Personero de Zipaquirá", "periodo": "1981" },
+        { "cargo": "Concejal de Zipaquirá", "periodo": "1984–1986" },
+        { "cargo": "Representante a la Cámara por Cundinamarca", "periodo": "1991–1994" },
+        { "cargo": "Agregado diplomático en la Embajada de Colombia en Bélgica", "periodo": "1994–1996" },
+        { "cargo": "Representante a la Cámara por Bogotá", "periodo": "1998–2006" },
+        { "cargo": "Senador de la República", "periodo": "2006–2010" },
+        { "cargo": "Alcalde Mayor de Bogotá", "periodo": "2012–2015" },
+        { "cargo": "Senador de la República", "periodo": "2018–2022" }
+      ]
+    },
+    {
+      "presidente": "Abelardo de la Espriella",
+      "profesion": "Abogado",
+      "nacimiento": "1978, Bogotá",
+      "resumen": "Abogado litigante formado en la Universidad del Rosario; sin cargos públicos de elección o designación previos a la presidencia.",
+      "cargos": []
+    }
+  ]
+}

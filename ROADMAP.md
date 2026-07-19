@@ -15,7 +15,7 @@ La credibilidad es el producto. Sin datos impecables no hay nada.
 - Definición de mandatos con fechas exactas de posesión (el corte importa: ¿la inflación de agosto 2026 es de Petro o del entrante? Regla explícita y documentada).
 - **Verificación cruzada**: cada serie contrastada contra 2 fuentes antes de publicar. Un solo dato malo el día del lanzamiento mata el proyecto.
 
-**Salida:** `packages/data/` con 3 series completas y verificadas.
+**Salida:** `data/` con 3 series completas y verificadas.
 
 ## Fase 1 — MVP web + lanzamiento (semanas 3–4 → 7 de agosto)
 

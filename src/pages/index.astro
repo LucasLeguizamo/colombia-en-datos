@@ -1,0 +1,35 @@
+---
+import Base from '../layouts/Base.astro';
+import Presidente from '../components/Presidente.astro';
+import Newsletter from '../components/Newsletter.astro';
+import { mandatoVigente } from '../lib/data.js';
+
+const activo = mandatoVigente(); // presidente en ejercicio hoy
+---
+
+<Base
+  title=""
+  descripcion="Cada presidente de Colombia con sus datos: elección, Senado, Cámara e indicadores económicos. De Uribe a Petro y Abelardo, con fuente oficial y sin sesgo."
+>
+  <h1 class="titulo-home" style="margin-bottom:4px;">Colombia en Datos</h1>
+  <p class="muted intro-home" style="max-width:620px;margin-top:0;">
+    Elige un presidente y mira sus datos: cómo llegó, con qué Congreso gobernó y
+    qué pasó con la economía. Fuente oficial, sin adjetivos.
+  </p>
+
+  <style>
+    /* Móvil: menos preámbulo, los datos de primeras. */
+    @media (max-width:520px) {
+      .intro-home { display:none; }
+      .titulo-home { font-size:1.6rem; margin:0 0 8px; }
+    }
+  </style>
+
+  <Presidente activo={activo} tituloTag="h2" filtroAnios />
+
+  <p class="muted mini" style="text-align:center;">
+    Congreso: <a href="/congreso">ver todos los gobiernos</a> · Indicadores: <a href="/comparar">comparar dos gobiernos</a>
+  </p>
+
+  <div style="margin-top:32px;"><Newsletter /></div>
+</Base>

@@ -1,0 +1,25 @@
+{
+  "id": "lideres-sociales",
+  "nombre": "Líderes sociales asesinados",
+  "descripcion": "Líderes sociales y personas defensoras de derechos humanos asesinadas por año, según el registro del Observatorio de Derechos Humanos y Conflictividades de Indepaz.",
+  "unidad": "personas",
+  "mejorEs": "menor",
+  "fuente": "Indepaz (Observatorio de DDHH y Conflictividades)",
+  "fuenteUrl": "https://indepaz.org.co/observatorio-de-derechos-humanos-y-conflictividades/",
+  "frecuencia": "anual",
+  "verificado": true,
+  "nota": "Serie consolidada del informe 'Una tendencia que mata' (Indepaz, noviembre de 2025); el dato de 2025 corresponde al balance anual de Indepaz publicado en enero de 2026 (187 casos, +8,1% frente a 2024). Indepaz depuró su serie histórica: informes anteriores citaban cifras mayores para 2016-2020 (p. ej. 282 en 2018 y 310 en 2020). La Defensoría del Pueblo reporta cifras distintas por diferencias de metodología y verificación de casos. El punto de 2026 (77) es un acumulado parcial a mediados de julio de 2026 (Indepaz), en verificación y no comparable con los totales de año completo; se marca como parcial.",
+  "serie": [
+    { "fecha": "2016", "valor": 109 },
+    { "fecha": "2017", "valor": 163 },
+    { "fecha": "2018", "valor": 249 },
+    { "fecha": "2019", "valor": 218 },
+    { "fecha": "2020", "valor": 252 },
+    { "fecha": "2021", "valor": 165 },
+    { "fecha": "2022", "valor": 187 },
+    { "fecha": "2023", "valor": 188 },
+    { "fecha": "2024", "valor": 173 },
+    { "fecha": "2025", "valor": 187 },
+    { "fecha": "2026", "valor": 77, "nota": "Acumulado parcial a mediados de julio de 2026 (Indepaz), en verificación; no comparable con los totales de año completo." }
+  ]
+}

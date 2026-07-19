@@ -1,0 +1,18 @@
+{
+  "id": "inversion-publica",
+  "nombre": "Inversión pública (PGN)",
+  "descripcion": "Presupuesto de inversión del Presupuesto General de la Nación, apropiación por vigencia, en billones de pesos corrientes.",
+  "unidad": "billones COP",
+  "mejorEs": "mayor",
+  "fuente": "Minhacienda / DNP",
+  "fuenteUrl": "https://www.minhacienda.gov.co/w/presupeusto-general-de-la-naci%C3%B3n-2026",
+  "frecuencia": "anual",
+  "verificado": true,
+  "nota": "Apropiación inicial de inversión por vigencia, en pesos corrientes: 2023 Ley 2276 de 2022 ($74,0 de $405,6 billones); 2024 Ley 2299 de 2023 ($99,3 de $502,6 billones); 2025 Decreto 1742 de 2024 ($82,5 de $523,0 billones, con $12 billones aplazados por la ley de financiamiento no aprobada); 2026 PGN 2026 ($88,4 de $546,9 billones, Presidencia-Minhacienda). Años anteriores sin dato hasta verificar la fuente primaria. No descuenta aplazamientos ni recortes posteriores.",
+  "serie": [
+    { "fecha": "2023", "valor": 74.0 },
+    { "fecha": "2024", "valor": 99.3 },
+    { "fecha": "2025", "valor": 82.5 },
+    { "fecha": "2026", "valor": 88.4 }
+  ]
+}

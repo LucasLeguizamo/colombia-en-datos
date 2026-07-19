@@ -1,0 +1,24 @@
+---
+import Base from '../../layouts/Base.astro';
+import Presidente from '../../components/Presidente.astro';
+import { mandatos, slugMandato, esFuturo } from '../../lib/data.js';
+
+export function getStaticPaths() {
+  return mandatos.map((m) => ({ params: { slug: slugMandato(m) }, props: { m } }));
+}
+
+const { m } = Astro.props;
+const desde = m.inicio.slice(0, 4);
+const hasta = m.fin.slice(0, 4);
+const descripcion = esFuturo(m)
+  ? `${m.presidente}, presidente de Colombia ${desde}–${hasta}. Toma posesión el 7 de agosto de 2026: elección, Congreso e indicadores económicos, próximamente.`
+  : `${m.presidente}, presidente de Colombia ${desde}–${hasta}: cómo llegó, la composición de Senado y Cámara, y los indicadores económicos de su gobierno con fuente oficial.`;
+---
+
+<Base title={`${m.presidente} (${desde}–${hasta})`} descripcion={descripcion}>
+  <Presidente activo={m} tituloTag="h1" filtroAnios />
+
+  <p class="muted mini" style="text-align:center;margin-top:24px;">
+    <a href="/congreso">Congreso de todos los gobiernos</a> · <a href="/comparar">comparar indicadores</a>
+  </p>
+</Base>

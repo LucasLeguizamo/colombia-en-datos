@@ -1,0 +1,55 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="Acerca del proyecto"
+  descripcion="Colombia en Datos es un proyecto independiente creado por Lucas Leguizamo: datos oficiales de Colombia presentados con una visión pragmática, sin sesgos de medios."
+>
+  <h1>Acerca</h1>
+
+  <p>
+    Colombia en Datos es un proyecto independiente creado por
+    <strong>Lucas Leguizamo</strong>.
+  </p>
+
+  <p>
+    La intención es simple: tener siempre una <strong>visión pragmática</strong> de lo
+    que pasa en el país, <strong>sin los sesgos de los medios</strong>. Aquí no hay
+    opiniones, adjetivos ni titulares: solo cifras oficiales, cada una con un enlace
+    directo a su fuente, para que cualquiera pueda verificarlas y sacar sus propias
+    conclusiones.
+  </p>
+
+  <h2>Principios</h2>
+  <div class="grid">
+    <div class="card">
+      <span class="badge">Fuentes oficiales</span>
+      <p style="margin-top:12px">
+        Todo dato viene del DANE, el Banco de la República u otra entidad oficial,
+        y enlaza su fuente original.
+      </p>
+    </div>
+    <div class="card">
+      <span class="badge">Sin sesgo</span>
+      <p style="margin-top:12px">
+        El dato se publica igual sin importar a qué gobierno o sector favorezca
+        o perjudique. Sin adjetivos, sin narrativa.
+      </p>
+    </div>
+    <div class="card">
+      <span class="badge">Abierto</span>
+      <p style="margin-top:12px">
+        Código bajo licencia MIT y datos en CC0. Cualquiera puede auditar, corregir
+        o reutilizar este proyecto en
+        <a href="https://github.com/LucasLeguizamo/colombia-en-datos" target="_blank" rel="noopener">GitHub</a>.
+      </p>
+    </div>
+  </div>
+
+  <h2>Contacto</h2>
+  <p class="muted">
+    ¿Encontraste un error en una cifra o una fuente mejor? Abre un issue en GitHub.
+    Las correcciones con fuente verificable siempre son bienvenidas.
+  </p>
+</Base>

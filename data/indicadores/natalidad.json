@@ -1,0 +1,25 @@
+{
+  "id": "natalidad",
+  "nombre": "Nacimientos",
+  "descripcion": "Nacidos vivos registrados por año en Colombia (Estadísticas Vitales, DANE).",
+  "unidad": "nacimientos",
+  "mejorEs": "mayor",
+  "fuente": "DANE (EEVV)",
+  "fuenteUrl": "https://www.dane.gov.co/index.php/estadisticas-por-tema/salud/nacimientos-y-defunciones/nacimientos",
+  "frecuencia": "anual",
+  "verificado": true,
+  "nota": "Cifras definitivas 2015-2023 y preliminares (pr) 2024-2025, tomadas de los boletines EEVV del DANE (2024pr: boletín de marzo de 2025; 2025pr: publicación de marzo de 2026). Las cifras preliminares se revisan al alza al consolidarse: el DANE reporta la caída de 2025 en 4,5% frente a la cifra actualizada de 2024. La serie comparable del DANE inicia en 2015.",
+  "serie": [
+    { "fecha": "2015", "valor": 660999 },
+    { "fecha": "2016", "valor": 647521 },
+    { "fecha": "2017", "valor": 656704 },
+    { "fecha": "2018", "valor": 649115 },
+    { "fecha": "2019", "valor": 642660 },
+    { "fecha": "2020", "valor": 629402 },
+    { "fecha": "2021", "valor": 616914 },
+    { "fecha": "2022", "valor": 573625 },
+    { "fecha": "2023", "valor": 515549 },
+    { "fecha": "2024", "valor": 445011 },
+    { "fecha": "2025", "valor": 433678 }
+  ]
+}

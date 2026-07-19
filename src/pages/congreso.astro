@@ -1,0 +1,69 @@
+---
+import Base from '../layouts/Base.astro';
+import { congreso, getMandato, segmentos, colorPartido, asientosColoreados } from '../lib/data.js';
+---
+
+<Base
+  title="Congreso por mandato"
+  descripcion="Composición de Cámara y Senado por partido durante cada gobierno de Colombia, y si el presidente tenía mayoría o no."
+>
+  <h1>El Congreso de cada gobierno</h1>
+  <p class="muted" style="max-width:640px;">
+    Cámara y Senado por partido tras cada elección legislativa.
+    Cada color es un partido; el arco va de oposición (izquierda) a
+    independientes (centro) y bancada de gobierno (derecha).
+  </p>
+  {!congreso.verificado && <p><span class="badge">datos en verificación</span></p>}
+
+  {congreso.periodos.length === 0 && (
+    <div class="card"><p class="muted" style="margin:0;">Datos en carga desde fuentes oficiales. Vuelve pronto.</p></div>
+  )}
+
+  {congreso.periodos.map((p) => {
+    const m = getMandato(p.mandato);
+    return (
+      <section style="margin-bottom:48px;">
+        <h2 style={`border-left:4px solid ${m?.color ?? '#888'};padding-left:12px;`}>
+          {m?.nombre ?? p.mandato}
+          <span class="muted" style="font-weight:400;font-size:1rem;"> · {m?.inicio.slice(0,4)}–{m?.fin.slice(0,4)}</span>
+        </h2>
+        {['senado', 'camara'].map((camara_key) => {
+          const c = p[camara_key] ?? {};
+          const { partidos, total } = segmentos(c);
+          if (partidos.length === 0) return null;
+          const asientos = asientosColoreados(partidos, total);
+          return (
+            <div style="margin:16px 0;">
+              <div style="display:flex;justify-content:space-between;font-size:.9rem;margin-bottom:6px;">
+                <strong style="text-transform:capitalize;">{camara_key === 'camara' ? 'Cámara' : 'Senado'}</strong>
+                <span class="muted">{total} curules</span>
+              </div>
+              <svg viewBox="0 0 400 210" style="width:100%;max-width:460px;height:auto;display:block;margin:0 auto;" role="img" aria-label={`Hemiciclo de ${camara_key === 'camara' ? 'Cámara' : 'Senado'}: ${total} curules`}>
+                {asientos.map((s) => (
+                  <circle cx={s.x.toFixed(1)} cy={s.y.toFixed(1)} r="5.4" fill={s.color}>
+                    <title>{s.partido}</title>
+                  </circle>
+                ))}
+                <text x="200" y="200" text-anchor="middle" font-size="26" font-weight="700" fill="var(--ink)">{total}</text>
+              </svg>
+              <div style="display:flex;flex-wrap:wrap;gap:4px 16px;margin-top:8px;font-size:.82rem;justify-content:center;">
+                {partidos.map((x, i) => (
+                  <span class="muted">
+                    <span style={`display:inline-block;width:9px;height:9px;border-radius:2px;background:${colorPartido(i)};margin-right:5px;`}></span>
+                    {x.partido} <strong style="color:var(--ink);">{x.curules}</strong>
+                  </span>
+                ))}
+              </div>
+            </div>
+          );
+        })}
+      </section>
+    );
+  })}
+
+  {congreso.periodos.length > 0 && (
+    <p class="muted" style="font-size:.85rem;">
+      Fuentes: {congreso.fuentes.join(' · ')}. {congreso.nota}
+    </p>
+  )}
+</Base>

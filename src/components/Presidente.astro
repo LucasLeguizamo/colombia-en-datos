@@ -1,0 +1,406 @@
+---
+import { mandatos, datosPresidente, slugMandato, segmentos, asientosColoreados, colorPartido, mejoro, fmt } from '../lib/data.js';
+
+// `activo` = mandato a mostrar; `linkTitulo` marca si el nombre es <h1> (home) o <h2> (detalle).
+// `filtroAnios` activa los chips de año en la página de detalle del presidente.
+const { activo, tituloTag = 'h2', filtroAnios = false } = Astro.props;
+const { m, futuro, perfil, eleccion, sen, cam, senMay, camMay, indicadoresM } = datosPresidente(activo);
+const Titulo = tituloTag;
+
+// --- Filtro por año (solo lectura de `ind.serie`; los helpers viven aquí, no en data.js) ---
+const anioInicio = parseInt(m.inicio.slice(0, 4), 10);
+const anioFin = parseInt(m.fin.slice(0, 4), 10);
+const anios = Array.from({ length: anioFin - anioInicio + 1 }, (_, i) => anioInicio + i);
+
+// Último valor publicado de un año (fechas "YYYY" o "YYYY-MM").
+const ultimoDelAnio = (serie, anio) => {
+  const pts = serie.filter((p) => p.valor != null && p.fecha.slice(0, 4) === String(anio));
+  return pts.length ? pts[pts.length - 1].valor : null;
+};
+
+const flecha = (d) => (d > 0 ? '▲' : d < 0 ? '▼' : '·');
+const claseDelta = (ind, d) =>
+  d == null || d === 0 ? '' : (ind.mejorEs === 'menor' ? d < 0 : d > 0) ? 'bien' : 'mal';
+
+// Cifras pre-formateadas por vista ("todo" + cada año) para alternar sin recalcular en cliente.
+const datosFiltro = (ind, fila) => {
+  const vistas = {
+    todo: {
+      v: fmt(fila.ultimo, ind.unidad),
+      d: `${flecha(fila.delta)} ${fmt(Math.abs(fila.delta), ind.unidad)}`,
+      ctx: `desde ${fmt(fila.primero, ind.unidad)}`,
+      cls: claseDelta(ind, fila.delta),
+    },
+  };
+  for (const anio of anios) {
+    const v = ultimoDelAnio(ind.serie, anio);
+    const vPrev = ultimoDelAnio(ind.serie, anio - 1);
+    if (v == null) {
+      vistas[anio] = { v: '—', d: '', ctx: `sin datos de ${anio}`, cls: '' };
+    } else if (vPrev == null) {
+      vistas[anio] = { v: fmt(v, ind.unidad), d: '', ctx: `sin dato de ${anio - 1} para comparar`, cls: '' };
+    } else {
+      const delta = v - vPrev;
+      vistas[anio] = {
+        v: fmt(v, ind.unidad),
+        d: `${flecha(delta)} ${fmt(Math.abs(delta), ind.unidad)}`,
+        ctx: `vs ${anio - 1}`,
+        cls: claseDelta(ind, delta),
+      };
+    }
+  }
+  return vistas;
+};
+
+const conChips = filtroAnios && !futuro;
+
+// Uribe y Santos gobernaron dos veces; comparten foto (una por persona en public/presidentes/).
+const fotoId = (id) => id.replace(/[12]$/, '');
+
+const nfVotos = new Intl.NumberFormat('es-CO');
+const fechaLarga = (f) =>
+  new Date(`${f}T00:00:00`).toLocaleDateString('es-CO', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+
+<div class="pres-wrap">
+<!-- Selector de presidentes: enlaces reales (indexables), no toggle JS -->
+<nav class="presfila" aria-label="Presidentes de Colombia">
+  {mandatos.map((mm) => (
+    <a class:list={["pres", { activo: mm.id === m.id }]} href={`/presidente/${slugMandato(mm)}`}
+       title={mm.nombre} aria-current={mm.id === m.id ? 'page' : undefined}>
+      <span class="disco" style={`--c:${mm.color};`} transition:name={`disco-${mm.id}`}>
+        <img src={`/presidentes/${fotoId(mm.id)}.jpg`} alt="" width="200" height="200" loading="lazy" decoding="async" />
+        <span class="anio">{mm.inicio.slice(2, 4)}</span>
+      </span>
+      <span class="etq">{mm.nombre}</span>
+    </a>
+  ))}
+</nav>
+
+<Titulo id="pres-nombre" style="text-align:center;margin:8px 0 24px;">{m.presidente}</Titulo>
+
+{conChips && (
+  <div class="filtro-anios" role="group" aria-label={`Filtrar indicadores por año del mandato de ${m.presidente}`} data-filtro-anios>
+    <button type="button" class="chip" data-anio="todo" aria-pressed="true">Todo el mandato</button>
+    {anios.map((anio) => (
+      <button type="button" class="chip" data-anio={String(anio)} aria-pressed="false">{anio}</button>
+    ))}
+    <span class="sr-only" aria-live="polite" data-filtro-estado></span>
+  </div>
+)}
+
+<div class="tablero">
+  <!-- 1 · Resultado electoral — tarjeta clickeable que abre el diálogo con el detalle -->
+  {eleccion ? (
+    <button type="button" class="panel panel-eleccion" data-abrir-eleccion aria-haspopup="dialog">
+      <h3>Cómo llegó <span class="ver-mas">ver qué pasó →</span></h3>
+      <p class="muted mini">
+        {eleccion.fecha.slice(0, 4)} · {eleccion.vuelta === 2 ? '2ª vuelta' : 'ganó en 1ª vuelta'}
+      </p>
+      <div class="barras-v">
+        {[eleccion.ganador, eleccion.segundo].map((c, i) => (
+          <div class="col-v">
+            <span class="mini"><strong>{c.pct.toFixed(1)}%</strong></span>
+            <div class="barra-v">
+              <span style={`height:${c.pct}%;background:${i === 0 ? m.color : '#B7B2A8'};`}></span>
+            </div>
+            <span class="mini">{i === 0 ? <strong>{c.nombre}</strong> : c.nombre}</span>
+            <span class="muted mini">{c.partido}</span>
+            {c.votos != null && <span class="muted mini votos">{nfVotos.format(c.votos)} votos</span>}
+          </div>
+        ))}
+      </div>
+    </button>
+  ) : (
+    <div class="panel">
+      <h3>Cómo llegó</h3>
+      {futuro
+        ? <p class="proximamente">Toma posesión el 7 de agosto de 2026. Resultado electoral: próximamente.</p>
+        : <p class="muted mini">Sin datos.</p>}
+    </div>
+  )}
+
+  <!-- 2 · Senado -->
+  <div class="panel">
+    <h3>Senado <span class="muted mini">{sen.total || '—'}</span></h3>
+    {sen.partidos.length ? (
+      <>
+        {senMay && (
+          <div class="mayoria">
+            <span class="punto" style={`background:${colorPartido(senMay.idx)};`}></span>
+            <span><b>{senMay.partido}</b> · mayoría</span>
+            <span class="mono">{senMay.curules} · {senMay.pct.toFixed(0)}%</span>
+          </div>
+        )}
+        <svg viewBox="0 0 400 210" class="hemi" role="img" aria-label={`Senado: ${sen.total} curules`}>
+          {asientosColoreados(sen.partidos, sen.total).map((s) => (
+            <circle cx={s.x.toFixed(1)} cy={s.y.toFixed(1)} r="6" fill={s.color}><title>{s.partido}</title></circle>
+          ))}
+        </svg>
+        <ul class="leyenda">
+          {sen.partidos.slice(0, 5).map((x, i) => (
+            <li><span class="punto" style={`background:${colorPartido(i)};`}></span>{x.partido} <b>{x.curules}</b></li>
+          ))}
+        </ul>
+      </>
+    ) : futuro ? <p class="proximamente">Próximamente.</p> : <p class="muted mini">Sin datos.</p>}
+  </div>
+
+  <!-- 3 · Cámara -->
+  <div class="panel">
+    <h3>Cámara <span class="muted mini">{cam.total || '—'}</span></h3>
+    {cam.partidos.length ? (
+      <>
+        {camMay && (
+          <div class="mayoria">
+            <span class="punto" style={`background:${colorPartido(camMay.idx)};`}></span>
+            <span><b>{camMay.partido}</b> · mayoría</span>
+            <span class="mono">{camMay.curules} · {camMay.pct.toFixed(0)}%</span>
+          </div>
+        )}
+        <svg viewBox="0 0 400 210" class="hemi" role="img" aria-label={`Cámara: ${cam.total} curules`}>
+          {asientosColoreados(cam.partidos, cam.total).map((s) => (
+            <circle cx={s.x.toFixed(1)} cy={s.y.toFixed(1)} r="6" fill={s.color}><title>{s.partido}</title></circle>
+          ))}
+        </svg>
+        <ul class="leyenda">
+          {cam.partidos.slice(0, 5).map((x, i) => (
+            <li><span class="punto" style={`background:${colorPartido(i)};`}></span>{x.partido} <b>{x.curules}</b></li>
+          ))}
+        </ul>
+      </>
+    ) : futuro ? <p class="proximamente">Próximamente.</p> : <p class="muted mini">Sin datos.</p>}
+  </div>
+
+  <!-- Colombia (indicadores) — panel ancho; sube al tope con order:-1 -->
+  <div class="panel panel-colombia">
+    <h3>Cifras de Colombia <span class="muted mini">indicadores económicos y sociales</span></h3>
+    {futuro ? (
+      <p class="proximamente">Los indicadores económicos de este gobierno se publicarán a medida que haya datos oficiales.</p>
+    ) : (
+      <div class="indis">
+        {indicadoresM.map(({ ind, fila }) => {
+          const ok = mejoro(ind, fila);
+          const conDatos = fila && !fila.sinDatos;
+          return (
+            <a class="indi" href={`/indicador/${ind.id}`}
+               data-anios={conChips && conDatos ? JSON.stringify(datosFiltro(ind, fila)) : undefined}>
+              <span class="indi-n">{ind.nombre}</span>
+              {conDatos ? (
+                <>
+                  <span class="indi-v mono">{fmt(fila.ultimo, ind.unidad)}</span>
+                  <span class:list={["indi-d mono", ok === null ? "" : ok ? "bien" : "mal"]}>
+                    <span class="indi-d-txt">{fila.delta > 0 ? '▲' : fila.delta < 0 ? '▼' : '·'} {fmt(Math.abs(fila.delta), ind.unidad)}</span>
+                    <span class="muted indi-d-ctx">desde {fmt(fila.primero, ind.unidad)}</span>
+                  </span>
+                </>
+              ) : <span class="muted mini">sin datos</span>}
+            </a>
+          );
+        })}
+      </div>
+    )}
+  </div>
+
+  <!-- Trayectoria: perfil y cargos públicos previos a la presidencia -->
+  {perfil && (
+    <div class="panel panel-perfil">
+      <h3>Trayectoria <span class="muted mini">{perfil.profesion} · {perfil.nacimiento}</span></h3>
+      <p class="perfil-resumen">{perfil.resumen}</p>
+      {perfil.cargos.length > 0 ? (
+        <ol class="cargos">
+          {perfil.cargos.map((c) => (
+            <li><span class="cargo-n">{c.cargo}</span><span class="cargo-p mono">{c.periodo}</span></li>
+          ))}
+        </ol>
+      ) : <p class="muted mini">Sin cargos públicos de elección o designación previos a la presidencia.</p>}
+    </div>
+  )}
+</div>
+
+{eleccion && (
+  <dialog class="dlg-eleccion" data-dialog-eleccion aria-labelledby="dlg-titulo">
+    <div class="dlg-cab">
+      <h3 id="dlg-titulo">Elección {eleccion.fecha.slice(0, 4)} · {eleccion.vuelta === 2 ? '2ª vuelta' : '1ª vuelta'}</h3>
+      <button type="button" class="dlg-x" data-cerrar-eleccion aria-label="Cerrar">✕</button>
+    </div>
+    <p class="muted mini">
+      {fechaLarga(eleccion.fecha)}{eleccion.participacion != null && ` · participación ${eleccion.participacion.toLocaleString('es-CO')}%`}
+    </p>
+    <div class="dlg-cands">
+      {[eleccion.ganador, eleccion.segundo].map((c, i) => (
+        <div class="dlg-cand">
+          <span class="dlg-pct mono" style={`color:${i === 0 ? m.color : 'var(--muted)'};`}>{c.pct.toFixed(1)}%</span>
+          <span class="dlg-barra"><span style={`width:${c.pct}%;background:${i === 0 ? m.color : '#B7B2A8'};`}></span></span>
+          <div class="dlg-cand-txt">
+            <strong>{c.nombre}</strong> <span class="muted mini">· {c.partido}</span>
+            {c.votos != null && <div class="muted mini">{nfVotos.format(c.votos)} votos</div>}
+          </div>
+        </div>
+      ))}
+    </div>
+    {eleccion.detalle && <p class="dlg-detalle">{eleccion.detalle}</p>}
+    <p class="muted mini dlg-fuente">Fuente: Registraduría Nacional del Estado Civil.</p>
+  </dialog>
+)}
+</div>
+
+<style>
+  .presfila { display:flex; flex-wrap:wrap; justify-content:center; align-items:flex-end; gap:8px 4px; margin:24px 0 4px; }
+  .pres { text-decoration:none; color:inherit; padding:4px; display:flex; flex-direction:column; align-items:center; gap:6px; }
+  .disco { position:relative; display:block; width:44px; height:44px; border-radius:50%; overflow:hidden;
+    border:2px solid var(--c); box-shadow:0 0 0 0 transparent; transition:width .15s, height .15s, box-shadow .15s; }
+  .disco img { width:100%; height:100%; object-fit:cover; display:block; }
+  /* Año como badge pequeño sobre la foto (esquina inferior). */
+  .anio { position:absolute; inset:auto 0 0 0; text-align:center; font-size:.6rem; font-weight:700; color:#fff;
+    background:var(--c); padding:1px 0; line-height:1.1; }
+  .pres.activo .disco { width:64px; height:64px; box-shadow:0 0 0 3px var(--canvas), 0 0 0 5px var(--c); }
+  .pres.activo .anio { font-size:.68rem; }
+  .etq { font-size:.72rem; color:var(--muted); }
+  .pres.activo .etq { color:var(--ink); font-weight:600; }
+
+  /* Chips de año: botones reales, wrap en móvil, estado activo con aria-pressed. */
+  .filtro-anios { display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin:-8px 0 28px; }
+  .chip { font-family:inherit; font-size:.82rem; line-height:1.2; padding:6px 14px;
+    border-radius:var(--radius-pill); border:1px solid var(--border); background:var(--surface-1);
+    color:var(--ink); cursor:pointer;
+    transition:background 120ms var(--ease), border-color 120ms var(--ease), color 120ms var(--ease); }
+  .chip:hover { border-color:var(--ink); }
+  .chip[aria-pressed="true"] { background:var(--primary); border-color:var(--primary); color:var(--on-primary); }
+  .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden;
+    clip:rect(0 0 0 0); white-space:nowrap; border:0; }
+
+  /* Fila superior: lo político en 3 columnas; los indicadores ocupan todo el ancho abajo. */
+  .tablero { display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; }
+  /* Las cifras (indicadores) de primeras; lo político debajo. */
+  .panel-colombia { grid-column:1 / -1; order:-1; }
+  .panel-perfil { grid-column:1 / -1; }
+  .perfil-resumen { margin:0 0 12px; font-size:.92rem; }
+  .cargos { list-style:none; margin:0; padding:0; display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(230px, 1fr)); gap:8px 20px; }
+  .cargos li { display:flex; justify-content:space-between; gap:12px; align-items:baseline;
+    border-left:2px solid var(--border); padding:2px 0 2px 10px; }
+  .cargo-n { font-size:.88rem; }
+  .cargo-p { font-size:.8rem; color:var(--muted); white-space:nowrap; }
+  .panel { border:1px solid var(--border); border-radius:10px; padding:14px; }
+
+  /* Tarjeta de elección: botón nativo (accesible por teclado) con aspecto de panel. */
+  .panel-eleccion { font:inherit; color:inherit; text-align:left; background:none; cursor:pointer; width:100%;
+    display:block; transition:border-color 120ms var(--ease), box-shadow 120ms var(--ease); }
+  .panel-eleccion:hover { border-color:var(--ink); }
+  .panel-eleccion:focus-visible { outline:2px solid var(--primary); outline-offset:2px; }
+  .ver-mas { font-size:.72rem; font-weight:400; color:var(--primary); float:right; margin-top:3px; }
+  .col-v .votos { font-variant-numeric:tabular-nums; }
+
+  /* Diálogo nativo con el detalle de la elección. */
+  .dlg-eleccion { border:1px solid var(--border); border-radius:var(--radius-lg); padding:20px 22px;
+    max-width:460px; width:calc(100% - 32px); color:var(--ink); background:var(--canvas);
+    box-shadow:var(--shadow-elevated); }
+  .dlg-eleccion::backdrop { background:rgba(26,26,24,0.45); }
+  .dlg-cab { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; }
+  .dlg-cab h3 { margin:0; font-size:1.15rem; }
+  .dlg-x { font:inherit; font-size:1rem; line-height:1; border:none; background:none; cursor:pointer;
+    color:var(--muted); padding:4px; border-radius:6px; }
+  .dlg-x:hover { color:var(--ink); background:var(--surface-1); }
+  .dlg-cands { display:flex; flex-direction:column; gap:14px; margin:16px 0; }
+  .dlg-cand { display:grid; grid-template-columns:auto 1fr; grid-template-areas:"pct barra" "pct txt";
+    column-gap:12px; row-gap:2px; align-items:center; }
+  .dlg-pct { grid-area:pct; font-size:1.5rem; font-weight:700; min-width:64px; }
+  .dlg-barra { grid-area:barra; height:8px; background:var(--surface-2); border-radius:4px; overflow:hidden; }
+  .dlg-barra span { display:block; height:100%; border-radius:4px; }
+  .dlg-cand-txt { grid-area:txt; }
+  .dlg-detalle { font-size:.92rem; line-height:1.55; margin:4px 0 12px; }
+  .dlg-fuente { margin:0; }
+  .panel h3 { margin:0 0 8px; font-size:1rem; }
+  .mini { font-size:.8rem; }
+  .proximamente { font-size:.85rem; color:var(--muted); background:var(--surface-1); border-radius:8px; padding:12px; margin:6px 0 0; }
+
+  /* Barras verticales del resultado electoral (crecen hacia arriba). */
+  .barras-v { display:flex; gap:20px; justify-content:center; margin:14px 0 4px; }
+  .col-v { display:flex; flex-direction:column; align-items:center; gap:5px; flex:1; max-width:110px; text-align:center; }
+  .barra-v { width:42px; height:130px; background:var(--border); border-radius:6px 6px 0 0;
+    overflow:hidden; display:flex; align-items:flex-end; }
+  .barra-v span { display:block; width:100%; border-radius:6px 6px 0 0; }
+
+  .hemi { width:100%; height:auto; display:block; }
+  .mayoria { display:flex; align-items:center; gap:6px; flex-wrap:wrap; font-size:.82rem; padding:6px 8px;
+    background:var(--surface-1); border-radius:6px; margin-bottom:6px; }
+  .mayoria .mono { margin-left:auto; color:var(--muted); }
+  .leyenda { list-style:none; margin:8px 0 0; padding:0; font-size:.78rem; display:flex; flex-direction:column; gap:4px; }
+  .punto { display:inline-block; width:9px; height:9px; border-radius:2px; margin-right:5px; vertical-align:middle; }
+
+  .indis { display:grid; grid-template-columns:repeat(auto-fill, minmax(150px, 1fr)); gap:8px; }
+  .indi { display:block; text-decoration:none; color:inherit; border:1px solid var(--border); border-radius:8px; padding:8px 10px; }
+  .indi:hover { border-color:var(--ink); }
+  .indi-n { display:block; font-size:.74rem; color:var(--muted); }
+  .indi-v { display:block; font-size:1.35rem; font-weight:700; line-height:1.2; }
+  .indi-d { display:block; font-size:.72rem; }
+  .indi-d.bien { color:#4A7C2E; }
+  .indi-d.mal { color:#B4341C; }
+  .indi-d-ctx:not(:empty) { margin-left:.3em; }
+  .mono { font-variant-numeric:tabular-nums; }
+
+  .pres-wrap { display:flex; flex-direction:column; }
+
+  @media (max-width:820px) { .tablero { grid-template-columns:1fr 1fr; } }
+  @media (max-width:520px) {
+    .tablero { grid-template-columns:1fr; }
+    /* Móvil: los DATOS de primeras. Nombre → datos → selector de presidente al final. */
+    #pres-nombre { order:1; margin:8px 0 16px; }
+    .filtro-anios { order:2; margin:0 0 16px; }
+    .tablero { order:3; }
+    .presfila { order:4; margin:24px 0 0; padding-top:16px; border-top:1px solid var(--border); }
+  }
+</style>
+
+<script>
+  // Filtro por año: alterna cifras pre-renderizadas en data-anios. Sin dependencias.
+  // astro:page-load re-engancha tras cada View Transition (y en la carga inicial).
+  document.addEventListener('astro:page-load', () => {
+  const grupo = document.querySelector('[data-filtro-anios]');
+  if (grupo) {
+    const chips = Array.from(grupo.querySelectorAll<HTMLButtonElement>('button[data-anio]'));
+    const estado = grupo.querySelector('[data-filtro-estado]');
+    const indis = Array.from(document.querySelectorAll('.indi[data-anios]')).map((el) => ({
+      vistas: JSON.parse(el.getAttribute('data-anios') || '{}'),
+      v: el.querySelector('.indi-v'),
+      d: el.querySelector('.indi-d'),
+      txt: el.querySelector('.indi-d-txt'),
+      ctx: el.querySelector('.indi-d-ctx'),
+    }));
+
+    const aplicar = (clave: string) => {
+      chips.forEach((c) => c.setAttribute('aria-pressed', String(c.dataset.anio === clave)));
+      indis.forEach(({ vistas, v, d, txt, ctx }) => {
+        const f = vistas[clave];
+        if (!f || !v || !d || !txt || !ctx) return;
+        v.textContent = f.v;
+        txt.textContent = f.d;
+        ctx.textContent = f.ctx || '';
+        d.classList.remove('bien', 'mal');
+        if (f.cls) d.classList.add(f.cls);
+      });
+      if (estado) {
+        estado.textContent = clave === 'todo'
+          ? 'Mostrando indicadores de todo el mandato'
+          : `Mostrando indicadores del año ${clave}`;
+      }
+    };
+
+    chips.forEach((c) => c.addEventListener('click', () => aplicar(c.dataset.anio || 'todo')));
+  }
+  });
+</script>
+
+<script>
+  // Diálogo de detalle de la elección. astro:page-load re-engancha tras cada View Transition.
+  document.addEventListener('astro:page-load', () => {
+    const dlg = document.querySelector<HTMLDialogElement>('[data-dialog-eleccion]');
+    const abrir = document.querySelector('[data-abrir-eleccion]');
+    if (!dlg || !abrir) return;
+    abrir.addEventListener('click', () => dlg.showModal());
+    dlg.querySelector('[data-cerrar-eleccion]')?.addEventListener('click', () => dlg.close());
+    // Click en el backdrop (fuera del contenido) cierra.
+    dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+  });
+</script>

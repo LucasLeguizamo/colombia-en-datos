@@ -1,0 +1,64 @@
+{
+  "descripcion": "Resultado presidencial que dio origen a cada mandato. Cuando hubo segunda vuelta se muestra el balotaje; cuando se ganó en primera vuelta se indica así.",
+  "fuentes": ["Registraduría Nacional del Estado Civil"],
+  "verificado": false,
+  "nota": "Porcentajes sobre votos válidos. Votos de ganador y segundo, y participación (sobre censo electoral), tomados del preconteo/escrutinio de la Registraduría Nacional y triangulados con prensa (El Tiempo, El País, El Espectador), la base PDBA de la Universidad de Georgetown y Wikipedia elecciones. En 2010, 2014 y 2018 existen diferencias entre el preconteo y el escrutinio definitivo; se usa la cifra consistente con los porcentajes ya registrados. Las cifras de 2026 corresponden al preconteo (99,99% de mesas) y pueden variar en el escrutinio de los jueces. Pendiente de verificación cruzada final (Fase 0).",
+  "resultados": {
+    "uribe1": {
+      "vuelta": 1,
+      "fecha": "2002-05-26",
+      "ganador": { "nombre": "Álvaro Uribe Vélez", "partido": "Primero Colombia", "pct": 53.05, "votos": 5862655 },
+      "segundo": { "nombre": "Horacio Serpa", "partido": "Partido Liberal", "pct": 31.72, "votos": 3514779 },
+      "participacion": 46.47,
+      "detalle": "El 26 de mayo de 2002 Álvaro Uribe obtuvo 5.862.655 votos (53,05%) y Horacio Serpa 3.514.779 (31,72%); en tercer lugar quedó Luis Eduardo Garzón con 680.245 votos (6,16%). Fue la primera elección presidencial ganada en primera vuelta desde la introducción del balotaje en la Constitución de 1991. La participación fue del 46,47% del censo electoral."
+    },
+    "uribe2": {
+      "vuelta": 1,
+      "fecha": "2006-05-28",
+      "ganador": { "nombre": "Álvaro Uribe Vélez", "partido": "Primero Colombia", "pct": 62.35, "votos": 7397835 },
+      "segundo": { "nombre": "Carlos Gaviria", "partido": "Polo Democrático Alternativo", "pct": 22.02, "votos": 2613157 },
+      "participacion": 45.05,
+      "detalle": "El 28 de mayo de 2006 Álvaro Uribe fue reelegido en primera vuelta con 7.397.835 votos (62,35%), frente a 2.613.157 (22,02%) de Carlos Gaviria, del Polo Democrático Alternativo; Horacio Serpa, del Partido Liberal, quedó tercero. La reforma constitucional de 2004 había habilitado la reelección presidencial inmediata. La participación fue del 45,05% del censo electoral."
+    },
+    "santos1": {
+      "vuelta": 2,
+      "fecha": "2010-06-20",
+      "ganador": { "nombre": "Juan Manuel Santos", "partido": "Partido de la U", "pct": 69.13, "votos": 9028943 },
+      "segundo": { "nombre": "Antanas Mockus", "partido": "Partido Verde", "pct": 27.52, "votos": 3587975 },
+      "participacion": 44.3,
+      "detalle": "En la primera vuelta del 30 de mayo de 2010 Juan Manuel Santos obtuvo cerca del 46,7% y Antanas Mockus cerca del 21,5%; Germán Vargas Lleras quedó tercero. En la segunda vuelta del 20 de junio Santos ganó con 9.028.943 votos frente a 3.587.975 de Mockus, una diferencia superior a 5,4 millones de votos. La participación en la segunda vuelta fue del 44,3% del censo electoral."
+    },
+    "santos2": {
+      "vuelta": 2,
+      "fecha": "2014-06-15",
+      "ganador": { "nombre": "Juan Manuel Santos", "partido": "Partido de la U", "pct": 50.95, "votos": 7816986 },
+      "segundo": { "nombre": "Óscar Iván Zuluaga", "partido": "Centro Democrático", "pct": 45.00, "votos": 6904997 },
+      "participacion": 47.9,
+      "detalle": "En la primera vuelta del 25 de mayo de 2014 Óscar Iván Zuluaga obtuvo 29,25% y Juan Manuel Santos 25,69%; Marta Lucía Ramírez quedó tercera con 15,52% y respaldó luego a Zuluaga para el balotaje. En la segunda vuelta del 15 de junio Santos ganó con 7.816.986 votos (50,95%) frente a 6.904.997 (45,00%) de Zuluaga, una diferencia de unos 912.000 votos. La participación en la segunda vuelta fue del 47,9% del censo electoral."
+    },
+    "duque": {
+      "vuelta": 2,
+      "fecha": "2018-06-17",
+      "ganador": { "nombre": "Iván Duque Márquez", "partido": "Centro Democrático", "pct": 54.03, "votos": 10373080 },
+      "segundo": { "nombre": "Gustavo Petro", "partido": "Colombia Humana", "pct": 41.81, "votos": 8034189 },
+      "participacion": 53.9,
+      "detalle": "En la primera vuelta del 27 de mayo de 2018 Iván Duque obtuvo cerca del 39,1% y Gustavo Petro cerca del 25,1%; Sergio Fajardo quedó tercero con alrededor del 23,7%. En la segunda vuelta del 17 de junio Duque ganó con 10.373.080 votos (54,03%) frente a 8.034.189 (41,81%) de Petro, una diferencia de unos 2,3 millones de votos. La participación en la segunda vuelta fue del 53,9% del censo electoral."
+    },
+    "petro": {
+      "vuelta": 2,
+      "fecha": "2022-06-19",
+      "ganador": { "nombre": "Gustavo Petro Urrego", "partido": "Pacto Histórico", "pct": 50.44, "votos": 11281013 },
+      "segundo": { "nombre": "Rodolfo Hernández", "partido": "Liga de Gobernantes Anticorrupción", "pct": 47.31, "votos": 10580412 },
+      "participacion": 58.17,
+      "detalle": "En la primera vuelta del 29 de mayo de 2022 Gustavo Petro obtuvo 40,34% y Rodolfo Hernández 28,17%; Federico Gutiérrez quedó tercero con 23,94%. En la segunda vuelta del 19 de junio Petro ganó con 11.281.013 votos (50,44%) frente a 10.580.412 (47,31%) de Hernández, una diferencia de unos 700.000 votos. La participación fue del 58,17% del censo electoral, la más alta desde 1998."
+    },
+    "abelardo": {
+      "vuelta": 2,
+      "fecha": "2026-06-21",
+      "ganador": { "nombre": "Abelardo de la Espriella", "partido": "Defensores de la Patria", "pct": 49.66, "votos": 12959515 },
+      "segundo": { "nombre": "Iván Cepeda", "partido": "Pacto Histórico", "pct": 48.70, "votos": 12708695 },
+      "participacion": 63.42,
+      "detalle": "En la primera vuelta del 31 de mayo de 2026 Abelardo de la Espriella obtuvo 43,74% (10.361.413 votos) e Iván Cepeda 40,90% (9.688.245); Paloma Valencia quedó tercera con 6,9%. En la segunda vuelta del 21 de junio, con el 99,99% de las mesas en el preconteo de la Registraduría, De la Espriella registró 12.959.515 votos (49,66%) y Cepeda 12.708.695 (48,70%), una diferencia cercana a 251.000 votos; el escrutinio de los jueces continuaba en los días siguientes. La participación en la segunda vuelta fue del 63,42% del censo electoral (abstención del 36,58%). Las cifras corresponden al preconteo y pueden variar en el escrutinio definitivo."
+    }
+  }
+}
