@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import LineChart from '../../components/LineChart.astro';
+import LiveTrm from '../../components/LiveTrm.astro';
 import { indicadores, getIndicador, statsPorMandato, fmt } from '../../lib/data.js';
 
 export function getStaticPaths() {
@@ -27,9 +28,16 @@ const claseDelta = (delta) => {
     <p><span class="badge">datos semilla</span>
       <span class="muted" style="font-size:.85rem;"> {ind.nota}</span></p>
   )}
+  {ind.apiLive && (
+    <div style="margin:16px 0;">
+      <LiveTrm fallback={ind.serie.filter((p) => p.valor != null).at(-1)?.valor} />
+    </div>
+  )}
 
   <div class="card" style="margin-top:20px;">
-    <LineChart indicador={ind} />
+    {ind.serie.filter((p) => p.valor != null).length >= 2
+      ? <LineChart indicador={ind} />
+      : <p class="muted" style="margin:0;">Serie en carga desde fuentes oficiales. Vuelve pronto.</p>}
   </div>
 
   <h2>Por mandato</h2>

@@ -1,0 +1,44 @@
+---
+import Base from '../layouts/Base.astro';
+import { gabinetes, getMandato } from '../lib/data.js';
+---
+
+<Base
+  title="Gabinetes por gobierno"
+  descripcion="El gabinete ministerial de cada gobierno de Colombia, de Uribe a Petro. Quién manejó Hacienda, Defensa, Educación y el resto de carteras."
+>
+  <h1>Los ministros de cada gobierno</h1>
+  <p class="muted" style="max-width:640px;">
+    {gabinetes.descripcion}
+  </p>
+  {!gabinetes.verificado && <p><span class="badge">datos en verificación</span></p>}
+
+  {gabinetes.gobiernos.length === 0 && (
+    <div class="card"><p class="muted" style="margin:0;">Datos en carga desde fuentes oficiales. Vuelve pronto.</p></div>
+  )}
+
+  {gabinetes.gobiernos.map((g) => {
+    const m = getMandato(g.mandato);
+    return (
+      <section style="margin-bottom:48px;">
+        <h2 style={`border-left:4px solid ${m?.color ?? '#888'};padding-left:12px;`}>
+          {m?.nombre ?? g.mandato}
+          <span class="muted" style="font-weight:400;font-size:1rem;"> · {m?.presidente}</span>
+        </h2>
+        <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;">
+          {g.gabinete.filter((c) => c.nombre).map((c) => (
+            <div class="card" style="padding:14px 16px;">
+              <div class="muted" style="font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;">{c.cargo}</div>
+              <div style="font-weight:500;margin-top:2px;">{c.nombre}</div>
+              {c.nota && <div class="muted" style="font-size:.78rem;margin-top:4px;">{c.nota}</div>}
+            </div>
+          ))}
+        </div>
+      </section>
+    );
+  })}
+
+  {gabinetes.gobiernos.length > 0 && (
+    <p class="muted" style="font-size:.85rem;">Fuentes: {gabinetes.fuentes.join(' · ')}. {gabinetes.nota}</p>
+  )}
+</Base>

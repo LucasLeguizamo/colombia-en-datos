@@ -1,0 +1,149 @@
+{
+  "descripcion": "Gabinete ministerial de cada gobierno. Cuando un cargo rotó durante el cuatrienio, se lista el titular más destacado o de mayor duración; las rotaciones quedan en la nota.",
+  "fuentes": [
+    "Presidencia de la República",
+    "PDBA Georgetown University",
+    "Wikipedia (gobiernos de Uribe, Santos, Duque y Petro)"
+  ],
+  "verificado": false,
+  "nota": "Datos triangulados de fuentes públicas, pendientes de verificación cruzada (Fase 0). El gabinete de Petro es dinámico (alta rotación); corte a julio de 2026.",
+  "gobiernos": [
+    {
+      "mandato": "uribe1",
+      "gabinete": [
+        { "cargo": "Interior y de Justicia", "nombre": "Fernando Londoño Hoyos", "nota": "Interior y Justicia fusionados. Luego Sabas Pretelt de la Vega (2004–2006)." },
+        { "cargo": "Relaciones Exteriores", "nombre": "Carolina Barco Isakson", "nota": "2002–2006." },
+        { "cargo": "Hacienda y Crédito Público", "nombre": "Alberto Carrasquilla Barrera", "nota": "Primero Roberto Junguito (2002–2003); Carrasquilla desde jun 2003." },
+        { "cargo": "Defensa Nacional", "nombre": "Marta Lucía Ramírez Blanco", "nota": "Primera mujer en Defensa. Luego Jorge A. Uribe y Camilo Ospina." },
+        { "cargo": "Agricultura y Desarrollo Rural", "nombre": "Carlos Gustavo Cano Sanz", "nota": "Luego Andrés Felipe Arias (2005–2009)." },
+        { "cargo": "Comercio, Industria y Turismo", "nombre": "Jorge Humberto Botero", "nota": "2002–2007." },
+        { "cargo": "Minas y Energía", "nombre": "Luis Ernesto Mejía Castro", "nota": "2002–2006." },
+        { "cargo": "Educación Nacional", "nombre": "Cecilia María Vélez White", "nota": "Ejerció los 8 años (2002–2010)." },
+        { "cargo": "Protección Social", "nombre": "Diego Palacio Betancourt", "nota": "Salud+Trabajo fusionados. Primer titular Juan Luis Londoño (falleció 2003)." },
+        { "cargo": "Ambiente, Vivienda y Desarrollo Territorial", "nombre": "Sandra Suárez Pérez", "nota": "Cartera fusionada. 2002–2006." },
+        { "cargo": "Comunicaciones", "nombre": "Martha Elena Pinto de De Hart", "nota": "Aún Ministerio de Comunicaciones (no TIC)." },
+        { "cargo": "Cultura", "nombre": "María Consuelo Araújo Castro", "nota": "2002–2006." },
+        { "cargo": "Transporte", "nombre": "Andrés Uriel Gallego Henao", "nota": "Ejerció los 8 años (2002–2010)." },
+        { "cargo": "Director del DNP", "nombre": "Santiago Montenegro Trujillo", "nota": "2002–2006." },
+        { "cargo": "Gerente del Banco de la República", "nombre": "José Darío Uribe Escobar", "nota": "Entidad autónoma. Miguel Urrutia hasta 2004; J.D. Uribe desde 2005." }
+      ]
+    },
+    {
+      "mandato": "uribe2",
+      "gabinete": [
+        { "cargo": "Interior y de Justicia", "nombre": "Fabio Valencia Cossio", "nota": "Antes Carlos Holguín Sardi (2006–2008)." },
+        { "cargo": "Relaciones Exteriores", "nombre": "Jaime Bermúdez Merizalde", "nota": "Antes M.C. Araújo (renunció) y Fernando Araújo." },
+        { "cargo": "Hacienda y Crédito Público", "nombre": "Óscar Iván Zuluaga Escobar", "nota": "2007–2010." },
+        { "cargo": "Defensa Nacional", "nombre": "Juan Manuel Santos Calderón", "nota": "2006–2009; renunció para aspirar a la presidencia. Luego Gabriel Silva." },
+        { "cargo": "Agricultura y Desarrollo Rural", "nombre": "Andrés Felipe Arias Leyva", "nota": "Hasta 2009; luego condenado por Agro Ingreso Seguro. Después Andrés Fernández." },
+        { "cargo": "Comercio, Industria y Turismo", "nombre": "Luis Guillermo Plata Páez", "nota": "2007–2010." },
+        { "cargo": "Minas y Energía", "nombre": "Hernán Martínez Torres", "nota": "2006–2010." },
+        { "cargo": "Educación Nacional", "nombre": "Cecilia María Vélez White", "nota": "Continuó hasta 2010." },
+        { "cargo": "Protección Social", "nombre": "Diego Palacio Betancourt", "nota": "Continuó hasta 2010." },
+        { "cargo": "Ambiente, Vivienda y Desarrollo Territorial", "nombre": "Juan Francisco Lozano Ramírez", "nota": "Luego Carlos Costa Posada (2009–2010)." },
+        { "cargo": "Tecnologías de la Información y las Comunicaciones", "nombre": "María del Rosario Guerra", "nota": "Ministerio TIC creado por Ley 1341 de 2009." },
+        { "cargo": "Cultura", "nombre": "Paula Marcela Moreno Zapata", "nota": "Primera ministra afrocolombiana. 2007–2010." },
+        { "cargo": "Transporte", "nombre": "Andrés Uriel Gallego Henao", "nota": "Continuó hasta 2010." },
+        { "cargo": "Director del DNP", "nombre": "Carolina Rentería Rodríguez", "nota": "Luego Esteban Piedrahíta (2008–2010)." },
+        { "cargo": "Gerente del Banco de la República", "nombre": "José Darío Uribe Escobar", "nota": "Gerente 2005–2017." }
+      ]
+    },
+    {
+      "mandato": "santos1",
+      "gabinete": [
+        { "cargo": "Interior", "nombre": "Germán Vargas Lleras", "nota": "Interior y Justicia se separaron (2011). Luego Renjifo, Carrillo, Iragorri." },
+        { "cargo": "Justicia y del Derecho", "nombre": "Juan Carlos Esguerra Portocarrero", "nota": "Cartera recreada en 2011. Luego Ruth Stella Correa y Gómez Méndez." },
+        { "cargo": "Relaciones Exteriores", "nombre": "María Ángela Holguín Cuéllar", "nota": "2010–2018." },
+        { "cargo": "Hacienda y Crédito Público", "nombre": "Mauricio Cárdenas Santamaría", "nota": "Antes Juan Carlos Echeverry (2010–2012); Cárdenas desde ago 2012." },
+        { "cargo": "Defensa Nacional", "nombre": "Juan Carlos Pinzón Bueno", "nota": "Antes Rodrigo Rivera (2010–2011)." },
+        { "cargo": "Agricultura y Desarrollo Rural", "nombre": "Juan Camilo Restrepo Salazar", "nota": "Luego Estupiñán y Lizarralde." },
+        { "cargo": "Comercio, Industria y Turismo", "nombre": "Sergio Díaz-Granados Guida", "nota": "Luego Santiago Rojas (2013–2014)." },
+        { "cargo": "Minas y Energía", "nombre": "Carlos Rodado Noriega", "nota": "Mucha rotación: Cárdenas, Renjifo, Amylkar Acosta." },
+        { "cargo": "Educación Nacional", "nombre": "María Fernanda Campo Saavedra", "nota": "2010–2014." },
+        { "cargo": "Salud y Protección Social", "nombre": "Alejandro Gaviria Uribe", "nota": "Ministerio de Salud recreado en 2011; Gaviria desde 2012 hasta 2018." },
+        { "cargo": "Trabajo", "nombre": "Rafael Pardo Rueda", "nota": "Ministerio de Trabajo recreado en 2011; primer titular." },
+        { "cargo": "Ambiente y Desarrollo Sostenible", "nombre": "Frank Pearl González", "nota": "Ambiente se separó de Vivienda (2011). Luego Uribe y Sarmiento." },
+        { "cargo": "Vivienda, Ciudad y Territorio", "nombre": "Germán Vargas Lleras", "nota": "Cartera creada en 2011; programa de vivienda gratis." },
+        { "cargo": "Tecnologías de la Información y las Comunicaciones", "nombre": "Diego Molano Vega", "nota": "2010–2015." },
+        { "cargo": "Cultura", "nombre": "Mariana Garcés Córdoba", "nota": "2010–2018." },
+        { "cargo": "Transporte", "nombre": "Cecilia Álvarez-Correa Glen", "nota": "Antes Germán Cardona y Miguel Peñaloza." },
+        { "cargo": "Director del DNP", "nombre": "Hernando José Gómez Restrepo", "nota": "Luego Santamaría y Tatyana Orozco." },
+        { "cargo": "Gerente del Banco de la República", "nombre": "José Darío Uribe Escobar", "nota": "Gerente 2005–2017." }
+      ]
+    },
+    {
+      "mandato": "santos2",
+      "gabinete": [
+        { "cargo": "Interior", "nombre": "Juan Fernando Cristo", "nota": "2014–2017. Luego Guillermo Rivera." },
+        { "cargo": "Relaciones Exteriores", "nombre": "María Ángela Holguín", "nota": "Canciller 2010–2018." },
+        { "cargo": "Hacienda y Crédito Público", "nombre": "Mauricio Cárdenas Santamaría", "nota": "2012–2018." },
+        { "cargo": "Justicia y del Derecho", "nombre": "Yesid Reyes Alvarado", "nota": "Luego Londoño y Gil Botero." },
+        { "cargo": "Defensa Nacional", "nombre": "Luis Carlos Villegas", "nota": "2015–2018. Al inicio Juan Carlos Pinzón." },
+        { "cargo": "Agricultura y Desarrollo Rural", "nombre": "Aurelio Iragorri Valencia", "nota": "Luego Juan Guillermo Zuluaga." },
+        { "cargo": "Comercio, Industria y Turismo", "nombre": "María Claudia Lacouture", "nota": "Cartera con rotación: Álvarez-Correa, Lacouture, Gutiérrez." },
+        { "cargo": "Minas y Energía", "nombre": "Germán Arce Zapata", "nota": "2016–2018. Antes Tomás González." },
+        { "cargo": "Educación Nacional", "nombre": "Gina Parody", "nota": "2014–2016. Luego Yaneth Giha." },
+        { "cargo": "Salud y Protección Social", "nombre": "Alejandro Gaviria", "nota": "2012–2018." },
+        { "cargo": "Trabajo", "nombre": "Luis Eduardo Garzón", "nota": "Luego Clara López y Griselda Restrepo." },
+        { "cargo": "Ambiente y Desarrollo Sostenible", "nombre": "Luis Gilberto Murillo", "nota": "2016–2018. Antes Gabriel Vallejo." },
+        { "cargo": "Vivienda, Ciudad y Territorio", "nombre": "Luis Felipe Henao", "nota": "Luego Noguera, Pumarejo y Sánchez." },
+        { "cargo": "Tecnologías de la Información y las Comunicaciones", "nombre": "David Luna", "nota": "2015–2018." },
+        { "cargo": "Cultura", "nombre": "Mariana Garcés", "nota": "2010–2018." },
+        { "cargo": "Transporte", "nombre": "Natalia Abello", "nota": "Luego Rojas y Cardona." },
+        { "cargo": "Director del DNP", "nombre": "Simón Gaviria Muñoz", "nota": "2014–2017. Luego Luis Fernando Mejía." },
+        { "cargo": "Gerente del Banco de la República", "nombre": "Juan José Echavarría", "nota": "Desde ene 2017 (antes J.D. Uribe). Cargo autónomo." }
+      ]
+    },
+    {
+      "mandato": "duque",
+      "gabinete": [
+        { "cargo": "Interior", "nombre": "Nancy Patricia Gutiérrez", "nota": "Luego Alicia Arango y Daniel Palacios." },
+        { "cargo": "Relaciones Exteriores", "nombre": "Claudia Blum", "nota": "Rotación: Holmes Trujillo, Blum, Marta Lucía Ramírez." },
+        { "cargo": "Hacienda y Crédito Público", "nombre": "Alberto Carrasquilla", "nota": "2018–2021; renunció tras la reforma tributaria y el paro. Luego José Manuel Restrepo." },
+        { "cargo": "Justicia y del Derecho", "nombre": "Wilson Ruiz Orejuela", "nota": "Antes Borrero y Cabello." },
+        { "cargo": "Defensa Nacional", "nombre": "Carlos Holmes Trujillo", "nota": "2019–2021; falleció en el cargo (covid-19). Antes Botero, después Molano." },
+        { "cargo": "Agricultura y Desarrollo Rural", "nombre": "Rodolfo Enrique Zea Navarro", "nota": "Antes Andrés Valencia." },
+        { "cargo": "Comercio, Industria y Turismo", "nombre": "José Manuel Restrepo", "nota": "Luego pasó a Hacienda; le sucedió Lombana." },
+        { "cargo": "Minas y Energía", "nombre": "Diego Mesa Puyo", "nota": "2020–2022. Antes María Fernanda Suárez." },
+        { "cargo": "Educación Nacional", "nombre": "María Victoria Angulo", "nota": "2018–2022." },
+        { "cargo": "Salud y Protección Social", "nombre": "Fernando Ruiz Gómez", "nota": "Manejo de la pandemia. Antes Juan Pablo Uribe." },
+        { "cargo": "Trabajo", "nombre": "Ángel Custodio Cabrera", "nota": "Antes Alicia Arango." },
+        { "cargo": "Ambiente y Desarrollo Sostenible", "nombre": "Carlos Eduardo Correa", "nota": "Antes Ricardo Lozano." },
+        { "cargo": "Vivienda, Ciudad y Territorio", "nombre": "Jonathan Malagón", "nota": "Al cierre, Susana Correa." },
+        { "cargo": "Tecnologías de la Información y las Comunicaciones", "nombre": "Karen Abudinen", "nota": "Salió por el escándalo Centros Poblados. Antes Constaín, después Valderrama." },
+        { "cargo": "Cultura", "nombre": "Carmen Inés Vásquez", "nota": "Luego Buitrago y Mayolo." },
+        { "cargo": "Transporte", "nombre": "Ángela María Orozco", "nota": "2018–2022." },
+        { "cargo": "Ciencia, Tecnología e Innovación", "nombre": "Mabel Gisela Torres", "nota": "Primera ministra de la cartera, creada en 2019. Luego Tito Crissien." },
+        { "cargo": "Deporte", "nombre": "Ernesto Lucena", "nota": "Primer titular del ministerio (creado en 2019). Luego Guillermo Herrera." },
+        { "cargo": "Director del DNP", "nombre": "Luis Alberto Rodríguez", "nota": "Antes Gloria Amparo Alonso." },
+        { "cargo": "Gerente del Banco de la República", "nombre": "Leonardo Villar", "nota": "Posesionado ene 2021 (antes Echavarría). Cargo autónomo." }
+      ]
+    },
+    {
+      "mandato": "petro",
+      "gabinete": [
+        { "cargo": "Interior", "nombre": "Armando Benedetti", "nota": "Corte 2026. Antes Prada, Velasco y Cristo." },
+        { "cargo": "Relaciones Exteriores", "nombre": "Rosa Yolanda Villavicencio", "nota": "Corte 2026. Antes Leyva, Murillo y Sarabia." },
+        { "cargo": "Hacienda y Crédito Público", "nombre": "Germán Ávila", "nota": "Corte 2026. Antes Ocampo (2022–2023), Bonilla y Guevara." },
+        { "cargo": "Justicia y del Derecho", "nombre": "Néstor Osuna", "nota": "Cartera de alta rotación; Osuna fue el primero (2022–2024)." },
+        { "cargo": "Defensa Nacional", "nombre": "Pedro Sánchez", "nota": "Corte 2026; primer militar en el cargo bajo Petro. Antes Iván Velásquez." },
+        { "cargo": "Agricultura y Desarrollo Rural", "nombre": "Martha Carvajalino", "nota": "Corte 2026. Antes Cecilia López y Jhénifer Mojica." },
+        { "cargo": "Comercio, Industria y Turismo", "nombre": "Diana Morales", "nota": "Corte 2026. Antes Umaña y Reyes." },
+        { "cargo": "Minas y Energía", "nombre": "Edwin Palma", "nota": "Corte 2026. Antes Irene Vélez y Andrés Camacho." },
+        { "cargo": "Educación Nacional", "nombre": "Daniel Rojas", "nota": "Corte 2026. Antes Gaviria y Aurora Vergara." },
+        { "cargo": "Salud y Protección Social", "nombre": "Guillermo Alfonso Jaramillo", "nota": "Mayor permanencia (desde 2023). Antes Carolina Corcho." },
+        { "cargo": "Trabajo", "nombre": "Antonio Sanguino", "nota": "Corte 2026. Antes Gloria Inés Ramírez." },
+        { "cargo": "Ambiente y Desarrollo Sostenible", "nombre": "Susana Muhamad", "nota": "Más destacada y de mayor duración (2022–2025). Luego Lena Estrada." },
+        { "cargo": "Vivienda, Ciudad y Territorio", "nombre": "Helga Rivas", "nota": "Corte 2026. Antes Catalina Velasco." },
+        { "cargo": "Tecnologías de la Información y las Comunicaciones", "nombre": "Carina Murcia", "nota": "Corte 2026. Antes Urrutia, Lizcano y Molina." },
+        { "cargo": "Culturas, Artes y Saberes", "nombre": "Yannai Kadamani", "nota": "Corte 2026. Antes Patricia Ariza y Juan David Correa." },
+        { "cargo": "Transporte", "nombre": "María Fernanda Rojas", "nota": "Corte 2026. Antes Reyes, Camargo y García." },
+        { "cargo": "Ciencia, Tecnología e Innovación", "nombre": "Yesenia Olaya Requene", "nota": "Mayor duración (desde 2023). Antes Arturo Luna." },
+        { "cargo": "Igualdad y Equidad", "nombre": "Francia Márquez", "nota": "Ministerio creado en 2023; primera titular (vicepresidenta). En liquidación tras fallo de la Corte." },
+        { "cargo": "Deporte", "nombre": "Patricia Duque", "nota": "Corte 2026. Antes María Isabel Urrutia y otras." },
+        { "cargo": "Director del DNP", "nombre": "Alexander López Maya", "nota": "Antes Jorge Iván González; luego Natalia Molina." },
+        { "cargo": "Gerente del Banco de la República", "nombre": "Leonardo Villar", "nota": "Reelegido en 2024. Cargo autónomo." }
+      ]
+    }
+  ]
+}

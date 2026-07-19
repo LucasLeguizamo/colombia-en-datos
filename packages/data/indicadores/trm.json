@@ -7,8 +7,9 @@
   "fuente": "Banco de la República / Superfinanciera",
   "fuenteUrl": "https://www.banrep.gov.co/es/estadisticas/trm",
   "frecuencia": "anual",
-  "verificado": false,
-  "nota": "Valores semilla de cierre de fin de año pendientes de verificación cruzada por Fase 0. Reemplazar por serie diaria verificada antes del lanzamiento.",
+  "verificado": true,
+  "apiLive": "https://www.datos.gov.co/resource/32sa-8pi3.json",
+  "nota": "Cierre de fin de año verificado contra la serie oficial diaria de la Superfinanciera (datos.gov.co, 32sa-8pi3, historia desde 1991). El valor 'hoy' se consulta en vivo a esa misma API.",
   "serie": [
     { "fecha": "2002", "valor": 2864.79 },
     { "fecha": "2003", "valor": 2778.21 },

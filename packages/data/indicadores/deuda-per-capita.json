@@ -1,0 +1,110 @@
+{
+  "id": "deuda-per-capita",
+  "nombre": "Deuda per cápita",
+  "descripcion": "Cuánto debe cada ciudadano: deuda del Gobierno Nacional Central dividida por la población.",
+  "unidad": "COP/hab",
+  "mejorEs": "menor",
+  "fuente": "MinHacienda / DANE",
+  "fuenteUrl": "https://www.minhacienda.gov.co",
+  "frecuencia": "anual",
+  "verificado": false,
+  "nota": "Cuánto debe cada colombiano: deuda bruta del GNC (COP, IRC/MinHacienda) dividida por la población (DANE, base CNPV 2018). Derivada por el proyecto.",
+  "serie": [
+    {
+      "fecha": "2002",
+      "valor": 2612048
+    },
+    {
+      "fecha": "2003",
+      "valor": 2893846
+    },
+    {
+      "fecha": "2004",
+      "valor": 2961778
+    },
+    {
+      "fecha": "2005",
+      "valor": 3265512
+    },
+    {
+      "fecha": "2006",
+      "valor": 3486117
+    },
+    {
+      "fecha": "2007",
+      "valor": 3439163
+    },
+    {
+      "fecha": "2008",
+      "valor": 3786107
+    },
+    {
+      "fecha": "2009",
+      "valor": 4249847
+    },
+    {
+      "fecha": "2010",
+      "valor": 4600977
+    },
+    {
+      "fecha": "2011",
+      "valor": 4818710
+    },
+    {
+      "fecha": "2012",
+      "valor": 4806277
+    },
+    {
+      "fecha": "2013",
+      "valor": 5488287
+    },
+    {
+      "fecha": "2014",
+      "valor": 6319931
+    },
+    {
+      "fecha": "2015",
+      "valor": 7367119
+    },
+    {
+      "fecha": "2016",
+      "valor": 8052297
+    },
+    {
+      "fecha": "2017",
+      "valor": 8686144
+    },
+    {
+      "fecha": "2018",
+      "valor": 9822727
+    },
+    {
+      "fecha": "2019",
+      "valor": 10165320
+    },
+    {
+      "fecha": "2020",
+      "valor": 12295699
+    },
+    {
+      "fecha": "2021",
+      "valor": 14170223
+    },
+    {
+      "fecha": "2022",
+      "valor": 16899298
+    },
+    {
+      "fecha": "2023",
+      "valor": 16604158
+    },
+    {
+      "fecha": "2024",
+      "valor": 19424959
+    },
+    {
+      "fecha": "2025",
+      "valor": 22478188
+    }
+  ]
+}

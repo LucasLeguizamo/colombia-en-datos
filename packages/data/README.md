@@ -5,7 +5,9 @@ JSON versionado en git. La web y el CLI leen estos mismos archivos. Sin base de 
 ## Archivos
 
 - `mandatos.json` — períodos presidenciales con fechas exactas de posesión.
-- `indicadores/<id>.json` — una serie por indicador.
+- `indicadores/<id>.json` — una serie por indicador (TRM, inflación, desempleo, deuda externa %PIB, deuda GNC %PIB, deuda per cápita).
+- `congreso.json` — composición de Cámara y Senado por partido en cada mandato.
+- `gabinetes.json` — gabinete ministerial de cada gobierno.
 
 ## Esquema
 
@@ -46,6 +48,14 @@ JSON versionado en git. La web y el CLI leen estos mismos archivos. Sin base de 
 ```
 
 Formato de `fecha` según `frecuencia`: `YYYY` (anual), `YYYY-MM` (mensual), `YYYY-MM-DD` (diaria/trimestral).
+
+### `congreso.json`
+
+`periodos[]`, uno por mandato: `{ mandato, senado: { total, partidos[] }, camara: { total, partidos[] } }`, con `partidos[] = { partido, curules, bloque }` y `bloque = "gobierno" | "oposicion" | "independiente"` (posición al **inicio** del gobierno).
+
+### `gabinetes.json`
+
+`gobiernos[]`, uno por mandato: `{ mandato, gabinete[] }`, con `gabinete[] = { cargo, nombre, nota }`. Cuando un cargo rotó, se lista el titular más destacado/de mayor duración y las rotaciones van en `nota`.
 
 ## Reglas
 
