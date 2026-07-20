@@ -184,7 +184,7 @@ export const fmt = (v, unidad) => {
   if (unidad === 'billones COP') return `$${v.toLocaleString('es-CO', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} B`;
   if (unidad === 'hijos por mujer') return v.toLocaleString('es-CO', { minimumFractionDigits: 1, maximumFractionDigits: 2 });
   if (unidad === 'por 100k') return v.toLocaleString('es-CO', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
-  if (unidad === 'COP') return `$${(v / 1e6).toFixed(v >= 1e6 ? 2 : 3)}M`;
+  if (unidad === 'COP') return v >= 1e6 ? `$${(v / 1e6).toFixed(2)}M` : `$${Math.round(v / 1e3)}k`;
   if (unidad === 'COP/gal') return `$${Math.round(v).toLocaleString('es-CO')}`;
   if (unidad === 'ha') return `${Math.round(v).toLocaleString('es-CO')} ha`;
   if (unidad === 'casos') return `${Math.round(v).toLocaleString('es-CO')}`;
