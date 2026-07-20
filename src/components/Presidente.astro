@@ -67,8 +67,8 @@ const estadoCls = { condenado: 'e-grave', imputado: 'e-medio', acusado: 'e-medio
 const sevOrden = { condenado: 0, acusado: 1, imputado: 2, investigado: 3, señalado: 4, absuelto: 5 };
 const gabSenalados = futuro ? [] : ministrosDe(m.id)
   .filter((p) => p.corrupcion)
-  .sort((a, b) => (sevOrden[a.corrupcion.estado] ?? 9) - (sevOrden[b.corrupcion.estado] ?? 9))
-  .slice(0, 4);
+  .sort((a, b) => (sevOrden[a.corrupcion.estado] ?? 9) - (sevOrden[b.corrupcion.estado] ?? 9));
+const inicialesGab = (n) => n.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]).join('').toUpperCase();
 
 // Uribe y Santos gobernaron dos veces; comparten foto (una por persona en public/presidentes/).
 const fotoId = (id) => id.replace(/[12]$/, '');
@@ -193,22 +193,28 @@ const fechaLarga = (f) =>
     <h3>Gabinete <span class="muted mini">{gab.total || '—'}</span></h3>
     {gab.total ? (
       <>
-        <p class="gab-linea">
-          <strong>{gab.total}</strong> ministros pasaron por el gobierno
-          {gab.corrupcion > 0 && <> · <span class="gab-alerta">{gab.corrupcion} con señalamientos</span></>}
-        </p>
-        {gabSenalados.length > 0 && (
-          <ul class="gab-mini">
-            {gabSenalados.map((p) => (
-              <li>
-                <span class="gab-mini-n">{p.nombre}</span>
-                <span class:list={["corrp", estadoCls[p.corrupcion.estado] ?? 'e-medio']} title={p.corrupcion.resumen}>
-                  {estadoTxt[p.corrupcion.estado] ?? p.corrupcion.estado}
-                </span>
-              </li>
-            ))}
-          </ul>
-        )}
+        <p class="gab-linea"><strong>{gab.total}</strong> ministros pasaron por el gobierno</p>
+        {gabSenalados.length > 0 ? (
+          <>
+            <p class="gab-sub">Señalados por corrupción <span class="muted">({gabSenalados.length})</span></p>
+            <ul class="gab-mini">
+              {gabSenalados.map((p) => (
+                <li>
+                  {p.foto
+                    ? <img class="gab-ret" src={p.foto} alt={p.nombre} width="72" height="72" loading="lazy" decoding="async" />
+                    : <span class="gab-ret gab-ret-ini" aria-hidden="true">{inicialesGab(p.nombre)}</span>}
+                  <div class="gab-mini-txt">
+                    <span class="gab-mini-n">{p.nombre}</span>
+                    {p.partido && <span class="muted gab-mini-p">{p.partido}</span>}
+                  </div>
+                  <span class:list={["corrp", estadoCls[p.corrupcion.estado] ?? 'e-medio']} title={p.corrupcion.resumen}>
+                    {estadoTxt[p.corrupcion.estado] ?? p.corrupcion.estado}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </>
+        ) : <p class="muted mini">Sin señalamientos de corrupción registrados.</p>}
         <a class="gab-ver" href="/gabinete">Ver el gabinete completo →</a>
       </>
     ) : futuro ? <p class="proximamente">Próximamente.</p> : <p class="muted mini">Sin datos.</p>}
@@ -385,12 +391,17 @@ const fechaLarga = (f) =>
   .panel { border:1px solid var(--border); border-radius:10px; padding:14px; }
 
   /* Panel de gabinete dentro del tablero. */
-  .gab-linea { font-size:.86rem; margin:2px 0 10px; }
+  .gab-linea { font-size:.86rem; margin:2px 0 8px; }
   .gab-linea strong { font-size:1.05rem; }
-  .gab-alerta { color:#B4341C; }
-  .gab-mini { list-style:none; margin:0 0 10px; padding:0; display:flex; flex-direction:column; gap:6px; }
-  .gab-mini li { display:flex; align-items:center; justify-content:space-between; gap:8px; }
-  .gab-mini-n { font-size:.82rem; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .gab-sub { font-size:.78rem; font-weight:600; margin:0 0 8px; }
+  .gab-mini { list-style:none; margin:0 0 10px; padding:0; display:flex; flex-direction:column; gap:8px; }
+  .gab-mini li { display:flex; align-items:center; gap:9px; }
+  .gab-ret { flex:none; width:34px; height:34px; border-radius:50%; object-fit:cover;
+    background:var(--surface-2); border:1px solid var(--border); }
+  .gab-ret-ini { display:grid; place-items:center; font-size:.68rem; font-weight:600; color:var(--muted); }
+  .gab-mini-txt { display:flex; flex-direction:column; min-width:0; flex:1; }
+  .gab-mini-n { font-size:.82rem; line-height:1.2; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .gab-mini-p { font-size:.72rem; }
   .corrp { flex:none; font-size:.64rem; font-weight:700; text-transform:uppercase; letter-spacing:.03em;
     padding:2px 6px; border-radius:var(--radius-pill); }
   .corrp.e-grave { background:#B4341C; color:#fff; }
