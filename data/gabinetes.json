@@ -1,148 +1,1525 @@
 {
-  "descripcion": "Gabinete ministerial de cada gobierno. Cuando un cargo rotó durante el cuatrienio, se lista el titular más destacado o de mayor duración; las rotaciones quedan en la nota.",
+  "descripcion": "Todas las personas que ocuparon cada cartera ministerial en cada gobierno, con las rotaciones. Con foto, periodo en el cargo y, cuando existe, el estado de los señalamientos de corrupción.",
   "fuentes": [
     "Presidencia de la República",
     "PDBA Georgetown University",
-    "Wikipedia (gobiernos de Uribe, Santos, Duque y Petro)"
+    "Wikipedia (gabinetes por gobierno)",
+    "Fiscalía, Procuraduría y Contraloría (procesos)",
+    "Prensa: El Tiempo, El Espectador, Semana, Infobae"
   ],
   "verificado": false,
-  "nota": "Datos triangulados de fuentes públicas, pendientes de verificación cruzada (Fase 0). El gabinete de Petro es dinámico (alta rotación); corte a julio de 2026.",
+  "nota": "Roster completo con rotaciones (corte julio de 2026). Fotos tomadas de Wikimedia Commons/Wikipedia (pueden requerir revisión). Los señalamientos indican el estado del proceso (investigado, imputado, acusado, condenado o absuelto), con enlace a la fuente; 'investigado' o 'señalado' no implica culpabilidad.",
   "gobiernos": [
     {
       "mandato": "uribe1",
-      "gabinete": [
-        { "cargo": "Interior y de Justicia", "nombre": "Fernando Londoño Hoyos", "nota": "Interior y Justicia fusionados. Luego Sabas Pretelt de la Vega (2004–2006)." },
-        { "cargo": "Relaciones Exteriores", "nombre": "Carolina Barco Isakson", "nota": "2002–2006." },
-        { "cargo": "Hacienda y Crédito Público", "nombre": "Alberto Carrasquilla Barrera", "nota": "Primero Roberto Junguito (2002–2003); Carrasquilla desde jun 2003." },
-        { "cargo": "Defensa Nacional", "nombre": "Marta Lucía Ramírez Blanco", "nota": "Primera mujer en Defensa. Luego Jorge A. Uribe y Camilo Ospina." },
-        { "cargo": "Agricultura y Desarrollo Rural", "nombre": "Carlos Gustavo Cano Sanz", "nota": "Luego Andrés Felipe Arias (2005–2009)." },
-        { "cargo": "Comercio, Industria y Turismo", "nombre": "Jorge Humberto Botero", "nota": "2002–2007." },
-        { "cargo": "Minas y Energía", "nombre": "Luis Ernesto Mejía Castro", "nota": "2002–2006." },
-        { "cargo": "Educación Nacional", "nombre": "Cecilia María Vélez White", "nota": "Ejerció los 8 años (2002–2010)." },
-        { "cargo": "Protección Social", "nombre": "Diego Palacio Betancourt", "nota": "Salud+Trabajo fusionados. Primer titular Juan Luis Londoño (falleció 2003)." },
-        { "cargo": "Ambiente, Vivienda y Desarrollo Territorial", "nombre": "Sandra Suárez Pérez", "nota": "Cartera fusionada. 2002–2006." },
-        { "cargo": "Comunicaciones", "nombre": "Martha Elena Pinto de De Hart", "nota": "Aún Ministerio de Comunicaciones (no TIC)." },
-        { "cargo": "Cultura", "nombre": "María Consuelo Araújo Castro", "nota": "2002–2006." },
-        { "cargo": "Transporte", "nombre": "Andrés Uriel Gallego Henao", "nota": "Ejerció los 8 años (2002–2010)." },
-        { "cargo": "Director del DNP", "nombre": "Santiago Montenegro Trujillo", "nota": "2002–2006." },
-        { "cargo": "Gerente del Banco de la República", "nombre": "José Darío Uribe Escobar", "nota": "Entidad autónoma. Miguel Urrutia hasta 2004; J.D. Uribe desde 2005." }
+      "ministros": [
+        {
+          "cargo": "Ministro del Interior y de Justicia",
+          "nombre": "Fernando Londoño Hoyos",
+          "periodo": "2002–2004",
+          "foto": "/gabinete/fernando-londono-hoyos.jpg",
+          "corrupcion": {
+            "estado": "condenado",
+            "resumen": "Destituido e inhabilitado por la Procuraduría; Corte Suprema le ordenó devolver acciones de Invercolsa",
+            "fuente": "https://www.eltiempo.com/justicia/cortes/corte-suprema-ratifica-que-fernando-londono-debe-devolver-acciones-de-invercolsa-429320",
+            "anio": "2004"
+          }
+        },
+        {
+          "cargo": "Ministro del Interior y de Justicia",
+          "nombre": "Sabas Pretelt de la Vega",
+          "periodo": "2004–2006",
+          "foto": "/gabinete/sabas-pretelt-de-la-vega.jpg",
+          "corrupcion": {
+            "estado": "condenado",
+            "resumen": "Condenado por cohecho (Yidispolítica) por ofrecimientos a congresistas para aprobar la reelección de 2004",
+            "fuente": "https://www.elespectador.com/judicial/corte-suprema-confirma-condena-contra-tres-alfiles-de-uribe-por-yidispolitica-sabas-pretelt-diego-palacio-y-alberto-velasquez/",
+            "anio": "2015"
+          }
+        },
+        {
+          "cargo": "Ministra de Relaciones Exteriores",
+          "nombre": "Carolina Barco Isakson",
+          "periodo": "2002–2006",
+          "foto": "/gabinete/carolina-barco.jpg"
+        },
+        {
+          "cargo": "Ministro de Hacienda y Crédito Público",
+          "nombre": "Roberto Junguito Bonnet",
+          "periodo": "2002–2003"
+        },
+        {
+          "cargo": "Ministro de Hacienda y Crédito Público",
+          "nombre": "Alberto Carrasquilla Barrera",
+          "periodo": "2003–2006",
+          "foto": "/gabinete/alberto-carrasquilla.jpg",
+          "corrupcion": {
+            "estado": "investigado",
+            "resumen": "Fiscalía abrió indagación por los 'bonos de agua', originados en reformas de su periodo en Hacienda",
+            "fuente": "https://www.semana.com/nacion/articulo/fiscalia-abrio-indagacion-a-ministro-carrasquilla-por-caso-bonos-de-agua/587956/",
+            "anio": "2019"
+          }
+        },
+        {
+          "cargo": "Ministra de Defensa Nacional",
+          "nombre": "Marta Lucía Ramírez",
+          "periodo": "2002–2003",
+          "foto": "/gabinete/marta-lucia-ramirez.jpg"
+        },
+        {
+          "cargo": "Ministro de Defensa Nacional",
+          "nombre": "Jorge Alberto Uribe Echavarría",
+          "periodo": "2003–2005",
+          "foto": "/gabinete/jorge-alberto-uribe.jpg"
+        },
+        {
+          "cargo": "Ministro de Defensa Nacional",
+          "nombre": "Camilo Ospina Bernal",
+          "periodo": "2005–2006",
+          "foto": "/gabinete/camilo-ospina.jpg"
+        },
+        {
+          "cargo": "Ministro de Agricultura y Desarrollo Rural",
+          "nombre": "Carlos Gustavo Cano Sanz",
+          "periodo": "2002–2005"
+        },
+        {
+          "cargo": "Ministro de Agricultura y Desarrollo Rural",
+          "nombre": "Andrés Felipe Arias Leyva",
+          "periodo": "2005–2006",
+          "foto": "/gabinete/andres-felipe-arias.jpg",
+          "corrupcion": {
+            "estado": "condenado",
+            "resumen": "Condenado por peculado e interés indebido en contratos en el programa Agro Ingreso Seguro (AIS)",
+            "fuente": "https://www.semana.com/nacion/articulo/lo-ultimo-andres-felipe-arias-perdio-batalla-en-la-corte-suprema-por-el-escandalo-de-agro-ingreso-seguro-ratifican-su-condena-de-17-anos-de-prision/202345/",
+            "anio": "2014"
+          }
+        },
+        {
+          "cargo": "Ministro de Comercio, Industria y Turismo",
+          "nombre": "Jorge Humberto Botero",
+          "periodo": "2002–2006"
+        },
+        {
+          "cargo": "Ministro de Minas y Energía",
+          "nombre": "Luis Ernesto Mejía Castro",
+          "periodo": "2002–2006"
+        },
+        {
+          "cargo": "Ministra de Educación Nacional",
+          "nombre": "Cecilia María Vélez White",
+          "periodo": "2002–2006",
+          "foto": "/gabinete/cecilia-maria-velez-white.jpg"
+        },
+        {
+          "cargo": "Ministro de la Protección Social",
+          "nombre": "Juan Luis Londoño de la Cuesta",
+          "periodo": "2002–2003"
+        },
+        {
+          "cargo": "Ministro de la Protección Social",
+          "nombre": "Diego Palacio Betancourt",
+          "periodo": "2003–2006",
+          "corrupcion": {
+            "estado": "condenado",
+            "resumen": "Condenado por cohecho (Yidispolítica) por ofrecimientos a congresistas para aprobar la reelección de 2004",
+            "fuente": "https://www.infobae.com/colombia/2024/09/27/la-corte-suprema-ratifica-condena-de-seis-anos-para-exministros-sabas-pretelt-de-la-vega-y-diego-palacio-betancourt-por-escandalo-yidispolitica/",
+            "anio": "2015"
+          }
+        },
+        {
+          "cargo": "Ministra de Ambiente, Vivienda y Desarrollo Territorial",
+          "nombre": "Cecilia Rodríguez González-Rubio",
+          "periodo": "2002–2003"
+        },
+        {
+          "cargo": "Ministra de Ambiente, Vivienda y Desarrollo Territorial",
+          "nombre": "Sandra Suárez Pérez",
+          "periodo": "2003–2006"
+        },
+        {
+          "cargo": "Ministra de Comunicaciones",
+          "nombre": "Martha Elena Pinto de De Hart",
+          "periodo": "2002–2006"
+        },
+        {
+          "cargo": "Ministra de Cultura",
+          "nombre": "María Consuelo Araújo Castro",
+          "periodo": "2002–2006",
+          "foto": "/gabinete/maria-consuelo-araujo.jpg"
+        },
+        {
+          "cargo": "Ministra de Cultura",
+          "nombre": "Elvira Cuervo de Jaramillo",
+          "periodo": "2006"
+        },
+        {
+          "cargo": "Ministro de Transporte",
+          "nombre": "Andrés Uriel Gallego Henao",
+          "periodo": "2002–2006",
+          "foto": "/gabinete/andres-uriel-gallego.jpg"
+        },
+        {
+          "cargo": "Director del Departamento Nacional de Planeación (DNP)",
+          "nombre": "Santiago Montenegro Trujillo",
+          "periodo": "2002–2006"
+        }
       ]
     },
     {
       "mandato": "uribe2",
-      "gabinete": [
-        { "cargo": "Interior y de Justicia", "nombre": "Fabio Valencia Cossio", "nota": "Antes Carlos Holguín Sardi (2006–2008)." },
-        { "cargo": "Relaciones Exteriores", "nombre": "Jaime Bermúdez Merizalde", "nota": "Antes M.C. Araújo (renunció) y Fernando Araújo." },
-        { "cargo": "Hacienda y Crédito Público", "nombre": "Óscar Iván Zuluaga Escobar", "nota": "2007–2010." },
-        { "cargo": "Defensa Nacional", "nombre": "Juan Manuel Santos Calderón", "nota": "2006–2009; renunció para aspirar a la presidencia. Luego Gabriel Silva." },
-        { "cargo": "Agricultura y Desarrollo Rural", "nombre": "Andrés Felipe Arias Leyva", "nota": "Hasta 2009; luego condenado por Agro Ingreso Seguro. Después Andrés Fernández." },
-        { "cargo": "Comercio, Industria y Turismo", "nombre": "Luis Guillermo Plata Páez", "nota": "2007–2010." },
-        { "cargo": "Minas y Energía", "nombre": "Hernán Martínez Torres", "nota": "2006–2010." },
-        { "cargo": "Educación Nacional", "nombre": "Cecilia María Vélez White", "nota": "Continuó hasta 2010." },
-        { "cargo": "Protección Social", "nombre": "Diego Palacio Betancourt", "nota": "Continuó hasta 2010." },
-        { "cargo": "Ambiente, Vivienda y Desarrollo Territorial", "nombre": "Juan Francisco Lozano Ramírez", "nota": "Luego Carlos Costa Posada (2009–2010)." },
-        { "cargo": "Tecnologías de la Información y las Comunicaciones", "nombre": "María del Rosario Guerra", "nota": "Ministerio TIC creado por Ley 1341 de 2009." },
-        { "cargo": "Cultura", "nombre": "Paula Marcela Moreno Zapata", "nota": "Primera ministra afrocolombiana. 2007–2010." },
-        { "cargo": "Transporte", "nombre": "Andrés Uriel Gallego Henao", "nota": "Continuó hasta 2010." },
-        { "cargo": "Director del DNP", "nombre": "Carolina Rentería Rodríguez", "nota": "Luego Esteban Piedrahíta (2008–2010)." },
-        { "cargo": "Gerente del Banco de la República", "nombre": "José Darío Uribe Escobar", "nota": "Gerente 2005–2017." }
+      "ministros": [
+        {
+          "cargo": "Interior y de Justicia",
+          "nombre": "Carlos Holguín Sardi",
+          "periodo": "2006–2008"
+        },
+        {
+          "cargo": "Interior y de Justicia",
+          "nombre": "Fabio Valencia Cossio",
+          "periodo": "2008–2010",
+          "foto": "/gabinete/fabio-valencia-cossio.jpg"
+        },
+        {
+          "cargo": "Relaciones Exteriores",
+          "nombre": "María Consuelo Araújo",
+          "periodo": "2006–2007",
+          "foto": "/gabinete/maria-consuelo-araujo.jpg"
+        },
+        {
+          "cargo": "Relaciones Exteriores",
+          "nombre": "Fernando Araújo Perdomo",
+          "periodo": "2007–2008",
+          "foto": "/gabinete/fernando-araujo-perdomo.jpg"
+        },
+        {
+          "cargo": "Relaciones Exteriores",
+          "nombre": "Jaime Bermúdez Merizalde",
+          "periodo": "2008–2010",
+          "foto": "/gabinete/jaime-bermudez-merizalde.jpg"
+        },
+        {
+          "cargo": "Hacienda y Crédito Público",
+          "nombre": "Alberto Carrasquilla",
+          "periodo": "2006–2007",
+          "foto": "/gabinete/alberto-carrasquilla.jpg"
+        },
+        {
+          "cargo": "Hacienda y Crédito Público",
+          "nombre": "Óscar Iván Zuluaga",
+          "periodo": "2007–2010",
+          "foto": "/gabinete/oscar-ivan-zuluaga.jpg"
+        },
+        {
+          "cargo": "Defensa Nacional",
+          "nombre": "Juan Manuel Santos",
+          "periodo": "2006–2009",
+          "foto": "/gabinete/juan-manuel-santos.jpg"
+        },
+        {
+          "cargo": "Defensa Nacional",
+          "nombre": "Gabriel Silva Luján",
+          "periodo": "2009–2010",
+          "foto": "/gabinete/gabriel-silva.jpg"
+        },
+        {
+          "cargo": "Agricultura y Desarrollo Rural",
+          "nombre": "Andrés Felipe Arias",
+          "periodo": "2006–2009",
+          "foto": "/gabinete/andres-felipe-arias.jpg",
+          "corrupcion": {
+            "estado": "condenado",
+            "resumen": "Corte Suprema lo condenó a 17 años por peculado y contrato sin requisitos legales en Agro Ingreso Seguro",
+            "fuente": "https://www.eltiempo.com/justicia/investigacion/cronologia-del-caso-por-el-que-fue-condenado-andres-felipe-arias-387582",
+            "anio": "2014"
+          }
+        },
+        {
+          "cargo": "Agricultura y Desarrollo Rural",
+          "nombre": "Andrés Fernández Acosta",
+          "periodo": "2009–2010"
+        },
+        {
+          "cargo": "Comercio, Industria y Turismo",
+          "nombre": "Jorge Humberto Botero",
+          "periodo": "2006–2007"
+        },
+        {
+          "cargo": "Comercio, Industria y Turismo",
+          "nombre": "Luis Guillermo Plata",
+          "periodo": "2007–2010",
+          "foto": "/gabinete/luis-guillermo-plata.jpg"
+        },
+        {
+          "cargo": "Minas y Energía",
+          "nombre": "Hernán Martínez Torres",
+          "periodo": "2006–2010"
+        },
+        {
+          "cargo": "Educación Nacional",
+          "nombre": "Cecilia María Vélez White",
+          "periodo": "2006–2010",
+          "foto": "/gabinete/cecilia-maria-velez-white.jpg"
+        },
+        {
+          "cargo": "Protección Social",
+          "nombre": "Diego Palacio Betancourt",
+          "periodo": "2006–2010",
+          "corrupcion": {
+            "estado": "condenado",
+            "resumen": "Condenado a 6 años por cohecho en la 'yidispolítica' (votos para la reelección de 2004); ratificado en 2024",
+            "fuente": "https://www.elespectador.com/judicial/corte-suprema-confirma-condena-contra-tres-alfiles-de-uribe-por-yidispolitica-sabas-pretelt-diego-palacio-y-alberto-velasquez/",
+            "anio": "2024"
+          }
+        },
+        {
+          "cargo": "Ambiente, Vivienda y Desarrollo Territorial",
+          "nombre": "Juan Francisco Lozano Ramírez",
+          "periodo": "2006–2009",
+          "foto": "/gabinete/juan-lozano-ramirez.jpg"
+        },
+        {
+          "cargo": "Ambiente, Vivienda y Desarrollo Territorial",
+          "nombre": "Carlos Costa Posada",
+          "periodo": "2009–2010"
+        },
+        {
+          "cargo": "Tecnologías de la Información y las Comunicaciones",
+          "nombre": "María del Rosario Guerra",
+          "periodo": "2006–2010",
+          "foto": "/gabinete/maria-del-rosario-guerra.jpg"
+        },
+        {
+          "cargo": "Tecnologías de la Información y las Comunicaciones",
+          "nombre": "Daniel Enrique Medina",
+          "periodo": "2010"
+        },
+        {
+          "cargo": "Cultura",
+          "nombre": "Elvira Cuervo de Jaramillo",
+          "periodo": "2006–2007"
+        },
+        {
+          "cargo": "Cultura",
+          "nombre": "Paula Marcela Moreno Zapata",
+          "periodo": "2007–2010",
+          "foto": "/gabinete/paula-marcela-moreno-zapata.jpg"
+        },
+        {
+          "cargo": "Transporte",
+          "nombre": "Andrés Uriel Gallego Henao",
+          "periodo": "2006–2010",
+          "foto": "/gabinete/andres-uriel-gallego.jpg"
+        },
+        {
+          "cargo": "Director del DNP",
+          "nombre": "Carolina Rentería",
+          "periodo": "2006–2009"
+        },
+        {
+          "cargo": "Director del DNP",
+          "nombre": "Esteban Piedrahíta",
+          "periodo": "2009–2010"
+        }
       ]
     },
     {
       "mandato": "santos1",
-      "gabinete": [
-        { "cargo": "Interior", "nombre": "Germán Vargas Lleras", "nota": "Interior y Justicia se separaron (2011). Luego Renjifo, Carrillo, Iragorri." },
-        { "cargo": "Justicia y del Derecho", "nombre": "Juan Carlos Esguerra Portocarrero", "nota": "Cartera recreada en 2011. Luego Ruth Stella Correa y Gómez Méndez." },
-        { "cargo": "Relaciones Exteriores", "nombre": "María Ángela Holguín Cuéllar", "nota": "2010–2018." },
-        { "cargo": "Hacienda y Crédito Público", "nombre": "Mauricio Cárdenas Santamaría", "nota": "Antes Juan Carlos Echeverry (2010–2012); Cárdenas desde ago 2012." },
-        { "cargo": "Defensa Nacional", "nombre": "Juan Carlos Pinzón Bueno", "nota": "Antes Rodrigo Rivera (2010–2011)." },
-        { "cargo": "Agricultura y Desarrollo Rural", "nombre": "Juan Camilo Restrepo Salazar", "nota": "Luego Estupiñán y Lizarralde." },
-        { "cargo": "Comercio, Industria y Turismo", "nombre": "Sergio Díaz-Granados Guida", "nota": "Luego Santiago Rojas (2013–2014)." },
-        { "cargo": "Minas y Energía", "nombre": "Carlos Rodado Noriega", "nota": "Mucha rotación: Cárdenas, Renjifo, Amylkar Acosta." },
-        { "cargo": "Educación Nacional", "nombre": "María Fernanda Campo Saavedra", "nota": "2010–2014." },
-        { "cargo": "Salud y Protección Social", "nombre": "Alejandro Gaviria Uribe", "nota": "Ministerio de Salud recreado en 2011; Gaviria desde 2012 hasta 2018." },
-        { "cargo": "Trabajo", "nombre": "Rafael Pardo Rueda", "nota": "Ministerio de Trabajo recreado en 2011; primer titular." },
-        { "cargo": "Ambiente y Desarrollo Sostenible", "nombre": "Frank Pearl González", "nota": "Ambiente se separó de Vivienda (2011). Luego Uribe y Sarmiento." },
-        { "cargo": "Vivienda, Ciudad y Territorio", "nombre": "Germán Vargas Lleras", "nota": "Cartera creada en 2011; programa de vivienda gratis." },
-        { "cargo": "Tecnologías de la Información y las Comunicaciones", "nombre": "Diego Molano Vega", "nota": "2010–2015." },
-        { "cargo": "Cultura", "nombre": "Mariana Garcés Córdoba", "nota": "2010–2018." },
-        { "cargo": "Transporte", "nombre": "Cecilia Álvarez-Correa Glen", "nota": "Antes Germán Cardona y Miguel Peñaloza." },
-        { "cargo": "Director del DNP", "nombre": "Hernando José Gómez Restrepo", "nota": "Luego Santamaría y Tatyana Orozco." },
-        { "cargo": "Gerente del Banco de la República", "nombre": "José Darío Uribe Escobar", "nota": "Gerente 2005–2017." }
+      "ministros": [
+        {
+          "cargo": "Interior",
+          "nombre": "Germán Vargas Lleras",
+          "periodo": "2010–2012",
+          "foto": "/gabinete/german-vargas-lleras.jpg"
+        },
+        {
+          "cargo": "Interior",
+          "nombre": "Federico Renjifo Vélez",
+          "periodo": "2012"
+        },
+        {
+          "cargo": "Interior",
+          "nombre": "Fernando Carrillo Flórez",
+          "periodo": "2012–2013",
+          "foto": "/gabinete/fernando-carrillo-florez.jpg"
+        },
+        {
+          "cargo": "Interior",
+          "nombre": "Aurelio Iragorri Valencia",
+          "periodo": "2013–2014",
+          "foto": "/gabinete/aurelio-iragorri-valencia.jpg"
+        },
+        {
+          "cargo": "Justicia y del Derecho",
+          "nombre": "Juan Carlos Esguerra Portocarrero",
+          "periodo": "2011–2012",
+          "foto": "/gabinete/juan-carlos-esguerra-portocarrero.jpg"
+        },
+        {
+          "cargo": "Justicia y del Derecho",
+          "nombre": "Ruth Stella Correa Palacio",
+          "periodo": "2012–2013"
+        },
+        {
+          "cargo": "Justicia y del Derecho",
+          "nombre": "Alfonso Gómez Méndez",
+          "periodo": "2013–2014",
+          "foto": "/gabinete/alfonso-gomez-mendez.jpg"
+        },
+        {
+          "cargo": "Relaciones Exteriores",
+          "nombre": "María Ángela Holguín",
+          "periodo": "2010–2014",
+          "foto": "/gabinete/maria-angela-holguin.jpg"
+        },
+        {
+          "cargo": "Hacienda y Crédito Público",
+          "nombre": "Juan Carlos Echeverry",
+          "periodo": "2010–2012",
+          "foto": "/gabinete/juan-carlos-echeverry.jpg"
+        },
+        {
+          "cargo": "Hacienda y Crédito Público",
+          "nombre": "Mauricio Cárdenas Santamaría",
+          "periodo": "2012–2014",
+          "foto": "/gabinete/mauricio-cardenas-santamaria.jpg"
+        },
+        {
+          "cargo": "Defensa Nacional",
+          "nombre": "Rodrigo Rivera Salazar",
+          "periodo": "2010–2011",
+          "foto": "/gabinete/rodrigo-rivera-salazar.jpg"
+        },
+        {
+          "cargo": "Defensa Nacional",
+          "nombre": "Juan Carlos Pinzón",
+          "periodo": "2011–2014",
+          "foto": "/gabinete/juan-carlos-pinzon.jpg"
+        },
+        {
+          "cargo": "Agricultura y Desarrollo Rural",
+          "nombre": "Juan Camilo Restrepo Salazar",
+          "periodo": "2010–2013",
+          "foto": "/gabinete/juan-camilo-restrepo-salazar.jpg",
+          "corrupcion": {
+            "estado": "imputado",
+            "resumen": "Procuraduría le formuló pliego de cargos por presunta extralimitación en el caso Fondo Nacional del Ganado.",
+            "fuente": "https://www.contextoganadero.com/politica/procuraduria-formula-pliego-de-cargos-al-exministro-juan-camilo-restrepo",
+            "anio": "2016"
+          }
+        },
+        {
+          "cargo": "Agricultura y Desarrollo Rural",
+          "nombre": "Francisco Estupiñán",
+          "periodo": "2013"
+        },
+        {
+          "cargo": "Agricultura y Desarrollo Rural",
+          "nombre": "Rubén Darío Lizarralde",
+          "periodo": "2013–2014",
+          "corrupcion": {
+            "estado": "señalado",
+            "resumen": "Contraloría pidió investigarlo por presunta acumulación irregular de baldíos en Vichada.",
+            "fuente": "https://www.semana.com/nacion/articulo/el-uberrimo-de-uribe-en-la-mira-de-la-contraloria/524599/",
+            "anio": "2016"
+          }
+        },
+        {
+          "cargo": "Comercio, Industria y Turismo",
+          "nombre": "Sergio Díaz-Granados",
+          "periodo": "2010–2013",
+          "foto": "/gabinete/sergio-diaz-granados.jpg",
+          "corrupcion": {
+            "estado": "imputado",
+            "resumen": "Procuraduría le formuló pliego de cargos por presuntas irregularidades en Fomipyme como viceministro.",
+            "fuente": "https://www.lasillavacia.com/quien-es-quien/sergio-diaz-granados-guida/",
+            "anio": "2011"
+          }
+        },
+        {
+          "cargo": "Comercio, Industria y Turismo",
+          "nombre": "Santiago Rojas Arroyo",
+          "periodo": "2013–2014",
+          "corrupcion": {
+            "estado": "investigado",
+            "resumen": "Indagado por la Fiscalía en el caso Odebrecht como gerente de la campaña Santos 2010.",
+            "fuente": "https://www.eltiempo.com/justicia/delitos/caso-odebrecht-citan-a-santiago-rojas-71838",
+            "anio": "2017"
+          }
+        },
+        {
+          "cargo": "Minas y Energía",
+          "nombre": "Carlos Rodado Noriega",
+          "periodo": "2010–2011",
+          "foto": "/gabinete/carlos-rodado-noriega.jpg",
+          "corrupcion": {
+            "estado": "investigado",
+            "resumen": "Vinculado al proceso de responsabilidad fiscal por Reficar (junta de Ecopetrol); caso archivado.",
+            "fuente": "https://www.eltiempo.com/justicia/delitos/proceso-de-responsabilidad-fiscal-por-17-billones-caso-reficar-67206",
+            "anio": "2017"
+          }
+        },
+        {
+          "cargo": "Minas y Energía",
+          "nombre": "Mauricio Cárdenas Santamaría",
+          "periodo": "2011–2012",
+          "foto": "/gabinete/mauricio-cardenas-santamaria.jpg"
+        },
+        {
+          "cargo": "Minas y Energía",
+          "nombre": "Federico Renjifo Vélez",
+          "periodo": "2012–2013"
+        },
+        {
+          "cargo": "Minas y Energía",
+          "nombre": "Amylkar Acosta Medina",
+          "periodo": "2013–2014",
+          "corrupcion": {
+            "estado": "investigado",
+            "resumen": "Procuraduría lo investigó por un contrato directo suscrito como director de la Federación de Departamentos.",
+            "fuente": "https://www.semana.com/nacion/articulo/el-contrato-que-tiene-a-amylkar-acosta-exdirector-de-la-federacion-nacional-de-departamentos-bajo-la-lupa-de-la-procuraduria/202111/",
+            "anio": "2021"
+          }
+        },
+        {
+          "cargo": "Educación Nacional",
+          "nombre": "María Fernanda Campo",
+          "periodo": "2010–2014",
+          "foto": "/gabinete/maria-fernanda-campo.jpg"
+        },
+        {
+          "cargo": "Salud y Protección Social",
+          "nombre": "Mauricio Santamaría Salamanca",
+          "periodo": "2010–2012"
+        },
+        {
+          "cargo": "Salud y Protección Social",
+          "nombre": "Beatriz Londoño Soto",
+          "periodo": "2012",
+          "foto": "/gabinete/beatriz-londono-soto.jpg"
+        },
+        {
+          "cargo": "Salud y Protección Social",
+          "nombre": "Alejandro Gaviria",
+          "periodo": "2012–2014",
+          "foto": "/gabinete/alejandro-gaviria.jpg"
+        },
+        {
+          "cargo": "Trabajo",
+          "nombre": "Rafael Pardo Rueda",
+          "periodo": "2011–2014",
+          "foto": "/gabinete/rafael-pardo-rueda.jpg"
+        },
+        {
+          "cargo": "Ambiente y Desarrollo Sostenible",
+          "nombre": "Frank Pearl",
+          "periodo": "2011–2012",
+          "foto": "/gabinete/frank-pearl.jpg"
+        },
+        {
+          "cargo": "Ambiente y Desarrollo Sostenible",
+          "nombre": "Juan Gabriel Uribe",
+          "periodo": "2012–2013",
+          "foto": "/gabinete/juan-gabriel-uribe.jpg"
+        },
+        {
+          "cargo": "Ambiente y Desarrollo Sostenible",
+          "nombre": "Luz Helena Sarmiento",
+          "periodo": "2013–2014",
+          "corrupcion": {
+            "estado": "condenado",
+            "resumen": "Procuraduría la sancionó disciplinariamente por asesorar a Ruta del Sol II tras dirigir la ANLA.",
+            "fuente": "https://www.elespectador.com/judicial/los-detalles-de-la-sancion-a-la-exdirectora-de-la-anla-mencionada-por-jorge-pizano-article/",
+            "anio": "2020"
+          }
+        },
+        {
+          "cargo": "Vivienda, Ciudad y Territorio",
+          "nombre": "Beatriz Uribe Botero",
+          "periodo": "2011–2012",
+          "foto": "/gabinete/beatriz-uribe-botero.jpg"
+        },
+        {
+          "cargo": "Vivienda, Ciudad y Territorio",
+          "nombre": "Germán Vargas Lleras",
+          "periodo": "2012–2013",
+          "foto": "/gabinete/german-vargas-lleras.jpg"
+        },
+        {
+          "cargo": "Vivienda, Ciudad y Territorio",
+          "nombre": "Luis Felipe Henao Cardona",
+          "periodo": "2013–2014",
+          "corrupcion": {
+            "estado": "investigado",
+            "resumen": "Procuraduría abrió indagación por la compra y adecuación del Hotel Dann Colonial como sede del ministerio.",
+            "fuente": "https://www.eltiempo.com/justicia/investigacion/procuraduria-investiga-a-exministros-de-vivienda-por-caso-del-hotel-dann-colonial-345834",
+            "anio": "2019"
+          }
+        },
+        {
+          "cargo": "Tecnologías de la Información y las Comunicaciones",
+          "nombre": "Diego Molano Vega",
+          "periodo": "2010–2014",
+          "foto": "/gabinete/diego-molano-vega.jpg",
+          "corrupcion": {
+            "estado": "investigado",
+            "resumen": "Contraloría cuestionó contratos que firmó como MinTIC con Comcel/Telmex por presunto detrimento.",
+            "fuente": "https://www.semana.com/nacion/articulo/que-va-a-pasar-con-los-114-mil-millones-que-perdio-el-mintic-el-nuevo-escandalo-tiene-a-la-contraloria-con-la-lupa-puesta/202341/",
+            "anio": "2023"
+          }
+        },
+        {
+          "cargo": "Cultura",
+          "nombre": "Mariana Garcés Córdoba",
+          "periodo": "2010–2014",
+          "foto": "/gabinete/mariana-garces-cordoba.jpg"
+        },
+        {
+          "cargo": "Transporte",
+          "nombre": "Germán Cardona Gutiérrez",
+          "periodo": "2010–2012",
+          "foto": "/gabinete/german-cardona-gutierrez.jpg"
+        },
+        {
+          "cargo": "Transporte",
+          "nombre": "Miguel Peñaloza Barragán",
+          "periodo": "2012–2013",
+          "corrupcion": {
+            "estado": "investigado",
+            "resumen": "Investigado por Fiscalía y Procuraduría por presuntos dineros de Odebrecht en la adición de Ruta del Sol II.",
+            "fuente": "https://www.eltiempo.com/justicia/investigacion/procuraduria-abre-investigacion-a-miguel-penaloza-120458",
+            "anio": "2017"
+          }
+        },
+        {
+          "cargo": "Transporte",
+          "nombre": "Cecilia Álvarez-Correa",
+          "periodo": "2013–2014",
+          "foto": "/gabinete/cecilia-alvarez-correa.jpg",
+          "corrupcion": {
+            "estado": "acusado",
+            "resumen": "Imputada en el caso Odebrecht (Ruta del Sol II); la Fiscalía retiró la acusación en 2025.",
+            "fuente": "https://www.eltiempo.com/justicia/investigacion/en-vivo-imputacion-de-cargos-a-exministra-cecilia-alvarez-por-escandalo-de-odebrecht-783683",
+            "anio": "2023"
+          }
+        },
+        {
+          "cargo": "Director del DNP",
+          "nombre": "Hernando José Gómez",
+          "periodo": "2010–2012"
+        },
+        {
+          "cargo": "Director del DNP",
+          "nombre": "Mauricio Santamaría Salamanca",
+          "periodo": "2012–2013"
+        },
+        {
+          "cargo": "Director del DNP",
+          "nombre": "Tatyana Orozco",
+          "periodo": "2013–2014"
+        }
       ]
     },
     {
       "mandato": "santos2",
-      "gabinete": [
-        { "cargo": "Interior", "nombre": "Juan Fernando Cristo", "nota": "2014–2017. Luego Guillermo Rivera." },
-        { "cargo": "Relaciones Exteriores", "nombre": "María Ángela Holguín", "nota": "Canciller 2010–2018." },
-        { "cargo": "Hacienda y Crédito Público", "nombre": "Mauricio Cárdenas Santamaría", "nota": "2012–2018." },
-        { "cargo": "Justicia y del Derecho", "nombre": "Yesid Reyes Alvarado", "nota": "Luego Londoño y Gil Botero." },
-        { "cargo": "Defensa Nacional", "nombre": "Luis Carlos Villegas", "nota": "2015–2018. Al inicio Juan Carlos Pinzón." },
-        { "cargo": "Agricultura y Desarrollo Rural", "nombre": "Aurelio Iragorri Valencia", "nota": "Luego Juan Guillermo Zuluaga." },
-        { "cargo": "Comercio, Industria y Turismo", "nombre": "María Claudia Lacouture", "nota": "Cartera con rotación: Álvarez-Correa, Lacouture, Gutiérrez." },
-        { "cargo": "Minas y Energía", "nombre": "Germán Arce Zapata", "nota": "2016–2018. Antes Tomás González." },
-        { "cargo": "Educación Nacional", "nombre": "Gina Parody", "nota": "2014–2016. Luego Yaneth Giha." },
-        { "cargo": "Salud y Protección Social", "nombre": "Alejandro Gaviria", "nota": "2012–2018." },
-        { "cargo": "Trabajo", "nombre": "Luis Eduardo Garzón", "nota": "Luego Clara López y Griselda Restrepo." },
-        { "cargo": "Ambiente y Desarrollo Sostenible", "nombre": "Luis Gilberto Murillo", "nota": "2016–2018. Antes Gabriel Vallejo." },
-        { "cargo": "Vivienda, Ciudad y Territorio", "nombre": "Luis Felipe Henao", "nota": "Luego Noguera, Pumarejo y Sánchez." },
-        { "cargo": "Tecnologías de la Información y las Comunicaciones", "nombre": "David Luna", "nota": "2015–2018." },
-        { "cargo": "Cultura", "nombre": "Mariana Garcés", "nota": "2010–2018." },
-        { "cargo": "Transporte", "nombre": "Natalia Abello", "nota": "Luego Rojas y Cardona." },
-        { "cargo": "Director del DNP", "nombre": "Simón Gaviria Muñoz", "nota": "2014–2017. Luego Luis Fernando Mejía." },
-        { "cargo": "Gerente del Banco de la República", "nombre": "Juan José Echavarría", "nota": "Desde ene 2017 (antes J.D. Uribe). Cargo autónomo." }
+      "ministros": [
+        {
+          "cargo": "Interior",
+          "nombre": "Juan Fernando Cristo",
+          "periodo": "2014–2017",
+          "foto": "/gabinete/juan-fernando-cristo.jpg"
+        },
+        {
+          "cargo": "Interior",
+          "nombre": "Guillermo Rivera",
+          "periodo": "2017–2018",
+          "foto": "/gabinete/guillermo-rivera-florez.jpg"
+        },
+        {
+          "cargo": "Relaciones Exteriores",
+          "nombre": "María Ángela Holguín",
+          "periodo": "2014–2018",
+          "foto": "/gabinete/maria-angela-holguin.jpg"
+        },
+        {
+          "cargo": "Hacienda y Crédito Público",
+          "nombre": "Mauricio Cárdenas",
+          "periodo": "2014–2018",
+          "foto": "/gabinete/mauricio-cardenas.jpg",
+          "corrupcion": {
+            "estado": "investigado",
+            "resumen": "Investigado por la Contraloría en el caso Reficar como miembro de junta de Ecopetrol; su caso fue archivado.",
+            "fuente": "https://www.elespectador.com/noticias/judicial/archivan-investigacion-miembros-de-junta-directiva-de-ecopetrol-por-caso-reficar-articulo-792915",
+            "anio": "2018"
+          }
+        },
+        {
+          "cargo": "Justicia y del Derecho",
+          "nombre": "Yesid Reyes",
+          "periodo": "2014–2016",
+          "foto": "/gabinete/yesid-reyes.jpg"
+        },
+        {
+          "cargo": "Justicia y del Derecho",
+          "nombre": "Jorge Eduardo Londoño",
+          "periodo": "2016–2017",
+          "foto": "/gabinete/jorge-eduardo-londono.jpg"
+        },
+        {
+          "cargo": "Justicia y del Derecho",
+          "nombre": "Enrique Gil Botero",
+          "periodo": "2017–2018",
+          "foto": "/gabinete/enrique-gil-botero.jpg"
+        },
+        {
+          "cargo": "Defensa Nacional",
+          "nombre": "Juan Carlos Pinzón",
+          "periodo": "2014–2015",
+          "foto": "/gabinete/juan-carlos-pinzon.jpg"
+        },
+        {
+          "cargo": "Defensa Nacional",
+          "nombre": "Luis Carlos Villegas",
+          "periodo": "2015–2018",
+          "foto": "/gabinete/luis-carlos-villegas.jpg"
+        },
+        {
+          "cargo": "Agricultura y Desarrollo Rural",
+          "nombre": "Aurelio Iragorri Valencia",
+          "periodo": "2014–2017",
+          "foto": "/gabinete/aurelio-iragorri-valencia.jpg"
+        },
+        {
+          "cargo": "Agricultura y Desarrollo Rural",
+          "nombre": "Juan Guillermo Zuluaga",
+          "periodo": "2017–2018",
+          "foto": "/gabinete/juan-guillermo-zuluaga.jpg"
+        },
+        {
+          "cargo": "Comercio, Industria y Turismo",
+          "nombre": "Cecilia Álvarez-Correa",
+          "periodo": "2014–2016",
+          "foto": "/gabinete/cecilia-alvarez-correa.jpg",
+          "corrupcion": {
+            "estado": "imputado",
+            "resumen": "Imputada por la Fiscalía por interés indebido en contratos en el caso Odebrecht (Ruta del Sol II).",
+            "fuente": "https://www.infobae.com/colombia/2023/07/06/caso-odebrecht-fiscalia-general-imputara-cargos-hoy-a-la-exministra-de-transporte-cecilia-alvarez/",
+            "anio": "2023"
+          }
+        },
+        {
+          "cargo": "Comercio, Industria y Turismo",
+          "nombre": "María Claudia Lacouture",
+          "periodo": "2016–2017",
+          "foto": "/gabinete/maria-claudia-lacouture.jpg"
+        },
+        {
+          "cargo": "Comercio, Industria y Turismo",
+          "nombre": "María Lorena Gutiérrez",
+          "periodo": "2017–2018",
+          "foto": "/gabinete/maria-lorena-gutierrez.jpg"
+        },
+        {
+          "cargo": "Minas y Energía",
+          "nombre": "Tomás González",
+          "periodo": "2014–2016",
+          "foto": "/gabinete/tomas-gonzalez-estrada.jpg"
+        },
+        {
+          "cargo": "Minas y Energía",
+          "nombre": "Germán Arce",
+          "periodo": "2016–2018",
+          "foto": "/gabinete/german-arce.jpg"
+        },
+        {
+          "cargo": "Educación Nacional",
+          "nombre": "Gina Parody",
+          "periodo": "2014–2016",
+          "foto": "/gabinete/gina-parody.jpg",
+          "corrupcion": {
+            "estado": "investigado",
+            "resumen": "Vinculada a proceso de responsabilidad fiscal de la Contraloría por recursos del fondo FFIE; caso penal Odebrecht archivado.",
+            "fuente": "https://www.elcolombiano.com/colombia/contraloria-general-investigara-a-gina-paroy-y-yaneht-giha-por-presunto-detrimento-GE12163162",
+            "anio": "2019"
+          }
+        },
+        {
+          "cargo": "Educación Nacional",
+          "nombre": "Yaneth Giha",
+          "periodo": "2016–2018",
+          "foto": "/gabinete/yaneth-giha.jpg",
+          "corrupcion": {
+            "estado": "investigado",
+            "resumen": "Vinculada a proceso de responsabilidad fiscal de la Contraloría por recursos del fondo FFIE.",
+            "fuente": "https://www.elcolombiano.com/colombia/contraloria-general-investigara-a-gina-paroy-y-yaneht-giha-por-presunto-detrimento-GE12163162",
+            "anio": "2019"
+          }
+        },
+        {
+          "cargo": "Salud y Protección Social",
+          "nombre": "Alejandro Gaviria",
+          "periodo": "2014–2018",
+          "foto": "/gabinete/alejandro-gaviria.jpg"
+        },
+        {
+          "cargo": "Trabajo",
+          "nombre": "Luis Eduardo Garzón",
+          "periodo": "2014–2016",
+          "foto": "/gabinete/luis-eduardo-garzon.jpg"
+        },
+        {
+          "cargo": "Trabajo",
+          "nombre": "Clara López",
+          "periodo": "2016–2017",
+          "foto": "/gabinete/clara-lopez.jpg"
+        },
+        {
+          "cargo": "Trabajo",
+          "nombre": "Griselda Restrepo",
+          "periodo": "2017–2018",
+          "foto": "/gabinete/griselda-restrepo.jpg"
+        },
+        {
+          "cargo": "Ambiente y Desarrollo Sostenible",
+          "nombre": "Gabriel Vallejo",
+          "periodo": "2014–2016",
+          "foto": "/gabinete/gabriel-vallejo.jpg"
+        },
+        {
+          "cargo": "Ambiente y Desarrollo Sostenible",
+          "nombre": "Luis Gilberto Murillo",
+          "periodo": "2016–2018",
+          "foto": "/gabinete/luis-gilberto-murillo.jpg"
+        },
+        {
+          "cargo": "Vivienda, Ciudad y Territorio",
+          "nombre": "Luis Felipe Henao",
+          "periodo": "2014–2016"
+        },
+        {
+          "cargo": "Vivienda, Ciudad y Territorio",
+          "nombre": "Elsa Noguera",
+          "periodo": "2016–2017",
+          "foto": "/gabinete/elsa-noguera.jpg"
+        },
+        {
+          "cargo": "Vivienda, Ciudad y Territorio",
+          "nombre": "Jaime Pumarejo",
+          "periodo": "2017",
+          "foto": "/gabinete/jaime-pumarejo.jpg"
+        },
+        {
+          "cargo": "Vivienda, Ciudad y Territorio",
+          "nombre": "Camilo Sánchez",
+          "periodo": "2017–2018",
+          "foto": "/gabinete/camilo-sanchez-ortega.jpg"
+        },
+        {
+          "cargo": "Tecnologías de la Información y las Comunicaciones",
+          "nombre": "Diego Molano Vega",
+          "periodo": "2014–2015",
+          "foto": "/gabinete/diego-molano-vega.jpg"
+        },
+        {
+          "cargo": "Tecnologías de la Información y las Comunicaciones",
+          "nombre": "David Luna",
+          "periodo": "2015–2018",
+          "foto": "/gabinete/david-luna.jpg"
+        },
+        {
+          "cargo": "Cultura",
+          "nombre": "Mariana Garcés",
+          "periodo": "2014–2018",
+          "foto": "/gabinete/mariana-garces.jpg"
+        },
+        {
+          "cargo": "Transporte",
+          "nombre": "Natalia Abello",
+          "periodo": "2014–2016",
+          "foto": "/gabinete/natalia-abello.jpg"
+        },
+        {
+          "cargo": "Transporte",
+          "nombre": "Jorge Rojas",
+          "periodo": "2016–2017",
+          "foto": "/gabinete/jorge-rojas-giraldo.jpg"
+        },
+        {
+          "cargo": "Transporte",
+          "nombre": "Germán Cardona",
+          "periodo": "2017–2018",
+          "foto": "/gabinete/german-cardona.jpg"
+        },
+        {
+          "cargo": "Director del DNP",
+          "nombre": "Simón Gaviria",
+          "periodo": "2014–2017",
+          "foto": "/gabinete/simon-gaviria.jpg"
+        },
+        {
+          "cargo": "Director del DNP",
+          "nombre": "Luis Fernando Mejía",
+          "periodo": "2017–2018"
+        }
       ]
     },
     {
       "mandato": "duque",
-      "gabinete": [
-        { "cargo": "Interior", "nombre": "Nancy Patricia Gutiérrez", "nota": "Luego Alicia Arango y Daniel Palacios." },
-        { "cargo": "Relaciones Exteriores", "nombre": "Claudia Blum", "nota": "Rotación: Holmes Trujillo, Blum, Marta Lucía Ramírez." },
-        { "cargo": "Hacienda y Crédito Público", "nombre": "Alberto Carrasquilla", "nota": "2018–2021; renunció tras la reforma tributaria y el paro. Luego José Manuel Restrepo." },
-        { "cargo": "Justicia y del Derecho", "nombre": "Wilson Ruiz Orejuela", "nota": "Antes Borrero y Cabello." },
-        { "cargo": "Defensa Nacional", "nombre": "Carlos Holmes Trujillo", "nota": "2019–2021; falleció en el cargo (covid-19). Antes Botero, después Molano." },
-        { "cargo": "Agricultura y Desarrollo Rural", "nombre": "Rodolfo Enrique Zea Navarro", "nota": "Antes Andrés Valencia." },
-        { "cargo": "Comercio, Industria y Turismo", "nombre": "José Manuel Restrepo", "nota": "Luego pasó a Hacienda; le sucedió Lombana." },
-        { "cargo": "Minas y Energía", "nombre": "Diego Mesa Puyo", "nota": "2020–2022. Antes María Fernanda Suárez." },
-        { "cargo": "Educación Nacional", "nombre": "María Victoria Angulo", "nota": "2018–2022." },
-        { "cargo": "Salud y Protección Social", "nombre": "Fernando Ruiz Gómez", "nota": "Manejo de la pandemia. Antes Juan Pablo Uribe." },
-        { "cargo": "Trabajo", "nombre": "Ángel Custodio Cabrera", "nota": "Antes Alicia Arango." },
-        { "cargo": "Ambiente y Desarrollo Sostenible", "nombre": "Carlos Eduardo Correa", "nota": "Antes Ricardo Lozano." },
-        { "cargo": "Vivienda, Ciudad y Territorio", "nombre": "Jonathan Malagón", "nota": "Al cierre, Susana Correa." },
-        { "cargo": "Tecnologías de la Información y las Comunicaciones", "nombre": "Karen Abudinen", "nota": "Salió por el escándalo Centros Poblados. Antes Constaín, después Valderrama." },
-        { "cargo": "Cultura", "nombre": "Carmen Inés Vásquez", "nota": "Luego Buitrago y Mayolo." },
-        { "cargo": "Transporte", "nombre": "Ángela María Orozco", "nota": "2018–2022." },
-        { "cargo": "Ciencia, Tecnología e Innovación", "nombre": "Mabel Gisela Torres", "nota": "Primera ministra de la cartera, creada en 2019. Luego Tito Crissien." },
-        { "cargo": "Deporte", "nombre": "Ernesto Lucena", "nota": "Primer titular del ministerio (creado en 2019). Luego Guillermo Herrera." },
-        { "cargo": "Director del DNP", "nombre": "Luis Alberto Rodríguez", "nota": "Antes Gloria Amparo Alonso." },
-        { "cargo": "Gerente del Banco de la República", "nombre": "Leonardo Villar", "nota": "Posesionado ene 2021 (antes Echavarría). Cargo autónomo." }
+      "ministros": [
+        {
+          "cargo": "Interior",
+          "nombre": "Nancy Patricia Gutiérrez",
+          "periodo": "2018–2019",
+          "foto": "/gabinete/nancy-patricia-gutierrez.jpg"
+        },
+        {
+          "cargo": "Interior",
+          "nombre": "Alicia Arango Olmos",
+          "periodo": "2019–2021",
+          "foto": "/gabinete/alicia-arango.jpg"
+        },
+        {
+          "cargo": "Interior",
+          "nombre": "Daniel Palacios Martínez",
+          "periodo": "2021–2022"
+        },
+        {
+          "cargo": "Relaciones Exteriores",
+          "nombre": "Carlos Holmes Trujillo",
+          "periodo": "2018–2019",
+          "foto": "/gabinete/carlos-holmes-trujillo.jpg"
+        },
+        {
+          "cargo": "Relaciones Exteriores",
+          "nombre": "Claudia Blum",
+          "periodo": "2019–2021",
+          "foto": "/gabinete/claudia-blum.jpg"
+        },
+        {
+          "cargo": "Relaciones Exteriores",
+          "nombre": "Marta Lucía Ramírez",
+          "periodo": "2021–2022",
+          "foto": "/gabinete/marta-lucia-ramirez.jpg"
+        },
+        {
+          "cargo": "Hacienda y Crédito Público",
+          "nombre": "Alberto Carrasquilla",
+          "periodo": "2018–2021",
+          "foto": "/gabinete/alberto-carrasquilla.jpg",
+          "corrupcion": {
+            "estado": "investigado",
+            "resumen": "Indagación de la Fiscalía por el caso 'bonos de agua' emitidos en su primer paso por Hacienda.",
+            "fuente": "https://www.semana.com/nacion/articulo/fiscalia-abrio-indagacion-a-ministro-carrasquilla-por-caso-bonos-de-agua/587956/",
+            "anio": "2019"
+          }
+        },
+        {
+          "cargo": "Hacienda y Crédito Público",
+          "nombre": "José Manuel Restrepo",
+          "periodo": "2021–2022",
+          "foto": "/gabinete/jose-manuel-restrepo-abondano.jpg"
+        },
+        {
+          "cargo": "Justicia y del Derecho",
+          "nombre": "Gloria María Borrero",
+          "periodo": "2018–2019"
+        },
+        {
+          "cargo": "Justicia y del Derecho",
+          "nombre": "Margarita Cabello Blanco",
+          "periodo": "2019–2020",
+          "foto": "/gabinete/margarita-cabello-blanco.jpg"
+        },
+        {
+          "cargo": "Justicia y del Derecho",
+          "nombre": "Wilson Ruiz Orejuela",
+          "periodo": "2020–2022"
+        },
+        {
+          "cargo": "Defensa Nacional",
+          "nombre": "Guillermo Botero",
+          "periodo": "2018–2019",
+          "foto": "/gabinete/guillermo-botero-nieto.jpg"
+        },
+        {
+          "cargo": "Defensa Nacional",
+          "nombre": "Carlos Holmes Trujillo",
+          "periodo": "2019–2021",
+          "foto": "/gabinete/carlos-holmes-trujillo.jpg"
+        },
+        {
+          "cargo": "Defensa Nacional",
+          "nombre": "Diego Molano Aponte",
+          "periodo": "2021–2022",
+          "foto": "/gabinete/diego-molano-aponte.jpg"
+        },
+        {
+          "cargo": "Agricultura y Desarrollo Rural",
+          "nombre": "Andrés Valencia Pinzón",
+          "periodo": "2018–2020"
+        },
+        {
+          "cargo": "Agricultura y Desarrollo Rural",
+          "nombre": "Rodolfo Zea Navarro",
+          "periodo": "2020–2022"
+        },
+        {
+          "cargo": "Comercio, Industria y Turismo",
+          "nombre": "José Manuel Restrepo",
+          "periodo": "2018–2021",
+          "foto": "/gabinete/jose-manuel-restrepo-abondano.jpg"
+        },
+        {
+          "cargo": "Comercio, Industria y Turismo",
+          "nombre": "Ximena Lombana",
+          "periodo": "2021–2022"
+        },
+        {
+          "cargo": "Minas y Energía",
+          "nombre": "María Fernanda Suárez",
+          "periodo": "2018–2020"
+        },
+        {
+          "cargo": "Minas y Energía",
+          "nombre": "Diego Mesa Puyo",
+          "periodo": "2020–2022"
+        },
+        {
+          "cargo": "Educación Nacional",
+          "nombre": "María Victoria Angulo",
+          "periodo": "2018–2022",
+          "foto": "/gabinete/maria-victoria-angulo.jpg"
+        },
+        {
+          "cargo": "Salud y Protección Social",
+          "nombre": "Juan Pablo Uribe",
+          "periodo": "2018–2020"
+        },
+        {
+          "cargo": "Salud y Protección Social",
+          "nombre": "Fernando Ruiz Gómez",
+          "periodo": "2020–2022",
+          "foto": "/gabinete/fernando-ruiz-gomez.jpg"
+        },
+        {
+          "cargo": "Trabajo",
+          "nombre": "Alicia Arango Olmos",
+          "periodo": "2018–2019",
+          "foto": "/gabinete/alicia-arango.jpg"
+        },
+        {
+          "cargo": "Trabajo",
+          "nombre": "Ángel Custodio Cabrera",
+          "periodo": "2019–2022"
+        },
+        {
+          "cargo": "Ambiente y Desarrollo Sostenible",
+          "nombre": "Ricardo Lozano",
+          "periodo": "2018–2021"
+        },
+        {
+          "cargo": "Ambiente y Desarrollo Sostenible",
+          "nombre": "Carlos Eduardo Correa",
+          "periodo": "2021–2022"
+        },
+        {
+          "cargo": "Vivienda, Ciudad y Territorio",
+          "nombre": "Jonathan Malagón",
+          "periodo": "2018–2021",
+          "foto": "/gabinete/jonathan-malagon.jpg"
+        },
+        {
+          "cargo": "Vivienda, Ciudad y Territorio",
+          "nombre": "Susana Correa Borrero",
+          "periodo": "2021–2022"
+        },
+        {
+          "cargo": "Tecnologías de la Información y las Comunicaciones",
+          "nombre": "Sylvia Constaín",
+          "periodo": "2018–2020"
+        },
+        {
+          "cargo": "Tecnologías de la Información y las Comunicaciones",
+          "nombre": "Karen Abudinen",
+          "periodo": "2020–2021",
+          "foto": "/gabinete/karen-abudinen.jpg",
+          "corrupcion": {
+            "estado": "señalado",
+            "resumen": "Escándalo de contratación de Centros Poblados (MinTIC); renunció en 2021; Procuraduría archivó la investigación en 2024.",
+            "fuente": "https://www.eltiempo.com/justicia/investigacion/procuraduria-archivo-proceso-contra-la-exministra-karen-abudinen-por-escandalo-de-centros-poblados-3384189",
+            "anio": "2021"
+          }
+        },
+        {
+          "cargo": "Tecnologías de la Información y las Comunicaciones",
+          "nombre": "Carmen Ligia Valderrama",
+          "periodo": "2021–2022"
+        },
+        {
+          "cargo": "Cultura",
+          "nombre": "Carmen Inés Vásquez",
+          "periodo": "2018–2019"
+        },
+        {
+          "cargo": "Cultura",
+          "nombre": "Felipe Buitrago Restrepo",
+          "periodo": "2019–2021"
+        },
+        {
+          "cargo": "Cultura",
+          "nombre": "Angélica Mayolo",
+          "periodo": "2021–2022",
+          "foto": "/gabinete/angelica-mayolo.jpg"
+        },
+        {
+          "cargo": "Transporte",
+          "nombre": "Ángela María Orozco",
+          "periodo": "2018–2022",
+          "foto": "/gabinete/angela-maria-orozco.jpg"
+        },
+        {
+          "cargo": "Ciencia, Tecnología e Innovación",
+          "nombre": "Mabel Torres",
+          "periodo": "2019–2021"
+        },
+        {
+          "cargo": "Ciencia, Tecnología e Innovación",
+          "nombre": "Tito Crissien",
+          "periodo": "2021–2022"
+        },
+        {
+          "cargo": "Deporte",
+          "nombre": "Ernesto Lucena",
+          "periodo": "2019–2022"
+        },
+        {
+          "cargo": "Deporte",
+          "nombre": "Guillermo Herrera",
+          "periodo": "2022"
+        },
+        {
+          "cargo": "Director del DNP",
+          "nombre": "Gloria Amparo Alonso",
+          "periodo": "2018–2019"
+        },
+        {
+          "cargo": "Director del DNP",
+          "nombre": "Luis Alberto Rodríguez",
+          "periodo": "2019–2022"
+        }
       ]
     },
     {
       "mandato": "petro",
-      "gabinete": [
-        { "cargo": "Interior", "nombre": "Armando Benedetti", "nota": "Corte 2026. Antes Prada, Velasco y Cristo." },
-        { "cargo": "Relaciones Exteriores", "nombre": "Rosa Yolanda Villavicencio", "nota": "Corte 2026. Antes Leyva, Murillo y Sarabia." },
-        { "cargo": "Hacienda y Crédito Público", "nombre": "Germán Ávila", "nota": "Corte 2026. Antes Ocampo (2022–2023), Bonilla y Guevara." },
-        { "cargo": "Justicia y del Derecho", "nombre": "Néstor Osuna", "nota": "Cartera de alta rotación; Osuna fue el primero (2022–2024)." },
-        { "cargo": "Defensa Nacional", "nombre": "Pedro Sánchez", "nota": "Corte 2026; primer militar en el cargo bajo Petro. Antes Iván Velásquez." },
-        { "cargo": "Agricultura y Desarrollo Rural", "nombre": "Martha Carvajalino", "nota": "Corte 2026. Antes Cecilia López y Jhénifer Mojica." },
-        { "cargo": "Comercio, Industria y Turismo", "nombre": "Diana Morales", "nota": "Corte 2026. Antes Umaña y Reyes." },
-        { "cargo": "Minas y Energía", "nombre": "Edwin Palma", "nota": "Corte 2026. Antes Irene Vélez y Andrés Camacho." },
-        { "cargo": "Educación Nacional", "nombre": "Daniel Rojas", "nota": "Corte 2026. Antes Gaviria y Aurora Vergara." },
-        { "cargo": "Salud y Protección Social", "nombre": "Guillermo Alfonso Jaramillo", "nota": "Mayor permanencia (desde 2023). Antes Carolina Corcho." },
-        { "cargo": "Trabajo", "nombre": "Antonio Sanguino", "nota": "Corte 2026. Antes Gloria Inés Ramírez." },
-        { "cargo": "Ambiente y Desarrollo Sostenible", "nombre": "Susana Muhamad", "nota": "Más destacada y de mayor duración (2022–2025). Luego Lena Estrada." },
-        { "cargo": "Vivienda, Ciudad y Territorio", "nombre": "Helga Rivas", "nota": "Corte 2026. Antes Catalina Velasco." },
-        { "cargo": "Tecnologías de la Información y las Comunicaciones", "nombre": "Carina Murcia", "nota": "Corte 2026. Antes Urrutia, Lizcano y Molina." },
-        { "cargo": "Culturas, Artes y Saberes", "nombre": "Yannai Kadamani", "nota": "Corte 2026. Antes Patricia Ariza y Juan David Correa." },
-        { "cargo": "Transporte", "nombre": "María Fernanda Rojas", "nota": "Corte 2026. Antes Reyes, Camargo y García." },
-        { "cargo": "Ciencia, Tecnología e Innovación", "nombre": "Yesenia Olaya Requene", "nota": "Mayor duración (desde 2023). Antes Arturo Luna." },
-        { "cargo": "Igualdad y Equidad", "nombre": "Francia Márquez", "nota": "Ministerio creado en 2023; primera titular (vicepresidenta). En liquidación tras fallo de la Corte." },
-        { "cargo": "Deporte", "nombre": "Patricia Duque", "nota": "Corte 2026. Antes María Isabel Urrutia y otras." },
-        { "cargo": "Director del DNP", "nombre": "Alexander López Maya", "nota": "Antes Jorge Iván González; luego Natalia Molina." },
-        { "cargo": "Gerente del Banco de la República", "nombre": "Leonardo Villar", "nota": "Reelegido en 2024. Cargo autónomo." }
+      "ministros": [
+        {
+          "cargo": "Interior",
+          "nombre": "Alfonso Prada",
+          "periodo": "ago 2022 – abr 2023",
+          "foto": "/gabinete/alfonso-prada.jpg"
+        },
+        {
+          "cargo": "Interior",
+          "nombre": "Luis Fernando Velasco",
+          "periodo": "may 2023 – jul 2024",
+          "foto": "/gabinete/luis-fernando-velasco.jpg",
+          "corrupcion": {
+            "estado": "acusado",
+            "resumen": "Acusado por la Fiscalía en el caso UNGRD por presunto direccionamiento de contratos.",
+            "fuente": "https://www.semana.com/nacion/articulo/ricardo-bonilla-y-luis-fernando-velasco-fueron-acusados-formalmente-por-el-caso-ungrd-encabezaron-la-organizacion-delincuencial/202617/",
+            "anio": "2025"
+          }
+        },
+        {
+          "cargo": "Interior",
+          "nombre": "Juan Fernando Cristo",
+          "periodo": "jul 2024 – feb 2025",
+          "foto": "/gabinete/juan-fernando-cristo.jpg"
+        },
+        {
+          "cargo": "Interior",
+          "nombre": "Armando Benedetti",
+          "periodo": "mar 2025 – actualidad",
+          "foto": "/gabinete/armando-benedetti.jpg",
+          "corrupcion": {
+            "estado": "investigado",
+            "resumen": "Enfrenta varias investigaciones en la Corte Suprema; caso Fonade en etapa de juicio.",
+            "fuente": "https://www.eltiempo.com/justicia/cortes/estos-son-los-siete-procesos-en-contra-de-armando-benedetti-en-la-corte-suprema-de-justicia-3424759",
+            "anio": "2025"
+          }
+        },
+        {
+          "cargo": "Relaciones Exteriores",
+          "nombre": "Álvaro Leyva",
+          "periodo": "ago 2022 – feb 2024",
+          "foto": "/gabinete/alvaro-leyva.jpg",
+          "corrupcion": {
+            "estado": "acusado",
+            "resumen": "Destituido e inhabilitado 10 años por la Procuraduría y acusado por la Fiscalía en el caso pasaportes.",
+            "fuente": "https://www.procuraduria.gov.co/Pages/procuraduria-confirmo-sancion-destitucion-inhabilidad-10-anos-excanciller-alvaro-leyva.aspx",
+            "anio": "2025"
+          }
+        },
+        {
+          "cargo": "Relaciones Exteriores",
+          "nombre": "Luis Gilberto Murillo",
+          "periodo": "feb 2024 – ene 2025",
+          "foto": "/gabinete/luis-gilberto-murillo.jpg"
+        },
+        {
+          "cargo": "Relaciones Exteriores",
+          "nombre": "Laura Sarabia",
+          "periodo": "ene 2025 – jul 2025",
+          "foto": "/gabinete/laura-sarabia.jpg",
+          "corrupcion": {
+            "estado": "investigado",
+            "resumen": "Investigada por la prueba de polígrafo irregular a su exniñera Marelbys Meza.",
+            "fuente": "https://www.eltiempo.com/justicia/delitos/la-investigacion-contra-laura-sarabia-por-el-caso-del-poligrafo-a-marelbys-meza-cambiara-el-fiscal-tras-renuncia-3468628",
+            "anio": "2023"
+          }
+        },
+        {
+          "cargo": "Relaciones Exteriores",
+          "nombre": "Rosa Yolanda Villavicencio",
+          "periodo": "jul 2025 – actualidad",
+          "foto": "/gabinete/rosa-villavicencio.jpg"
+        },
+        {
+          "cargo": "Hacienda y Crédito Público",
+          "nombre": "José Antonio Ocampo",
+          "periodo": "ago 2022 – may 2023",
+          "foto": "/gabinete/jose-antonio-ocampo.jpg"
+        },
+        {
+          "cargo": "Hacienda y Crédito Público",
+          "nombre": "Ricardo Bonilla",
+          "periodo": "may 2023 – dic 2024",
+          "corrupcion": {
+            "estado": "acusado",
+            "resumen": "Acusado por la Fiscalía en el caso UNGRD; libre en 2026 por vencimiento de términos.",
+            "fuente": "https://www.infobae.com/colombia/2025/12/19/caso-ungrd-ricardo-bonilla-fue-capturado-y-procesado-por-las-autoridades-tras-finalizar-la-audiencia/",
+            "anio": "2025"
+          }
+        },
+        {
+          "cargo": "Hacienda y Crédito Público",
+          "nombre": "Diego Guevara",
+          "periodo": "ene 2025 – mar 2025",
+          "foto": "/gabinete/diego-guevara-castaneda.jpg"
+        },
+        {
+          "cargo": "Hacienda y Crédito Público",
+          "nombre": "Germán Ávila",
+          "periodo": "mar 2025 – actualidad"
+        },
+        {
+          "cargo": "Justicia y del Derecho",
+          "nombre": "Néstor Osuna",
+          "periodo": "ago 2022 – jul 2024",
+          "foto": "/gabinete/nestor-osuna.jpg"
+        },
+        {
+          "cargo": "Justicia y del Derecho",
+          "nombre": "Ángela María Buitrago",
+          "periodo": "jul 2024 – may 2025",
+          "foto": "/gabinete/angela-maria-buitrago.jpg"
+        },
+        {
+          "cargo": "Justicia y del Derecho",
+          "nombre": "Eduardo Montealegre",
+          "periodo": "jun 2025 – oct 2025",
+          "foto": "/gabinete/eduardo-montealegre.jpg"
+        },
+        {
+          "cargo": "Justicia y del Derecho",
+          "nombre": "Jorge Iván Cuervo",
+          "periodo": "feb 2026 – jul 2026",
+          "foto": "/gabinete/jorge-ivan-cuervo.jpg"
+        },
+        {
+          "cargo": "Justicia y del Derecho",
+          "nombre": "Cielo Rusinque",
+          "periodo": "jul 2026 – actualidad (encargada)",
+          "foto": "/gabinete/cielo-rusinque.jpg"
+        },
+        {
+          "cargo": "Defensa Nacional",
+          "nombre": "Iván Velásquez",
+          "periodo": "ago 2022 – feb 2025"
+        },
+        {
+          "cargo": "Defensa Nacional",
+          "nombre": "Pedro Sánchez",
+          "periodo": "feb 2025 – actualidad",
+          "foto": "/gabinete/pedro-arnulfo-sanchez.jpg"
+        },
+        {
+          "cargo": "Agricultura y Desarrollo Rural",
+          "nombre": "Cecilia López",
+          "periodo": "ago 2022 – abr 2023",
+          "foto": "/gabinete/cecilia-lopez-montano.jpg"
+        },
+        {
+          "cargo": "Agricultura y Desarrollo Rural",
+          "nombre": "Jhénifer Mojica",
+          "periodo": "abr 2023 – jul 2024",
+          "foto": "/gabinete/jhenifer-mojica.jpg"
+        },
+        {
+          "cargo": "Agricultura y Desarrollo Rural",
+          "nombre": "Martha Carvajalino",
+          "periodo": "jul 2024 – jul 2026",
+          "foto": "/gabinete/martha-carvajalino.jpg"
+        },
+        {
+          "cargo": "Comercio, Industria y Turismo",
+          "nombre": "Germán Umaña",
+          "periodo": "ago 2022 – jun 2024",
+          "foto": "/gabinete/german-umana.jpg"
+        },
+        {
+          "cargo": "Comercio, Industria y Turismo",
+          "nombre": "Luis Carlos Reyes",
+          "periodo": "jun 2024 – mar 2025",
+          "foto": "/gabinete/luis-carlos-reyes.jpg",
+          "corrupcion": {
+            "estado": "investigado",
+            "resumen": "Corte Suprema abrió indagación por su gestión; él denunció presiones por puestos en la DIAN.",
+            "fuente": "https://www.eluniversal.com.co/colombia/2025/02/20/abren-investigacion-al-ministro-luis-carlos-reyes-por-caso-dian/",
+            "anio": "2025"
+          }
+        },
+        {
+          "cargo": "Comercio, Industria y Turismo",
+          "nombre": "Diana Morales",
+          "periodo": "jun 2025 – actualidad",
+          "foto": "/gabinete/diana-marcela-morales.jpg"
+        },
+        {
+          "cargo": "Minas y Energía",
+          "nombre": "Irene Vélez",
+          "periodo": "ago 2022 – jul 2023",
+          "foto": "/gabinete/irene-velez-torres.jpg",
+          "corrupcion": {
+            "estado": "investigado",
+            "resumen": "Pliego de cargos de la Procuraduría por la salida irregular de su hijo del país.",
+            "fuente": "https://www.elcolombiano.com/colombia/procuraduria-formulo-pliego-de-cargos-exministra-de-minas-irene-velez-por-el-caso-de-sus-hijos-y-migracion-IB24164804",
+            "anio": "2023"
+          }
+        },
+        {
+          "cargo": "Minas y Energía",
+          "nombre": "Andrés Camacho",
+          "periodo": "ago 2023 – feb 2025",
+          "foto": "/gabinete/omar-andres-camacho.jpg"
+        },
+        {
+          "cargo": "Minas y Energía",
+          "nombre": "Edwin Palma",
+          "periodo": "feb 2025 – actualidad"
+        },
+        {
+          "cargo": "Educación Nacional",
+          "nombre": "Alejandro Gaviria",
+          "periodo": "ago 2022 – feb 2023",
+          "foto": "/gabinete/alejandro-gaviria.jpg"
+        },
+        {
+          "cargo": "Educación Nacional",
+          "nombre": "Aurora Vergara",
+          "periodo": "mar 2023 – jul 2024",
+          "foto": "/gabinete/aurora-vergara.jpg"
+        },
+        {
+          "cargo": "Educación Nacional",
+          "nombre": "Daniel Rojas",
+          "periodo": "jul 2024 – actualidad",
+          "foto": "/gabinete/daniel-rojas-medellin.jpg"
+        },
+        {
+          "cargo": "Salud y Protección Social",
+          "nombre": "Carolina Corcho",
+          "periodo": "ago 2022 – may 2023",
+          "foto": "/gabinete/carolina-corcho.jpg"
+        },
+        {
+          "cargo": "Salud y Protección Social",
+          "nombre": "Guillermo Alfonso Jaramillo",
+          "periodo": "may 2023 – actualidad",
+          "foto": "/gabinete/guillermo-alfonso-jaramillo.jpg"
+        },
+        {
+          "cargo": "Trabajo",
+          "nombre": "Gloria Inés Ramírez",
+          "periodo": "ago 2022 – feb 2025",
+          "foto": "/gabinete/gloria-ines-ramirez.jpg"
+        },
+        {
+          "cargo": "Trabajo",
+          "nombre": "Antonio Sanguino",
+          "periodo": "feb 2025 – actualidad",
+          "foto": "/gabinete/antonio-sanguino.jpg"
+        },
+        {
+          "cargo": "Ambiente y Desarrollo Sostenible",
+          "nombre": "Susana Muhamad",
+          "periodo": "ago 2022 – feb 2025",
+          "foto": "/gabinete/susana-muhamad.jpg"
+        },
+        {
+          "cargo": "Ambiente y Desarrollo Sostenible",
+          "nombre": "Lena Estrada",
+          "periodo": "feb 2025 – ago 2025",
+          "foto": "/gabinete/lena-estrada.jpg"
+        },
+        {
+          "cargo": "Vivienda, Ciudad y Territorio",
+          "nombre": "Catalina Velasco",
+          "periodo": "ago 2022 – jul 2024",
+          "foto": "/gabinete/catalina-velasco.jpg"
+        },
+        {
+          "cargo": "Vivienda, Ciudad y Territorio",
+          "nombre": "Helga Rivas",
+          "periodo": "jul 2024 – actualidad",
+          "foto": "/gabinete/helga-rivas.jpg"
+        },
+        {
+          "cargo": "Tecnologías de la Información y las Comunicaciones",
+          "nombre": "Sandra Urrutia",
+          "periodo": "sep 2022 – abr 2023",
+          "foto": "/gabinete/sandra-urrutia.jpg"
+        },
+        {
+          "cargo": "Tecnologías de la Información y las Comunicaciones",
+          "nombre": "Mauricio Lizcano",
+          "periodo": "may 2023 – ene 2025",
+          "foto": "/gabinete/mauricio-lizcano.jpg"
+        },
+        {
+          "cargo": "Tecnologías de la Información y las Comunicaciones",
+          "nombre": "Julián Molina",
+          "periodo": "mar 2025 – sep 2025",
+          "foto": "/gabinete/julian-molina.jpg"
+        },
+        {
+          "cargo": "Tecnologías de la Información y las Comunicaciones",
+          "nombre": "Carina Murcia",
+          "periodo": "sep 2025 – actualidad",
+          "foto": "/gabinete/carina-murcia.jpg"
+        },
+        {
+          "cargo": "Cultura",
+          "nombre": "Patricia Ariza",
+          "periodo": "ago 2022 – feb 2023",
+          "foto": "/gabinete/patricia-ariza.jpg"
+        },
+        {
+          "cargo": "Cultura",
+          "nombre": "Juan David Correa",
+          "periodo": "ago 2023 – feb 2025",
+          "foto": "/gabinete/juan-david-correa.jpg"
+        },
+        {
+          "cargo": "Cultura",
+          "nombre": "Yannai Kadamani",
+          "periodo": "feb 2025 – actualidad",
+          "foto": "/gabinete/yannai-kadamani.jpg"
+        },
+        {
+          "cargo": "Transporte",
+          "nombre": "Guillermo Reyes",
+          "periodo": "ago 2022 – abr 2023",
+          "foto": "/gabinete/guillermo-reyes-gonzalez.jpg"
+        },
+        {
+          "cargo": "Transporte",
+          "nombre": "William Camargo",
+          "periodo": "may 2023 – jul 2024",
+          "foto": "/gabinete/william-camargo.jpg"
+        },
+        {
+          "cargo": "Transporte",
+          "nombre": "María Constanza García",
+          "periodo": "jul 2024 – ene 2025",
+          "foto": "/gabinete/maria-constanza-garcia.jpg"
+        },
+        {
+          "cargo": "Transporte",
+          "nombre": "María Fernanda Rojas",
+          "periodo": "feb 2025 – actualidad",
+          "foto": "/gabinete/maria-fernanda-rojas-mantilla.jpg"
+        },
+        {
+          "cargo": "Ciencia, Tecnología e Innovación",
+          "nombre": "Arturo Luna",
+          "periodo": "ago 2022 – abr 2023"
+        },
+        {
+          "cargo": "Ciencia, Tecnología e Innovación",
+          "nombre": "Yesenia Olaya",
+          "periodo": "abr 2023 – actualidad",
+          "foto": "/gabinete/yesenia-olaya.jpg"
+        },
+        {
+          "cargo": "Igualdad y Equidad",
+          "nombre": "Francia Márquez",
+          "periodo": "jun 2023 – feb 2025",
+          "foto": "/gabinete/francia-marquez.jpg"
+        },
+        {
+          "cargo": "Igualdad y Equidad",
+          "nombre": "Juan Carlos Florián",
+          "periodo": "ago 2025 – ene 2026",
+          "foto": "/gabinete/juan-carlos-florian.jpg"
+        },
+        {
+          "cargo": "Deporte",
+          "nombre": "María Isabel Urrutia",
+          "periodo": "ago 2022 – feb 2023",
+          "foto": "/gabinete/maria-isabel-urrutia.jpg",
+          "corrupcion": {
+            "estado": "acusado",
+            "resumen": "Acusada por la Fiscalía y la Procuraduría por presuntas irregularidades en contratos del Ministerio.",
+            "fuente": "https://www.elespectador.com/judicial/fiscalia-le-imputo-cargos-a-la-exministra-de-deportes-maria-isabel-urrutia/",
+            "anio": "2024"
+          }
+        },
+        {
+          "cargo": "Deporte",
+          "nombre": "Astrid Rodríguez",
+          "periodo": "mar 2023 – feb 2024",
+          "foto": "/gabinete/astrid-rodriguez.jpg"
+        },
+        {
+          "cargo": "Deporte",
+          "nombre": "Luz Cristina López",
+          "periodo": "mar 2024 – feb 2025",
+          "foto": "/gabinete/luz-cristina-lopez.jpg"
+        },
+        {
+          "cargo": "Deporte",
+          "nombre": "Patricia Duque",
+          "periodo": "feb 2025 – actualidad",
+          "foto": "/gabinete/patricia-duque.jpg"
+        },
+        {
+          "cargo": "Director del DNP",
+          "nombre": "Jorge Iván González",
+          "periodo": "ago 2022 – feb 2024",
+          "foto": "/gabinete/jorge-ivan-gonzalez.jpg"
+        },
+        {
+          "cargo": "Director del DNP",
+          "nombre": "Alexander López",
+          "periodo": "mar 2024 – mar 2025",
+          "foto": "/gabinete/alexander-lopez-maya.jpg"
+        },
+        {
+          "cargo": "Director del DNP",
+          "nombre": "Natalia Molina",
+          "periodo": "may 2025 – actualidad"
+        }
       ]
     }
   ]
