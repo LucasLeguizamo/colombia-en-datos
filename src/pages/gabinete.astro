@@ -1,36 +1,79 @@
 ---
 import Base from '../layouts/Base.astro';
-import { gabinetes, getMandato } from '../lib/data.js';
+import { gabinetes, getMandato, ministrosDe, resumenGabinete } from '../lib/data.js';
+
+// Agrupa los ministros de un gobierno por cartera, en orden de aparición.
+const porCartera = (lista) => {
+  const orden = [];
+  const map = new Map();
+  for (const p of lista) {
+    if (!map.has(p.cargo)) { map.set(p.cargo, []); orden.push(p.cargo); }
+    map.get(p.cargo).push(p);
+  }
+  return orden.map((cargo) => ({ cargo, gente: map.get(cargo) }));
+};
+
+const iniciales = (n) => n.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]).join('').toUpperCase();
+
+// Etiqueta y color por estado del proceso.
+const estadoInfo = {
+  condenado: { txt: 'Condenado', cls: 'e-grave' },
+  imputado: { txt: 'Imputado', cls: 'e-medio' },
+  acusado: { txt: 'Acusado', cls: 'e-medio' },
+  investigado: { txt: 'Investigado', cls: 'e-medio' },
+  señalado: { txt: 'Señalado', cls: 'e-leve' },
+  absuelto: { txt: 'Absuelto', cls: 'e-ok' },
+};
 ---
 
 <Base
   title="Gabinetes por gobierno"
-  descripcion="El gabinete ministerial de cada gobierno de Colombia, de Uribe a Petro. Quién manejó Hacienda, Defensa, Educación y el resto de carteras."
+  descripcion="Todos los ministros de cada gobierno de Colombia, de Uribe a Petro: cuántos pasaron por cada gabinete, con quién y quiénes tuvieron señalamientos de corrupción."
 >
   <h1>Los ministros de cada gobierno</h1>
-  <p class="muted" style="max-width:640px;">
-    {gabinetes.descripcion}
-  </p>
+  <p class="muted" style="max-width:640px;">{gabinetes.descripcion}</p>
   {!gabinetes.verificado && <p><span class="badge">datos en verificación</span></p>}
-
-  {gabinetes.gobiernos.length === 0 && (
-    <div class="card"><p class="muted" style="margin:0;">Datos en carga desde fuentes oficiales. Vuelve pronto.</p></div>
-  )}
 
   {gabinetes.gobiernos.map((g) => {
     const m = getMandato(g.mandato);
+    const r = resumenGabinete(g.mandato);
+    const grupos = porCartera(ministrosDe(g.mandato));
     return (
-      <section style="margin-bottom:48px;">
-        <h2 style={`border-left:4px solid ${m?.color ?? '#888'};padding-left:12px;`}>
-          {m?.nombre ?? g.mandato}
-          <span class="muted" style="font-weight:400;font-size:1rem;"> · {m?.presidente}</span>
-        </h2>
-        <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;">
-          {g.gabinete.filter((c) => c.nombre).map((c) => (
-            <div class="card" style="padding:14px 16px;">
-              <div class="muted" style="font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;">{c.cargo}</div>
-              <div style="font-weight:500;margin-top:2px;">{c.nombre}</div>
-              {c.nota && <div class="muted" style="font-size:.78rem;margin-top:4px;">{c.nota}</div>}
+      <section class="gob">
+        <div class="gob-cab" style={`border-color:${m?.color ?? '#888'};`}>
+          <h2>{m?.nombre ?? g.mandato} <span class="muted gob-pres">· {m?.presidente}</span></h2>
+          <div class="gob-stats">
+            <span><strong>{r.total}</strong> ministros</span>
+            {r.corrupcion > 0 && <span class="gob-alerta"><strong>{r.corrupcion}</strong> con señalamientos</span>}
+          </div>
+        </div>
+
+        <div class="carteras">
+          {grupos.map(({ cargo, gente }) => (
+            <div class="cartera">
+              <div class="cartera-n">{cargo}</div>
+              <ul class="personas">
+                {gente.map((p) => (
+                  <li class="persona">
+                    {p.foto
+                      ? <img class="ret" src={p.foto} alt={p.nombre} width="72" height="72" loading="lazy" decoding="async" />
+                      : <span class="ret ret-ini" aria-hidden="true">{iniciales(p.nombre)}</span>}
+                    <div class="persona-txt">
+                      <span class="persona-n">{p.nombre}</span>
+                      {p.periodo && <span class="muted persona-p">{p.periodo}</span>}
+                      {p.corrupcion && (() => {
+                        const info = estadoInfo[p.corrupcion.estado] ?? { txt: p.corrupcion.estado, cls: 'e-medio' };
+                        const badge = <span class:list={["corr", info.cls]} title={p.corrupcion.resumen}>{info.txt}{p.corrupcion.anio ? ` ${p.corrupcion.anio}` : ''}</span>;
+                        return p.corrupcion.fuente
+                          ? <a class="corr-link" href={p.corrupcion.fuente} target="_blank" rel="noopener">{badge}</a>
+                          : badge;
+                      })()}
+                      {p.corrupcion?.resumen && <span class="muted corr-res">{p.corrupcion.resumen}</span>}
+                      {p.nota && !p.corrupcion && <span class="muted persona-p">{p.nota}</span>}
+                    </div>
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>
@@ -39,6 +82,40 @@ import { gabinetes, getMandato } from '../lib/data.js';
   })}
 
   {gabinetes.gobiernos.length > 0 && (
-    <p class="muted" style="font-size:.85rem;">Fuentes: {gabinetes.fuentes.join(' · ')}. {gabinetes.nota}</p>
+    <p class="muted" style="font-size:.85rem;margin-top:8px;">
+      Fuentes: {gabinetes.fuentes.join(' · ')}. {gabinetes.nota}
+      <br />Los señalamientos indican el estado del proceso (investigado, imputado, condenado o absuelto) con enlace a la fuente. Investigado o señalado no implica culpabilidad.
+    </p>
   )}
 </Base>
+
+<style>
+  .gob { margin-bottom:44px; }
+  .gob-cab { border-left:4px solid #888; padding:2px 0 8px 14px; margin-bottom:18px;
+    display:flex; align-items:baseline; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+  .gob-cab h2 { margin:0; }
+  .gob-pres { font-weight:400; font-size:1rem; }
+  .gob-stats { display:flex; gap:16px; font-size:.9rem; }
+  .gob-stats strong { font-size:1.05rem; }
+  .gob-alerta { color:#B4341C; }
+
+  .carteras { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:14px 20px; }
+  .cartera-n { font-size:.74rem; text-transform:uppercase; letter-spacing:.04em; color:var(--muted);
+    padding-bottom:5px; margin-bottom:8px; border-bottom:1px solid var(--border); }
+  .personas { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:12px; }
+  .persona { display:flex; gap:11px; align-items:flex-start; }
+  .ret { flex:none; width:48px; height:48px; border-radius:50%; object-fit:cover;
+    background:var(--surface-2); border:1px solid var(--border); }
+  .ret-ini { display:grid; place-items:center; font-size:.85rem; font-weight:600; color:var(--muted); }
+  .persona-txt { display:flex; flex-direction:column; gap:2px; min-width:0; }
+  .persona-n { font-weight:500; line-height:1.2; }
+  .persona-p { font-size:.78rem; }
+  .corr-link { text-decoration:none; width:fit-content; }
+  .corr { display:inline-block; font-size:.68rem; font-weight:700; text-transform:uppercase; letter-spacing:.03em;
+    padding:2px 7px; border-radius:var(--radius-pill); margin-top:1px; width:fit-content; }
+  .corr.e-grave { background:#B4341C; color:#fff; }
+  .corr.e-medio { background:#E9C3A0; color:#7A2E12; }
+  .corr.e-leve { background:var(--surface-2); color:#7A2E12; border:1px solid #E9C3A0; }
+  .corr.e-ok { background:#DDE7D2; color:#3B5A22; }
+  .corr-res { font-size:.76rem; line-height:1.35; margin-top:1px; }
+</style>

@@ -2,9 +2,10 @@
 import Base from '../layouts/Base.astro';
 import Presidente from '../components/Presidente.astro';
 import Newsletter from '../components/Newsletter.astro';
-import { mandatoVigente } from '../lib/data.js';
+import { mandatoVigente, resumenGabinete } from '../lib/data.js';
 
 const activo = mandatoVigente(); // presidente en ejercicio hoy
+const gab = resumenGabinete(activo.id); // ministros que pasaron por el gobierno vigente
 ---
 
 <Base
@@ -27,9 +28,40 @@ const activo = mandatoVigente(); // presidente en ejercicio hoy
 
   <Presidente activo={activo} tituloTag="h2" filtroAnios />
 
+  <a class="gab-card" href="/gabinete" aria-label={`Gabinete de ${activo.presidente}: ${gab.total} ministros`}>
+    <div class="gab-num">
+      <span class="gab-n">{gab.total}</span>
+      <span class="gab-u">ministros</span>
+    </div>
+    <div class="gab-txt">
+      <strong>El gabinete de {activo.presidente}</strong>
+      <span class="muted mini">
+        {gab.total} personas pasaron por el gabinete durante el mandato
+        {gab.corrupcion > 0 && <> · <span class="gab-alerta">{gab.corrupcion} con señalamientos de corrupción</span></>}
+      </span>
+    </div>
+    <span class="gab-arrow" aria-hidden="true">→</span>
+  </a>
+
   <p class="muted mini" style="text-align:center;">
     Congreso: <a href="/congreso">ver todos los gobiernos</a> · Indicadores: <a href="/comparar">comparar dos gobiernos</a>
   </p>
+
+  <style>
+    .gab-card { display:flex; align-items:center; gap:18px; margin:24px auto 8px; max-width:560px;
+      padding:16px 20px; border:1px solid var(--border); border-radius:var(--radius-lg);
+      background:var(--surface-1); text-decoration:none; color:inherit;
+      transition:border-color 120ms var(--ease), transform 120ms var(--ease); }
+    .gab-card:hover { border-color:var(--ink); transform:translateY(-1px); }
+    .gab-num { flex:none; display:flex; flex-direction:column; align-items:center; line-height:1;
+      min-width:72px; padding-right:18px; border-right:1px solid var(--border); }
+    .gab-n { font-size:2.2rem; font-weight:700; }
+    .gab-u { font-size:.72rem; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; margin-top:4px; }
+    .gab-txt { display:flex; flex-direction:column; gap:3px; flex:1; }
+    .gab-alerta { color:#B4341C; font-weight:600; }
+    .gab-arrow { flex:none; color:var(--muted); font-size:1.2rem; }
+    @media (max-width:520px) { .gab-card { gap:12px; padding:14px 16px; } .gab-n { font-size:1.8rem; } }
+  </style>
 
   <div style="margin-top:32px;"><Newsletter /></div>
 </Base>

@@ -265,10 +265,15 @@ export const peorAnioPorMandato = (m) => {
   return peor;
 };
 
-// Total de ministros que pasaron por un gobierno (cuenta el roster completo, con rotaciones).
-export const totalMinistros = (mandatoId) => {
+// Lista de ministros de un gobierno (nuevo esquema `ministros[]` o fallback al viejo `gabinete[]`).
+export const ministrosDe = (mandatoId) => {
   const g = gabinetes.gobiernos.find((x) => x.mandato === mandatoId);
-  if (!g) return 0;
-  if (Array.isArray(g.ministros)) return g.ministros.length;
-  return g.gabinete.filter((c) => c.nombre).length; // fallback esquema viejo
+  if (!g) return [];
+  return Array.isArray(g.ministros) ? g.ministros : g.gabinete.filter((c) => c.nombre);
+};
+
+// Resumen del gabinete: total de personas que pasaron y cuántas con señalamiento de corrupción.
+export const resumenGabinete = (mandatoId) => {
+  const lista = ministrosDe(mandatoId);
+  return { total: lista.length, corrupcion: lista.filter((x) => x.corrupcion).length };
 };
