@@ -191,16 +191,21 @@ export const fmt = (v, unidad) => {
   return v.toLocaleString('es-CO');
 };
 
-// --- Insignias: logros y alertas de cada gobierno, derivados de los datos (no editorial).
-// Neutral por diseño: la cifra decide el tono. Para cada indicador con datos en el mandato,
-// marca si alcanzó el mejor/peor valor de toda la serie (récord) o un movimiento fuerte (≥15%).
+// --- Balance del gobierno: puntos a favor y en contra derivados de los datos (no editorial).
+// Neutral por diseño: la cifra decide el tono. Solo se consideran indicadores con historia
+// suficiente (datos en ≥3 gobiernos), para que "récord de la serie" sea un logro real y no
+// un artefacto de una serie corta (p. ej. inversión pública, que solo existe desde 2023).
 export const insigniasPorMandato = (m) => {
   const badges = [];
   for (const ind of indicadores) {
     const fila = statsPorMandato(ind).find((f) => f.mandato.id === m.id);
     if (!fila || fila.sinDatos) continue;
+    // Cobertura: ¿cuántos gobiernos distintos tienen dato en esta serie?
+    const gobiernosConDato = new Set(
+      ind.serie.filter((p) => p.valor != null).map((p) => mandatoDePunto(p.fecha)?.id).filter(Boolean),
+    );
+    if (gobiernosConDato.size < 3) continue; // serie sin historia comparable entre gobiernos
     const valores = ind.serie.filter((p) => p.valor != null).map((p) => p.valor);
-    if (valores.length < 4) continue; // serie corta: no hay contexto para "récord de la serie"
     const menorMejor = ind.mejorEs === 'menor';
     const mejorVal = menorMejor ? Math.min(...valores) : Math.max(...valores);
     const peorVal = menorMejor ? Math.max(...valores) : Math.min(...valores);
@@ -214,13 +219,24 @@ export const insigniasPorMandato = (m) => {
       badges.push({ ind: ind.id, tono: 'mal', texto: `${ind.nombre}: peor de la serie`, valor: fmt(peorVal, ind.unidad), peso: 3 });
     } else if (fila.deltaPct != null && Math.abs(fila.deltaPct) >= 15) {
       const ok = mejoro(ind, fila);
+      // Recorrido "primero → último" en vez del % relativo: para tasas (PIB, inflación) el
+      // % de un % engaña (0,7% → 2,6% no es "+271%"). El signo del cambio decide el tono.
       badges.push({
         ind: ind.id, tono: ok ? 'bien' : 'mal',
-        texto: `${ind.nombre} ${ok ? '▼ mejoró' : '▲ empeoró'} ${Math.abs(fila.deltaPct).toFixed(0)}%`,
-        valor: fmt(fila.ultimo, ind.unidad),
+        texto: `${ind.nombre} ${ok ? 'mejoró' : 'empeoró'}`,
+        valor: `${fmt(fila.primero, ind.unidad)} → ${fmt(fila.ultimo, ind.unidad)}`,
         peso: 1 + Math.min(1, Math.abs(fila.deltaPct) / 50),
       });
     }
   }
-  return badges.sort((a, b) => b.peso - a.peso).slice(0, 6);
+  return badges.sort((a, b) => b.peso - a.peso);
+};
+
+// Balance separado en columnas a favor / en contra (para el apartado inferior).
+export const balancePorMandato = (m) => {
+  const badges = insigniasPorMandato(m);
+  return {
+    aFavor: badges.filter((b) => b.tono === 'bien').slice(0, 6),
+    enContra: badges.filter((b) => b.tono === 'mal').slice(0, 6),
+  };
 };

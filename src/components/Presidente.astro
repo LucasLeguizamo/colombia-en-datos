@@ -1,5 +1,5 @@
 ---
-import { mandatos, datosPresidente, slugMandato, segmentos, asientosColoreados, colorPartido, mejoro, fmt, insigniasPorMandato } from '../lib/data.js';
+import { mandatos, datosPresidente, slugMandato, segmentos, asientosColoreados, colorPartido, mejoro, fmt, balancePorMandato } from '../lib/data.js';
 
 // `activo` = mandato a mostrar; `linkTitulo` marca si el nombre es <h1> (home) o <h2> (detalle).
 // `filtroAnios` activa los chips de año en la página de detalle del presidente.
@@ -54,8 +54,9 @@ const datosFiltro = (ind, fila) => {
 
 const conChips = filtroAnios && !futuro;
 
-// Insignias derivadas de los datos (récords de la serie y movimientos fuertes del mandato).
-const insignias = futuro ? [] : insigniasPorMandato(m);
+// Balance del gobierno (puntos a favor / en contra) derivado de los datos.
+const balance = futuro ? { aFavor: [], enContra: [] } : balancePorMandato(m);
+const hayBalance = balance.aFavor.length > 0 || balance.enContra.length > 0;
 
 // Uribe y Santos gobernaron dos veces; comparten foto (una por persona en public/presidentes/).
 const fotoId = (id) => id.replace(/[12]$/, '');
@@ -89,18 +90,6 @@ const fechaLarga = (f) =>
       <button type="button" class="chip" data-anio={String(anio)} aria-pressed="false">{anio}</button>
     ))}
     <span class="sr-only" aria-live="polite" data-filtro-estado></span>
-  </div>
-)}
-
-{insignias.length > 0 && (
-  <div class="insignias" aria-label={`Insignias del gobierno de ${m.presidente}, según los datos`}>
-    {insignias.map((b) => (
-      <a class:list={["insignia", b.tono]} href={`/indicador/${b.ind}`} title={`${b.texto} · ${b.valor}`}>
-        <span class="ins-dot" aria-hidden="true"></span>
-        <span class="ins-txt">{b.texto}</span>
-        <span class="ins-val mono">{b.valor}</span>
-      </a>
-    ))}
   </div>
 )}
 
@@ -231,6 +220,35 @@ const fechaLarga = (f) =>
       ) : <p class="muted mini">Sin cargos públicos de elección o designación previos a la presidencia.</p>}
     </div>
   )}
+
+  {hayBalance && (
+    <div class="panel panel-balance">
+      <h3>A favor y en contra <span class="muted mini">balance del gobierno según los datos oficiales</span></h3>
+      <div class="balance-cols">
+        <div class="bal-col">
+          <h4 class="bal-h bien">▲ A favor <span class="muted mini">{balance.aFavor.length}</span></h4>
+          {balance.aFavor.length ? (
+            <ul class="bal-lista">
+              {balance.aFavor.map((b) => (
+                <li><a href={`/indicador/${b.ind}`}><span class="bal-txt">{b.texto}</span><span class="bal-val mono">{b.valor}</span></a></li>
+              ))}
+            </ul>
+          ) : <p class="muted mini">Sin datos favorables destacables.</p>}
+        </div>
+        <div class="bal-col">
+          <h4 class="bal-h mal">▼ En contra <span class="muted mini">{balance.enContra.length}</span></h4>
+          {balance.enContra.length ? (
+            <ul class="bal-lista">
+              {balance.enContra.map((b) => (
+                <li><a href={`/indicador/${b.ind}`}><span class="bal-txt">{b.texto}</span><span class="bal-val mono">{b.valor}</span></a></li>
+              ))}
+            </ul>
+          ) : <p class="muted mini">Sin datos desfavorables destacables.</p>}
+        </div>
+      </div>
+      <p class="muted mini bal-nota">Derivado de los indicadores con historia comparable entre gobiernos (récords de la serie y cambios ≥15% dentro del mandato). Sin adjetivos: la cifra decide el lado.</p>
+    </div>
+  )}
 </div>
 
 {eleccion && (
@@ -285,19 +303,23 @@ const fechaLarga = (f) =>
   .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden;
     clip:rect(0 0 0 0); white-space:nowrap; border:0; }
 
-  /* Insignias: chips clicables (link al indicador) con tono según los datos. */
-  .insignias { display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin:0 0 24px; }
-  .insignia { display:inline-flex; align-items:center; gap:8px; text-decoration:none;
-    font-size:.8rem; line-height:1.2; padding:6px 12px; border-radius:var(--radius-pill);
-    border:1px solid var(--border); background:var(--surface-1); color:var(--ink);
-    transition:border-color 120ms var(--ease), transform 120ms var(--ease); }
-  .insignia:hover { border-color:var(--ink); transform:translateY(-1px); }
-  .ins-dot { flex:none; width:9px; height:9px; border-radius:50%; background:var(--muted); }
-  .insignia.bien .ins-dot { background:#4A7C2E; }
-  .insignia.mal .ins-dot { background:#B4341C; }
-  .insignia.bien { border-color:#4A7C2E55; }
-  .insignia.mal { border-color:#B4341C55; }
-  .ins-val { color:var(--muted); font-size:.76rem; }
+  /* Apartado inferior: balance a favor / en contra, derivado de los datos. */
+  .panel-balance { grid-column:1 / -1; }
+  .balance-cols { display:grid; grid-template-columns:1fr 1fr; gap:16px 28px; margin-top:6px; }
+  .bal-h { display:flex; align-items:center; gap:8px; margin:0 0 10px; font-size:.92rem;
+    padding-bottom:6px; border-bottom:1px solid var(--border); }
+  .bal-h.bien { color:#4A7C2E; }
+  .bal-h.mal { color:#B4341C; }
+  .bal-h .mini { margin-left:auto; color:var(--muted); }
+  .bal-lista { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px; }
+  .bal-lista a { display:flex; align-items:baseline; justify-content:space-between; gap:12px;
+    text-decoration:none; color:inherit; border-left:2px solid var(--border); padding:3px 0 3px 10px;
+    transition:border-color 120ms var(--ease); }
+  .bal-col:first-child .bal-lista a:hover { border-color:#4A7C2E; }
+  .bal-col:last-child .bal-lista a:hover { border-color:#B4341C; }
+  .bal-txt { font-size:.86rem; }
+  .bal-val { font-size:.8rem; color:var(--muted); white-space:nowrap; }
+  .bal-nota { margin:14px 0 0; }
 
   /* Fila superior: lo político en 3 columnas; los indicadores ocupan todo el ancho abajo. */
   .tablero { display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; }
@@ -377,9 +399,9 @@ const fechaLarga = (f) =>
     /* Móvil: los DATOS de primeras. Nombre → datos → selector de presidente al final. */
     #pres-nombre { order:1; margin:8px 0 16px; }
     .filtro-anios { order:2; margin:0 0 16px; }
-    .insignias { order:2; margin:0 0 16px; }
     .tablero { order:3; }
     .presfila { order:4; margin:24px 0 0; padding-top:16px; border-top:1px solid var(--border); }
+    .balance-cols { grid-template-columns:1fr; }
   }
 </style>
 
