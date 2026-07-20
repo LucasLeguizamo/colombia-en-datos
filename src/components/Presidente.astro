@@ -1,5 +1,5 @@
 ---
-import { mandatos, datosPresidente, slugMandato, segmentos, asientosColoreados, colorPartido, mejoro, fmt, balancePorMandato } from '../lib/data.js';
+import { mandatos, datosPresidente, slugMandato, segmentos, asientosColoreados, colorPartido, mejoro, fmt, balancePorMandato, peorAnioPorMandato } from '../lib/data.js';
 
 // `activo` = mandato a mostrar; `linkTitulo` marca si el nombre es <h1> (home) o <h2> (detalle).
 // `filtroAnios` activa los chips de año en la página de detalle del presidente.
@@ -57,6 +57,8 @@ const conChips = filtroAnios && !futuro;
 // Balance del gobierno (puntos a favor / en contra) derivado de los datos.
 const balance = futuro ? { aFavor: [], enContra: [] } : balancePorMandato(m);
 const hayBalance = balance.aFavor.length > 0 || balance.enContra.length > 0;
+// Peor año del mandato (más indicadores empeorando neto).
+const peorAnio = futuro ? null : peorAnioPorMandato(m);
 
 // Uribe y Santos gobernaron dos veces; comparten foto (una por persona en public/presidentes/).
 const fotoId = (id) => id.replace(/[12]$/, '');
@@ -224,6 +226,13 @@ const fechaLarga = (f) =>
   {hayBalance && (
     <div class="panel panel-balance">
       <h3>A favor y en contra <span class="muted mini">balance del gobierno según los datos oficiales</span></h3>
+      {peorAnio && (
+        <p class="peor-anio">
+          <span class="peor-etq">Peor año</span>
+          <strong>{peorAnio.anio}</strong>
+          <span class="muted mini">{peorAnio.empeoraron} indicadores empeoraron · {peorAnio.mejoraron} mejoraron{peorAnio.carteras.length ? ` (${peorAnio.carteras.slice(0, 3).join(', ')}${peorAnio.carteras.length > 3 ? '…' : ''})` : ''}</span>
+        </p>
+      )}
       <div class="balance-cols">
         <div class="bal-col">
           <h4 class="bal-h bien">▲ A favor <span class="muted mini">{balance.aFavor.length}</span></h4>
@@ -305,6 +314,10 @@ const fechaLarga = (f) =>
 
   /* Apartado inferior: balance a favor / en contra, derivado de los datos. */
   .panel-balance { grid-column:1 / -1; }
+  .peor-anio { display:flex; align-items:baseline; gap:8px; flex-wrap:wrap; margin:2px 0 14px;
+    padding:8px 12px; background:var(--surface-1); border-radius:8px; }
+  .peor-etq { font-size:.7rem; text-transform:uppercase; letter-spacing:.05em; color:#B4341C; font-weight:700; }
+  .peor-anio strong { font-size:1.05rem; }
   .balance-cols { display:grid; grid-template-columns:1fr 1fr; gap:16px 28px; margin-top:6px; }
   .bal-h { display:flex; align-items:center; gap:8px; margin:0 0 10px; font-size:.92rem;
     padding-bottom:6px; border-bottom:1px solid var(--border); }

@@ -240,3 +240,35 @@ export const balancePorMandato = (m) => {
     enContra: badges.filter((b) => b.tono === 'mal').slice(0, 6),
   };
 };
+
+// Peor año del mandato: el año (dentro del periodo) en que más indicadores empeoraron
+// frente al año anterior, neto de los que mejoraron. Neutral: solo cuenta direcciones.
+export const peorAnioPorMandato = (m) => {
+  const inicio = parseInt(m.inicio.slice(0, 4), 10);
+  const fin = parseInt(m.fin.slice(0, 4), 10);
+  let peor = null;
+  for (let Y = inicio; Y <= fin; Y++) {
+    if (mandatoDePunto(String(Y))?.id !== m.id) continue; // el año calendario cae en este mandato
+    let empeoraron = 0, mejoraron = 0;
+    const carteras = [];
+    for (const ind of indicadores) {
+      const vY = ind.serie.find((p) => p.fecha === String(Y))?.valor;
+      const vP = ind.serie.find((p) => p.fecha === String(Y - 1))?.valor;
+      if (vY == null || vP == null || vY === vP) continue;
+      const subio = vY > vP;
+      const empeoro = ind.mejorEs === 'menor' ? subio : !subio;
+      if (empeoro) { empeoraron++; carteras.push(ind.nombre); } else mejoraron++;
+    }
+    const net = empeoraron - mejoraron;
+    if (empeoraron > 0 && (peor == null || net > peor.net)) peor = { anio: Y, empeoraron, mejoraron, net, carteras };
+  }
+  return peor;
+};
+
+// Total de ministros que pasaron por un gobierno (cuenta el roster completo, con rotaciones).
+export const totalMinistros = (mandatoId) => {
+  const g = gabinetes.gobiernos.find((x) => x.mandato === mandatoId);
+  if (!g) return 0;
+  if (Array.isArray(g.ministros)) return g.ministros.length;
+  return g.gabinete.filter((c) => c.nombre).length; // fallback esquema viejo
+};
