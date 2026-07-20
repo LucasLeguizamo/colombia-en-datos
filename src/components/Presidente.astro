@@ -1,5 +1,5 @@
 ---
-import { mandatos, datosPresidente, slugMandato, segmentos, asientosColoreados, colorPartido, mejoro, fmt, balancePorMandato, peorAnioPorMandato } from '../lib/data.js';
+import { mandatos, datosPresidente, slugMandato, segmentos, asientosColoreados, colorPartido, mejoro, fmt, balancePorMandato, peorAnioPorMandato, resumenGabinete, ministrosDe } from '../lib/data.js';
 
 // `activo` = mandato a mostrar; `linkTitulo` marca si el nombre es <h1> (home) o <h2> (detalle).
 // `filtroAnios` activa los chips de año en la página de detalle del presidente.
@@ -59,6 +59,16 @@ const balance = futuro ? { aFavor: [], enContra: [] } : balancePorMandato(m);
 const hayBalance = balance.aFavor.length > 0 || balance.enContra.length > 0;
 // Peor año del mandato (más indicadores empeorando neto).
 const peorAnio = futuro ? null : peorAnioPorMandato(m);
+
+// Gabinete de este gobierno: total, señalamientos y los casos más graves.
+const gab = futuro ? { total: 0, corrupcion: 0 } : resumenGabinete(m.id);
+const estadoTxt = { condenado: 'Condenado', imputado: 'Imputado', acusado: 'Acusado', investigado: 'Investigado', señalado: 'Señalado', absuelto: 'Absuelto' };
+const estadoCls = { condenado: 'e-grave', imputado: 'e-medio', acusado: 'e-medio', investigado: 'e-medio', señalado: 'e-leve', absuelto: 'e-ok' };
+const sevOrden = { condenado: 0, acusado: 1, imputado: 2, investigado: 3, señalado: 4, absuelto: 5 };
+const gabSenalados = futuro ? [] : ministrosDe(m.id)
+  .filter((p) => p.corrupcion)
+  .sort((a, b) => (sevOrden[a.corrupcion.estado] ?? 9) - (sevOrden[b.corrupcion.estado] ?? 9))
+  .slice(0, 4);
 
 // Uribe y Santos gobernaron dos veces; comparten foto (una por persona en public/presidentes/).
 const fotoId = (id) => id.replace(/[12]$/, '');
@@ -174,6 +184,32 @@ const fechaLarga = (f) =>
             <li><span class="punto" style={`background:${colorPartido(i)};`}></span>{x.partido} <b>{x.curules}</b></li>
           ))}
         </ul>
+      </>
+    ) : futuro ? <p class="proximamente">Próximamente.</p> : <p class="muted mini">Sin datos.</p>}
+  </div>
+
+  <!-- 4 · Gabinete -->
+  <div class="panel panel-gabinete">
+    <h3>Gabinete <span class="muted mini">{gab.total || '—'}</span></h3>
+    {gab.total ? (
+      <>
+        <p class="gab-linea">
+          <strong>{gab.total}</strong> ministros pasaron por el gobierno
+          {gab.corrupcion > 0 && <> · <span class="gab-alerta">{gab.corrupcion} con señalamientos</span></>}
+        </p>
+        {gabSenalados.length > 0 && (
+          <ul class="gab-mini">
+            {gabSenalados.map((p) => (
+              <li>
+                <span class="gab-mini-n">{p.nombre}</span>
+                <span class:list={["corrp", estadoCls[p.corrupcion.estado] ?? 'e-medio']} title={p.corrupcion.resumen}>
+                  {estadoTxt[p.corrupcion.estado] ?? p.corrupcion.estado}
+                </span>
+              </li>
+            ))}
+          </ul>
+        )}
+        <a class="gab-ver" href="/gabinete">Ver el gabinete completo →</a>
       </>
     ) : futuro ? <p class="proximamente">Próximamente.</p> : <p class="muted mini">Sin datos.</p>}
   </div>
@@ -347,6 +383,22 @@ const fechaLarga = (f) =>
   .cargo-n { font-size:.88rem; }
   .cargo-p { font-size:.8rem; color:var(--muted); white-space:nowrap; }
   .panel { border:1px solid var(--border); border-radius:10px; padding:14px; }
+
+  /* Panel de gabinete dentro del tablero. */
+  .gab-linea { font-size:.86rem; margin:2px 0 10px; }
+  .gab-linea strong { font-size:1.05rem; }
+  .gab-alerta { color:#B4341C; }
+  .gab-mini { list-style:none; margin:0 0 10px; padding:0; display:flex; flex-direction:column; gap:6px; }
+  .gab-mini li { display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .gab-mini-n { font-size:.82rem; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .corrp { flex:none; font-size:.64rem; font-weight:700; text-transform:uppercase; letter-spacing:.03em;
+    padding:2px 6px; border-radius:var(--radius-pill); }
+  .corrp.e-grave { background:#B4341C; color:#fff; }
+  .corrp.e-medio { background:#E9C3A0; color:#7A2E12; }
+  .corrp.e-leve { background:var(--surface-2); color:#7A2E12; border:1px solid #E9C3A0; }
+  .corrp.e-ok { background:#DDE7D2; color:#3B5A22; }
+  .gab-ver { font-size:.8rem; color:var(--primary); text-decoration:none; }
+  .gab-ver:hover { text-decoration:underline; }
 
   /* Tarjeta de elección: botón nativo (accesible por teclado) con aspecto de panel. */
   .panel-eleccion { font:inherit; color:inherit; text-align:left; background:none; cursor:pointer; width:100%;
