@@ -6,11 +6,20 @@ import { mandatoVigente, resumenGabinete } from '../lib/data.js';
 
 const activo = mandatoVigente(); // presidente en ejercicio hoy
 const gab = resumenGabinete(activo.id); // ministros que pasaron por el gobierno vigente
+const site = Astro.site?.href ?? 'https://colombiaendatos.co/';
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebSite', name: 'Colombia en Datos', url: site,
+    inLanguage: 'es-CO' },
+  { '@context': 'https://schema.org', '@type': 'Organization', name: 'Colombia en Datos', url: site,
+    description: 'Datos oficiales de Colombia (DANE, Banco de la República) presentados sin sesgo.',
+    sameAs: ['https://github.com/LucasLeguizamo/colombia-en-datos'] },
+];
 ---
 
 <Base
   title=""
   descripcion="Cada presidente de Colombia con sus datos: elección, Senado, Cámara e indicadores económicos. De Uribe a Petro y Abelardo, con fuente oficial y sin sesgo."
+  jsonLd={jsonLd}
 >
   <h1 class="titulo-home" style="margin-bottom:4px;">Colombia en Datos</h1>
   <p class="muted intro-home" style="max-width:620px;margin-top:0;">

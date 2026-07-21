@@ -1,9 +1,14 @@
 ---
 import { ClientRouter } from 'astro:transitions';
-const { title, descripcion } = Astro.props;
+const { title, descripcion, imagen, jsonLd } = Astro.props;
 const fullTitle = title ? `${title} · Colombia en Datos` : 'Colombia en Datos';
 // Canonical y og:url por página, derivados de la ruta actual y el `site` del config.
 const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : Astro.url.pathname;
+// og:image absoluta (los crawlers exigen URL completa). Sin imagen → card resumido.
+const imagenAbs = imagen && Astro.site ? new URL(imagen, Astro.site).href : imagen;
+const twitterCard = imagen ? 'summary_large_image' : 'summary';
+// jsonLd: objeto o arreglo de objetos schema.org; se serializa a un <script> cada uno.
+const bloquesLd = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 ---
 
 <!doctype html>
@@ -20,10 +25,13 @@ const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : As
     <meta property="og:url" content={canonical} />
     <meta property="og:title" content={fullTitle} />
     {descripcion && <meta property="og:description" content={descripcion} />}
-    <meta name="twitter:card" content="summary_large_image" />
+    {imagenAbs && <meta property="og:image" content={imagenAbs} />}
+    <meta name="twitter:card" content={twitterCard} />
     <meta name="twitter:title" content={fullTitle} />
     {descripcion && <meta name="twitter:description" content={descripcion} />}
+    {imagenAbs && <meta name="twitter:image" content={imagenAbs} />}
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🇨🇴</text></svg>" />
+    {bloquesLd.map((b) => <script type="application/ld+json" set:html={JSON.stringify(b)} />)}
     <ClientRouter />
   </head>
   <body>

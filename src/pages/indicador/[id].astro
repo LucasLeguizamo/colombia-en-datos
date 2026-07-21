@@ -11,6 +11,22 @@ export function getStaticPaths() {
 const { id } = Astro.params;
 const ind = getIndicador(id);
 const stats = statsPorMandato(ind).filter((s) => !s.sinDatos);
+const site = Astro.site?.href ?? 'https://colombiaendatos.co/';
+const puntos = ind.serie.filter((p) => p.valor != null);
+// Dataset: aprovecha los rich results de datasets de Google; encaja con la naturaleza del sitio.
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'Dataset',
+    name: ind.nombre, description: ind.descripcion, url: `${site}indicador/${ind.id}`,
+    inLanguage: 'es-CO', license: 'https://creativecommons.org/publicdomain/zero/1.0/',
+    isAccessibleForFree: true,
+    ...(puntos.length ? { temporalCoverage: `${puntos[0].fecha}/${puntos.at(-1).fecha}` } : {}),
+    ...(ind.fuente ? { creator: { '@type': 'Organization', name: ind.fuente, ...(ind.fuenteUrl ? { url: ind.fuenteUrl } : {}) } } : {}),
+    publisher: { '@type': 'Organization', name: 'Colombia en Datos', url: site } },
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Colombia en Datos', item: site },
+    { '@type': 'ListItem', position: 2, name: ind.nombre, item: `${site}indicador/${ind.id}` },
+  ] },
+];
 // Para el delta: si el indicador es "menor mejor", una baja (delta<0) es buena.
 const claseDelta = (delta) => {
   if (delta === 0) return '';
@@ -20,7 +36,7 @@ const claseDelta = (delta) => {
 };
 ---
 
-<Base title={ind.nombre} descripcion={ind.descripcion}>
+<Base title={ind.nombre} descripcion={ind.descripcion} jsonLd={jsonLd}>
   <a href="/" class="muted" style="font-size:.9rem;">← Todos los indicadores</a>
   <h1 style="margin-top:12px;">{ind.nombre}</h1>
   <p class="muted">{ind.descripcion}</p>
