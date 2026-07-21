@@ -1,0 +1,37 @@
+name: Dato incorrecto
+description: Reportar un valor equivocado o desactualizado
+labels: ["datos"]
+body:
+  - type: input
+    id: indicador
+    attributes:
+      label: Indicador
+      placeholder: Inflación (IPC) / TRM / Desempleo…
+    validations:
+      required: true
+  - type: input
+    id: periodo
+    attributes:
+      label: Año o fecha del dato
+      placeholder: "2023"
+    validations:
+      required: true
+  - type: input
+    id: actual
+    attributes:
+      label: Valor que aparece hoy
+    validations:
+      required: true
+  - type: input
+    id: correcto
+    attributes:
+      label: Valor correcto
+    validations:
+      required: true
+  - type: input
+    id: fuente
+    attributes:
+      label: Enlace a la fuente oficial
+      description: DANE, Banco de la República, MinHacienda, etc. No sirven enlaces a medios.
+    validations:
+      required: true

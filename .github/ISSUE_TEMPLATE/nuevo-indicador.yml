@@ -1,0 +1,30 @@
+name: Nuevo indicador
+description: Proponer un indicador para agregar al proyecto
+labels: ["indicador"]
+body:
+  - type: input
+    id: nombre
+    attributes:
+      label: Indicador propuesto
+      placeholder: Coeficiente de Gini
+    validations:
+      required: true
+  - type: input
+    id: fuente
+    attributes:
+      label: Fuente oficial (con URL)
+      description: Debe existir una publicación oficial verificable.
+    validations:
+      required: true
+  - type: dropdown
+    id: frecuencia
+    attributes:
+      label: Frecuencia
+      options: [diaria, mensual, trimestral, anual, por decisión]
+    validations:
+      required: true
+  - type: textarea
+    id: cobertura
+    attributes:
+      label: Cobertura histórica
+      description: ¿Desde qué año hay datos? El proyecto arranca en 2002.

@@ -1,5 +1,9 @@
 # Colombia en Datos
 
+[![CI](https://github.com/LucasLeguizamo/colombia-en-datos/actions/workflows/ci.yml/badge.svg)](https://github.com/LucasLeguizamo/colombia-en-datos/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/code-MIT-blue.svg)](LICENSE)
+[![Data: CC0](https://img.shields.io/badge/data-CC0-lightgrey.svg)](https://creativecommons.org/publicdomain/zero/1.0/)
+
 Plataforma open source y 100% pública con los indicadores económicos de Colombia, organizados por mandato presidencial desde Uribe I (2002) hasta hoy. Web + CLI. El objetivo: que cualquier persona pueda ver, comparar y descargar el panorama económico de cada gobierno sin sesgo, con la fuente oficial de cada dato.
 
 ## Por qué existe
