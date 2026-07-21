@@ -1,6 +1,30 @@
 ---
 import Base from '../layouts/Base.astro';
 import { congreso, getMandato, segmentos, colorPartido, asientosColoreados } from '../lib/data.js';
+
+// Marca compacta para la leyenda. Evita depender de archivos de logos de campañas
+// (que cambian por elección) y mantiene identificables los partidos históricos.
+const marcaPartido = (nombre) => {
+  const n = nombre.toLowerCase();
+  if (n.includes('pacto histórico')) return { id: 'pacto', texto: 'PH' };
+  if (n.includes('centro democrático')) return { id: 'centro', texto: 'CD' };
+  if (n.includes('conservador')) return { id: 'conservador', texto: 'C' };
+  if (n.includes('liberal')) return { id: 'liberal', texto: 'L' };
+  if (n.includes('cambio radical')) return { id: 'cambio', texto: 'CR' };
+  if (n.includes('alianza verde') || n.includes('alianza por colombia')) return { id: 'verde', texto: 'V' };
+  if (n.includes('partido de la u')) return { id: 'u', texto: 'U' };
+  if (n.includes('polo')) return { id: 'polo', texto: 'P' };
+  if (n.includes('mira')) return { id: 'mira', texto: 'M' };
+  if (n.includes('comunes') || n.includes('farc')) return { id: 'comunes', texto: 'C' };
+  if (n.includes('salvación nacional')) return { id: 'salvacion', texto: 'SN' };
+  if (n.includes('creemos')) return { id: 'creemos', texto: 'CR' };
+  if (n.includes('opción ciudadana')) return { id: 'opcion', texto: 'OC' };
+  if (n.includes('integración nacional') || n.includes('(pin)')) return { id: 'pin', texto: 'PIN' };
+  if (n.includes('indígena') || n.includes('especial') || n.includes('citrep')) return { id: 'especial', texto: '◌' };
+  if (n.includes('otro') || n.includes('coalición')) return { id: 'otros', texto: '··' };
+  const siglas = nombre.split(/\s+/).filter((p) => p.length > 2).slice(0, 2).map((p) => p[0]).join('');
+  return { id: 'generico', texto: siglas || '•' };
+};
 ---
 
 <Base
@@ -48,7 +72,11 @@ import { congreso, getMandato, segmentos, colorPartido, asientosColoreados } fro
               </svg>
               <div style="display:flex;flex-wrap:wrap;gap:4px 16px;margin-top:8px;font-size:.82rem;justify-content:center;">
                 {partidos.map((x, i) => (
-                  <span class="muted">
+                  <span class="partido-leyenda muted">
+                    {(() => {
+                      const marca = marcaPartido(x.partido);
+                      return <span class:list={['partido-marca', `marca-${marca.id}`]} aria-hidden="true">{marca.texto}</span>;
+                    })()}
                     <span style={`display:inline-block;width:9px;height:9px;border-radius:2px;background:${colorPartido(i)};margin-right:5px;`}></span>
                     {x.partido} <strong style="color:var(--ink);">{x.curules}</strong>
                   </span>
@@ -66,4 +94,28 @@ import { congreso, getMandato, segmentos, colorPartido, asientosColoreados } fro
       Fuentes: {congreso.fuentes.join(' · ')}. {congreso.nota}
     </p>
   )}
+
+  <style>
+    .partido-leyenda { display:inline-flex; align-items:center; }
+    .partido-marca { display:inline-grid; place-items:center; width:20px; height:20px; margin-right:5px;
+      border-radius:6px; color:#fff; background:#6B6B63; font-size:.56rem; font-weight:800;
+      line-height:1; letter-spacing:-.05em; font-variant-numeric:tabular-nums; }
+    .marca-liberal { background:#D91E2E; }
+    .marca-conservador { background:#1F4F9C; }
+    .marca-centro { background:#174D91; }
+    .marca-cambio { background:linear-gradient(135deg,#19539B 0 47%,#D52B31 48% 100%); }
+    .marca-u { background:#D64A35; }
+    .marca-verde { background:#1F8A50; }
+    .marca-polo { background:#F4B000; color:#27231C; }
+    .marca-mira { background:#2060AA; }
+    .marca-comunes { background:#C92E37; }
+    .marca-salvacion { background:#203C7A; }
+    .marca-creemos { background:#35A7A0; }
+    .marca-opcion { background:#F08B27; }
+    .marca-pin { background:#775DA6; }
+    .marca-especial { background:#746E63; font-size:1rem; font-weight:400; }
+    .marca-otros { background:#8A847A; font-size:.75rem; }
+    .marca-generico { background:#5F7080; }
+    .marca-pacto { position:relative; overflow:hidden; color:#1A1A18; background:linear-gradient(90deg,#ED9D20 0 20%,#3278B7 20% 40%,#D63639 40% 60%,#3A9E63 60% 80%,#7C54A3 80%); text-shadow:0 1px rgba(255,255,255,.35); }
+  </style>
 </Base>

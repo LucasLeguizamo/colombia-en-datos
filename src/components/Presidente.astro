@@ -76,6 +76,30 @@ const fotoId = (id) => id.replace(/[12]$/, '');
 const nfVotos = new Intl.NumberFormat('es-CO');
 const fechaLarga = (f) =>
   new Date(`${f}T00:00:00`).toLocaleDateString('es-CO', { day: 'numeric', month: 'long', year: 'numeric' });
+
+// Pictogramas de trazo sobrio: una pista visual, no una segunda gráfica de datos.
+const iconoIndicador = (id) => ({
+  'pib-crecimiento': 'M3 17l5-5 4 3 9-9M16 6h5v5',
+  inflacion: 'M4 17h16M5 13l4-4 3 3 7-8M15 4h4v4',
+  desempleo: 'M12 3a5 5 0 100 10 5 5 0 000 10zm-8 18c.8-3.1 3.6-5 8-5s7.2 1.9 8 5',
+  'salario-minimo': 'M5 4h14v16H5zM8 8h8M8 12h5M8 16h6',
+  gasolina: 'M6 4h8v16H6zM8 7h4M14 8h2l2 3v7a2 2 0 002 2',
+  trm: 'M4 7h16M4 17h16M7 4c3 4 3 12 0 16M17 4c-3 4-3 12 0 16',
+  ied: 'M4 5h16v14H4zM7 16l3-4 3 2 4-5',
+  'inversion-publica': 'M4 19V9M10 19V5M16 19v-8M3 19h18',
+  'deuda-externa-pib': 'M4 5h16v14H4zM7 15l3-3 3 2 4-5M16 9h1v1',
+  'deuda-total-gnc': 'M5 7h14v12H5zM8 7V5h8v2M8 12h8M8 16h5',
+  'deuda-per-capita': 'M12 12a4 4 0 100-8 4 4 0 000 8zm-7 8c.7-2.5 2.8-4 7-4s6.3 1.5 7 4',
+  'pobreza-monetaria': 'M4 18l5-6 3 3 8-9M16 6h4v4',
+  'pobreza-extrema': 'M4 19l5-8 3 4 8-11M16 4h4v4',
+  natalidad: 'M12 4v16M4 12h16M7 7l10 10M17 7L7 17',
+  fecundidad: 'M12 3v18M7 8h10M7 16h10',
+  'homicidios-tasa': 'M12 3l8 4v5c0 5-3.4 8-8 9-4.6-1-8-4-8-9V7zM12 8v5M12 16h.01',
+  secuestro: 'M7 10V7a5 5 0 0110 0v3M5 10h14v10H5z',
+  extorsion: 'M5 4h14v16H5zM8 8h8M8 12h5M8 16h3',
+  'lideres-sociales': 'M12 12a4 4 0 100-8 4 4 0 000 8zm-7 8c.7-2.5 2.8-4 7-4s6.3 1.5 7 4',
+  'coca-hectareas': 'M12 20V9M12 14c-5 0-7-4-7-8 5 0 7 4 7 8zm0 0c5 0 7-4 7-8-5 0-7 4-7 8z',
+}[id] ?? 'M4 19V5h16v14zM8 15l3-3 2 2 3-4');
 ---
 
 <div class="pres-wrap">
@@ -233,7 +257,12 @@ const fechaLarga = (f) =>
           return (
             <a class="indi" href={`/indicador/${ind.id}`}
                data-anios={conChips && conDatos ? JSON.stringify(datosFiltro(ind, fila)) : undefined}>
-              <span class="indi-n">{ind.nombre}</span>
+              <span class="indi-cab">
+                <span class="indi-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d={iconoIndicador(ind.id)} /></svg>
+                </span>
+                <span class="indi-n">{ind.nombre}</span>
+              </span>
               {conDatos ? (
                 <>
                   <span class="indi-v mono">{fmt(fila.ultimo, ind.unidad)}</span>
@@ -457,8 +486,12 @@ const fechaLarga = (f) =>
   .punto { display:inline-block; width:9px; height:9px; border-radius:2px; margin-right:5px; vertical-align:middle; }
 
   .indis { display:grid; grid-template-columns:repeat(auto-fill, minmax(150px, 1fr)); gap:8px; }
-  .indi { display:block; text-decoration:none; color:inherit; border:1px solid var(--border); border-radius:8px; padding:8px 10px; }
-  .indi:hover { border-color:var(--ink); }
+  .indi { display:block; text-decoration:none; color:inherit; border:1px solid var(--border); border-radius:10px; padding:10px;
+    background:linear-gradient(135deg, var(--canvas), var(--surface-1)); transition:border-color 120ms var(--ease), transform 120ms var(--ease), background 120ms var(--ease); }
+  .indi:hover { border-color:var(--ink); transform:translateY(-2px); background:var(--canvas); }
+  .indi-cab { display:flex; align-items:center; gap:7px; min-width:0; margin-bottom:6px; }
+  .indi-icon { display:grid; place-items:center; flex:none; width:25px; height:25px; border:1px solid var(--border); border-radius:7px; color:var(--primary); background:rgba(194,82,45,.08); }
+  .indi-icon svg { width:15px; height:15px; }
   .indi-n { display:block; font-size:.74rem; color:var(--muted); }
   .indi-v { display:block; font-size:1.35rem; font-weight:700; line-height:1.2; }
   .indi-d { display:block; font-size:.72rem; }
